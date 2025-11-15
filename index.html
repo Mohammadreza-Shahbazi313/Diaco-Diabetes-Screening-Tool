@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دیاکو - آزمایش دیابت</title>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet"
+        type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="light-theme">
+    <div class="container">
+        <header>
+            <div class="header-top">
+                <!-- سمت چپ: دکمه تم -->
+                <div class="left-section">
+                    <button id="theme-btn" class="btn-theme">🌙</button>
+                </div>
+
+                <!-- سمت راست: دکمه زبان -->
+                <div class="right-section">
+                    <div class="lang-flags">
+                        <span id="flag-fa" class="flag active" data-lang="fa">🇮🇷</span>
+                        <span id="flag-en" class="flag" data-lang="en">🇺🇸/🇬🇧</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- وسط: لوگو و عنوان اصلی -->
+            <div class="title-section">
+                <a href="about.html">
+                    <img src="logo.png" alt="Logo" class="logo">
+                </a>
+                <div class="title-only">
+                    <h1 id="main-title">دیاکو - محاسبه BMI</h1>
+                </div>
+            </div>
+
+            <!-- زیر عنوان جداگانه -->
+            <div class="subtitle-section">
+                <p id="subtitle">دیاکو یک ابزار آزمایش و <strong>غربالگری</strong> دیابت است. <strong>نتایج کامل
+                        نیستند</strong>، برای اطمینان کامل به پزشک مراجعه کنید.</p>
+            </div>
+        </header>
+
+        <form id="diabetes-form">
+            <div class="form-group">
+                <label for="name" id="name-label">نام و نام خانوادگی</label>
+                <span class="tooltip-icon" title="این فیلد اختیاری است" id="name-tooltip">?</span>
+                <input type="text" id="name" name="name" placeholder=" محمدرضا شهبازی / marshal mathers ">
+                <div class="error" id="name-error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="age" id="age-label">سن (سال)</label>
+                <input type="number" id="age" name="age" min="1" max="120" required>
+                <div class="caption" id="age-caption">بین 1 تا 120</div>
+                <div class="error" id="age-error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="glucose" id="glucose-label">غلظ گلوکز (mg/dL)</label>
+                <input type="number" id="glucose" name="glucose" min="0" max="400" required>
+                <div class="caption" id="glucose-caption">بین 0 تا 400</div>
+                <div class="error" id="glucose-error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="bmi" id="bmi-label">BMI (شاخص توده بدنی)</label>
+                <input type="number" id="bmi" name="bmi" step="0.1" min="10" max="70" required>
+                <div class="caption" id="bmi-caption">بین 10 تا 70 (مثلا 24.5)</div>
+                <div class="error" id="bmi-error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="pedigree" id="pedigree-label">تابع خانوادگی دیابت (0.0 - 2.5)</label>
+                <input type="number" id="pedigree" name="pedigree" step="0.001" min="0" max="2.5" required>
+                <div class="caption" id="pedigree-caption">بین 0 تا 2.5 (مثلا 0.52)</div>
+                <div class="error" id="pedigree-error"></div>
+            </div>
+
+            <div class="form-actions">
+                <a href="bmi.html" class="btn-bmi" id="bmi-btn">کمک برای محاسبه BMI</a>
+                <button type="submit" class="btn-submit" id="submit-btn">بررسی دیابت</button>
+            </div>
+            <p id="logo-click-message" class="logo-click-message">برای دیدن اطلاعات بیشتر، روی لوگو کلیک کنید</p>
+        </form>
+    </div>
+    <footer class="footer">
+        <div class="footer-content">
+            <p id="footer-text">ساخته شده توسط محمدرضا شهبازی </p>
+            <div class="github-section">
+                <a href="https://github.com/Mohammadreza-Shahbazi313" target="_blank" class="github-link"
+                    title="GitHub Profile">
+                    <img width="32" height="32" src="https://img.icons8.com/glyph-neue/64/github.png" alt="GitHub"
+                        class="github-logo">
+                </a>
+                <p class="github-tag" id="github-tag">اگر حمایت کنید خوشحال می‌شم</p>
+            </div>
+            <p id="footer-thanks">تشکر ویژه از دکتر سیامک سلیمی </p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="result-page-title">دیاکو - نتیجه آزمایش</title>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet"
+        type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="light-theme">
+    <div class="container" id="result-container">
+        <header>
+            <div class="header-top">
+                <!-- سمت چپ: دکمه تم -->
+                <div class="left-section">
+                    <button id="theme-btn" class="btn-theme">🌙</button>
+                </div>
+
+                <!-- سمت راست: دکمه زبان -->
+                <div class="right-section">
+                    <div class="lang-flags">
+                        <span id="flag-fa" class="flag active" data-lang="fa">🇮🇷</span>
+                        <span id="flag-en" class="flag" data-lang="en">🇺🇸/🇬🇧</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- وسط: لوگو و عنوان اصلی -->
+            <div class="title-section">
+                <a href="index.html">
+                    <img src="logo.png" alt="Logo" class="logo">
+                </a>
+                <div class="title-only">
+                    <h1 id="main-title">دیاکو - نتیجه آزمایش</h1>
+                </div>
+                <!-- لوگو برای قابلیت کلیک برای دیدن اطلاعات بیشتر -->
+                <p id="logo-click-message" class="logo-click-message">برای دیدن اطلاعات بیشتر، روی لوگو کلیک کنید</p>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- باکس نتیجه پیش‌بینی -->
+            <div id="result-box" class="result-box result-negative-bg">
+                <h2 id="prediction-result" class="result-negative">نتیجه: عدم احتمال دیابت</h2>
+            </div>
+
+            <!-- جدول داده‌های وارد شده -->
+            <div class="user-data-table">
+                <table>
+                    <thead>
+                        <tr>
+                           <th colspan="2" id="input-data-header">داده‌های ورودی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong id="nameResult">نام و نام خانوادگی:</strong></td>
+                            <td id="result-name"></td>
+                        </tr>
+                        <tr>
+                            <td><strong id="ageResult">سن:</strong></td>
+                            <td id="result-age"></td>
+                        </tr>
+                        <tr>
+                            <td><strong id="glucoseResult">غلظت گلوکز:</strong></td>
+                            <td id="result-glucose"></td>
+                        </tr>
+                        <tr>
+                            <td><strong id="bmiResult">BMI:</strong></td>
+                            <td id="result-bmi"></td>
+                        </tr>
+                        <tr>
+                            <td><strong id="pedigreeResult">تابع خانوادگی:</strong></td>
+                            <td id="result-pedigree"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- متن اخطار/توجه حرفه‌ای -->
+            <!-- از کلاس attention-box برای استایل برجسته استفاده شده -->
+            <p id="annual-checkup" class="attention-box">
+                <!-- این متن توسط script.js پر می‌شود -->
+            </p>
+
+            <!-- دکمه‌ها -->
+            <div class="result-actions">
+                <a href="index.html" class="btn-submit btn-secondary" id="test-again-link">آزمایش مجدد</a>
+                <a href="thanks.html" class="btn-submit" id="thanks-link">مشاهده صفحه تشکر</a>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer-content">
+            <p id="footer-text">ساخته شده توسط محمدرضا شهبازی </p>
+            <div class="github-section">
+                <a href="https://github.com/Mohammadreza-Shahbazi313" target="_blank" class="github-link"
+                    title="GitHub Profile">
+                    <img width="32" height="32" src="https://img.icons8.com/glyph-neue/64/github.png" alt="GitHub"
+                        class="github-logo">
+                </a>
+                <p class="github-tag" id="github-tag">اگر حمایت کنید خوشحال می‌شم</p>
+            </div>
+                        <p id="footer-thanks">تشکر ویژه از دکتر سیامک سلیمی </p>
+
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
