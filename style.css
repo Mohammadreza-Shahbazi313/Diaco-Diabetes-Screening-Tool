@@ -8,7 +8,7 @@
   --border-dark: #444;
   --error-color: #e74c3c;
   --success-color: #2ecc71;
-  --shadow: 0 4px 6px rgba(0,0,0,0.1);
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   --radius: 8px;
 }
 
@@ -19,8 +19,7 @@
 }
 
 body {
-  /* افزودن فونت Vazir برای پشتیبانی از فارسی، و Inter به عنوان بک‌آپ خوب */
-  font-family: 'Vazir', 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Vazir", "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
   font-size: 16px;
   transition: background-color 0.3s, color 0.3s;
@@ -45,15 +44,13 @@ body.dark-theme {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 30px;
-  direction: rtl; /* پیش‌فرض: راست به چپ (فارسی) */
-  text-align: right; /* پیش‌فرض: راست چین */
+  direction: rtl;
+  text-align: right;
 }
 
 body.dark-theme .container {
   background: #2d2d42;
 }
-
-/* --- بخش Header برای چینش ثابت دکمه‌ها و وسط قرار گیری لوگو و متن --- */
 
 header {
   margin-bottom: 30px;
@@ -61,43 +58,41 @@ header {
 
 .header-top {
   display: flex;
-  justify-content: space-between; /* دکمه تم چپ، زبان راست */
-  align-items: flex-start; /* هم‌تراز کردن از بالا */
-  padding-bottom: 10px; /* فاصله کمی بین دکمه‌ها و لوگو */
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 10px;
 }
 
 .left-section {
   display: flex;
-  align-self: flex-start; /* دکمه تم در بالا بماند */
+  align-self: flex-start;
 }
 
 .right-section {
   display: flex;
-  align-self: flex-start; /* دکمه زبان در بالا بماند */
+  align-self: flex-start;
 }
 
 .title-section {
   display: flex;
-  flex-direction: column; /* قرار دادن لوگو و متن زیر هم */
-  align-items: center; /* قرار دادن لوگو و متن در وسط */
-  gap: 10px; /* فاصله بین لوگو و متن */
-  text-align: center; /* متن عنوان در وسط */
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
 }
 
 .title-only {
-  text-align: center; /* عنوان همیشه وسط چین */
+  text-align: center;
 }
 
-/* عنوان اصلی (مین تایتل) همیشه وسط چین */
 #main-title {
   text-align: center;
 }
 
-/* زیرنویس جداگانه */
 .subtitle-section {
   display: flex;
-  justify-content: center; /* قرار دادن در وسط صفحه */
-  margin-top: 10px; /* فاصله از بالا */
+  justify-content: center;
+  margin-top: 10px;
 }
 
 #subtitle {
@@ -108,18 +103,16 @@ header {
   background-color: #ffebee;
   border-radius: 6px;
   border: 1px solid #f19c9c;
-  max-width: 600px; /* محدود کردن عرض */
-  text-align: center; /* پیش‌فرض: وسط چین */
+  max-width: 600px;
+  text-align: center;
 }
 
-/* برای حالت چپ‌چین (زمانی که زبان انگلیسی است) */
 body[dir="ltr"] #subtitle {
-  text-align: left !important; /* متن چپ چین */
+  text-align: left !important;
 }
 
-/* برای حالت راست‌چین (زمانی که زبان فارسی است) */
 body[dir="rtl"] #subtitle {
-  text-align: right !important; /* متن راست چین */
+  text-align: right !important;
 }
 
 body.dark-theme #subtitle {
@@ -137,13 +130,11 @@ body.dark-theme #subtitle strong {
   color: #ff7b72;
 }
 
-/* --- پایان بخش Header --- */
-
 .logo {
-  width: 70px; /* بزرگ‌تر */
-  height: 70px; /* بزرگ‌تر */
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 h1 {
@@ -156,17 +147,6 @@ body[dir="ltr"] h1 {
   direction: ltr;
 }
 
-/* دکمه‌های تم و زبان از استایل‌های جدید پایین استفاده می‌کنند */
-/* .btn-lang, .btn-theme {
-  padding: 8px 15px;
-  border: none;
-  border-radius: var(--radius);
-  cursor: pointer;
-  font-size: 0.9rem;
-  background: var(--primary-color);
-  color: white;
-} */
-
 .form-group {
   margin-bottom: 20px;
 }
@@ -177,7 +157,8 @@ label {
   font-weight: bold;
 }
 
-input[type="text"], input[type="number"] {
+input[type="text"],
+input[type="number"] {
   width: 100%;
   padding: 12px;
   border: 1px solid var(--border-light);
@@ -195,7 +176,7 @@ body.dark-theme input {
 input:focus {
   outline: none;
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 2px rgba(46, 204, 113, 0.3); /* حلقه نورانی */
+  box-shadow: 0 0 0 2px rgba(46, 204, 113, 0.3);
 }
 
 .caption {
@@ -220,10 +201,9 @@ body.dark-theme .caption {
   justify-content: space-between;
   margin-top: 30px;
   flex-wrap: wrap;
-  gap: 15px; /* افزایش فاصله بین دکمه‌ها */
+  gap: 15px;
 }
 
-/* استایل دکمه محاسبه BMI (ثانویه در صفحه اصلی) */
 .btn-bmi {
   padding: 12px 20px;
   border: none;
@@ -232,14 +212,13 @@ body.dark-theme .caption {
   font-size: 1rem;
   text-decoration: none;
   text-align: center;
-  display: inline-block; /* تغییر به inline-block برای flexbox */
-  flex-grow: 1; /* اجازه رشد برای اشغال فضای بیشتر در flex */
-  max-width: 48%; /* محدود کردن عرض برای چیدمان دو ستونی */
-  background: #3498db; /* رنگ آبی برای تمایز */
+  display: inline-block;
+  flex-grow: 1;
+  max-width: 48%;
+  background: #3498db;
   color: white;
 }
 
-/* استایل دکمه اصلی (بررسی دیابت) */
 .btn-submit {
   padding: 14px 20px;
   border: none;
@@ -250,31 +229,29 @@ body.dark-theme .caption {
   text-align: center;
   background: var(--primary-color);
   color: white;
-  display: inline-block; /* تغییر به inline-block برای flexbox */
-  flex-grow: 1; /* اجازه رشد برای اشغال فضای بیشتر در flex */
-  max-width: 48%; /* محدود کردن عرض برای چیدمان دو ستونی */
+  display: inline-block;
+  flex-grow: 1;
+  max-width: 48%;
 }
 
-/* در صفحه BMI که دکمه تنها است */
 .bmi-page-form .btn-submit,
 .bmi-page-form .btn-bmi {
-    width: 100%;
-    max-width: none;
-    margin-top: 15px;
-    display: block;
+  width: 100%;
+  max-width: none;
+  margin-top: 15px;
+  display: block;
 }
 
-
-.btn-bmi:hover, .btn-submit:hover {
+.btn-bmi:hover,
+.btn-submit:hover {
   opacity: 0.9;
 }
 
-/* RTL / LTR Support */
 body[dir="ltr"] {
   direction: ltr;
   text-align: left;
-  /* تغییر فونت به Inter یا یک فونت انگلیسی دیگر */
-  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body[dir="ltr"] .container {
@@ -285,11 +262,12 @@ body[dir="ltr"] .container {
 @media (max-width: 768px) {
   .form-actions {
     flex-direction: column;
-    gap: 10px; /* کاهش فاصله در موبایل */
+    gap: 10px;
   }
 
-  .btn-bmi, .btn-submit {
-    max-width: 100%; /* استفاده از تمام عرض در موبایل */
+  .btn-bmi,
+  .btn-submit {
+    max-width: 100%;
   }
 }
 
@@ -301,54 +279,48 @@ body[dir="ltr"] .container {
   margin-bottom: 20px;
 }
 
-/* استایل متن نتایج */
 .result-positive {
-  color: var(--error-color); /* قرمز برای هشدار/دیابت */
+  color: var(--error-color);
   font-weight: bold;
   text-align: center;
 }
 
 .result-negative {
-  color: var(--success-color); /* سبز برای خوب/بدون دیابت */
+  color: var(--success-color);
   font-weight: bold;
   text-align: center;
 }
 
-/* حالت مثبت (دیابت دارد) */
 .result-positive-bg {
-  background-color: #fadbd8; /* قرمز کم رنگ */
-  border-color: var(--error-color); /* حاشیه قرمز */
+  background-color: #fadbd8;
+  border-color: var(--error-color);
 }
 
-/* حالت منفی (دیابت ندارد) */
 .result-negative-bg {
-  background-color: #d5f4e6; /* سبز کم رنگ */
-  border-color: var(--success-color); /* حاشیه سبز */
+  background-color: #d5f4e6;
+  border-color: var(--success-color);
 }
 
-/* حالت احتمالی (نزدیک به مرز - نارنجی) */
 .result-uncertain-bg {
-  background-color: #fdf2e9; /* نارنجی کم رنگ */
-  border-color: #f39c12; /* حاشیه نارنجی */
+  background-color: #fdf2e9;
+  border-color: #f39c12;
 }
 
-/* دارک مود برای باکس نتایج */
 body.dark-theme .result-positive-bg {
-    background-color: #552a2a;
-    border-color: #ff7b72;
+  background-color: #552a2a;
+  border-color: #ff7b72;
 }
 
 body.dark-theme .result-negative-bg {
-    background-color: #2a554a;
-    border-color: #58d68d;
+  background-color: #2a554a;
+  border-color: #58d68d;
 }
 
 body.dark-theme .result-uncertain-bg {
-    background-color: #5a4a2a;
-    border-color: #ffbb69;
+  background-color: #5a4a2a;
+  border-color: #ffbb69;
 }
 
-/* جدول داده‌های کاربر */
 .user-data-table {
   margin-bottom: 20px;
 }
@@ -358,7 +330,6 @@ body.dark-theme .result-uncertain-bg {
   border-collapse: collapse;
 }
 
-/* مدیریت جهت جدول */
 body[dir="rtl"] .user-data-table table {
   direction: rtl;
 }
@@ -367,24 +338,27 @@ body[dir="ltr"] .user-data-table table {
   direction: ltr;
 }
 
-.user-data-table table, .user-data-table th, .user-data-table td {
+.user-data-table table,
+.user-data-table th,
+.user-data-table td {
   border: 1px solid var(--border-light);
 }
 
-body.dark-theme .user-data-table table, body.dark-theme .user-data-table th, body.dark-theme .user-data-table td {
+body.dark-theme .user-data-table table,
+body.dark-theme .user-data-table th,
+body.dark-theme .user-data-table td {
   border-color: var(--border-dark);
 }
 
-/* تراز متون داخل جدول */
-.user-data-table th, .user-data-table td {
+.user-data-table th,
+.user-data-table td {
   padding: 8px;
-  text-align: right; /* پیش‌فرض: راست چین */
+  text-align: right;
 }
 
-/* تراز متون داخل جدول برای LTR */
 body[dir="ltr"] .user-data-table th,
 body[dir="ltr"] .user-data-table td {
-  text-align: left; /* چپ چین */
+  text-align: left;
 }
 
 .user-data-table th {
@@ -395,7 +369,6 @@ body.dark-theme .user-data-table th {
   background-color: #444;
 }
 
-/* --- استایل پرچم‌ها و دکمه‌های کنترلی --- */
 .lang-flags {
   display: flex;
   gap: 10px;
@@ -445,7 +418,8 @@ body.dark-theme .user-data-table th {
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
-.btn-lang:hover, .btn-theme:hover {
+.btn-lang:hover,
+.btn-theme:hover {
   transform: scale(1.08);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   background: #27ae60;
@@ -453,17 +427,18 @@ body.dark-theme .user-data-table th {
   z-index: 10;
 }
 
-/* --- افکت‌های هاور برای دکمه‌های اصلی فرم --- */
-.btn-submit, .btn-bmi {
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease-out, background 0.3s ease-out;
+.btn-submit,
+.btn-bmi {
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.3s ease-out, background 0.3s ease-out;
 }
 
-.btn-submit:hover, .btn-bmi:hover {
+.btn-submit:hover,
+.btn-bmi:hover {
   transform: scale(1.03);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* --- Footer --- */
 .footer {
   margin-top: 40px;
   padding: 20px;
@@ -520,14 +495,14 @@ body.dark-theme .footer {
   transform: scale(1.1);
 }
 
-/* فیلتر برای لوگوی گیت‌هاب در تم روشن (تیره‌تر) */
 .github-logo {
-  filter: invert(20%) sepia(0%) saturate(100%) hue-rotate(0deg) brightness(100%) contrast(100%);
+  filter: invert(20%) sepia(0%) saturate(100%) hue-rotate(0deg) brightness(100%)
+    contrast(100%);
 }
 
-/* فیلتر برای لوگوی گیت‌هاب در تم تاریک (روشن‌تر) */
 body.dark-theme .github-logo {
-  filter: invert(90%) sepia(10%) saturate(100%) hue-rotate(180deg) brightness(105%) contrast(95%);
+  filter: invert(90%) sepia(10%) saturate(100%) hue-rotate(180deg)
+    brightness(105%) contrast(95%);
 }
 
 .github-tag {
@@ -541,9 +516,8 @@ body.dark-theme .github-tag {
   color: #aaa;
 }
 
-/* --- متفرقه --- */
 .bmi-formula-img {
-  width: 200px; 
+  width: 200px;
   height: auto;
   display: block;
   margin: 10px auto;
@@ -564,7 +538,7 @@ body.dark-theme .logo-click-message {
   font-size: 0.8rem;
   color: #777;
   margin-left: 5px;
-  cursor: help; 
+  cursor: help;
   display: inline-block;
   width: 16px;
   height: 16px;
@@ -584,83 +558,76 @@ body.dark-theme .tooltip-icon {
   background-color: #ccc;
 }
 
-/* --- استایل‌های اختصاصی صفحه نتایج (result.html) --- */
-
 .result-actions {
   margin-top: 30px;
-  display: flex; 
-  gap: 20px; 
-  justify-content: center; 
-  flex-wrap: wrap; 
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .result-actions a {
-  min-width: 180px; 
+  min-width: 180px;
   text-align: center;
-  flex-grow: 1; /* اجازه رشد برای اشغال فضا */
-  max-width: 45%; /* کنترل حداکثر عرض در دسکتاپ */
+  flex-grow: 1;
+  max-width: 45%;
 }
 
 @media (max-width: 500px) {
-    .result-actions a {
-        max-width: 100%; /* استفاده از تمام عرض در موبایل کوچک */
-    }
+  .result-actions a {
+    max-width: 100%;
+  }
 }
 
-/* استایل دکمه ثانویه (آزمایش مجدد) */
 .btn-secondary {
-  background-color: transparent !important; 
-  color: var(--primary-color) !important; 
-  border: 2px solid var(--primary-color) !important; 
-  box-shadow: none !important; 
+  background-color: transparent !important;
+  color: var(--primary-color) !important;
+  border: 2px solid var(--primary-color) !important;
+  box-shadow: none !important;
 }
 
-/* حالت هاور دکمه ثانویه */
 .btn-secondary:hover {
-  background-color: rgba(46, 204, 113, 0.1) !important; 
+  background-color: rgba(46, 204, 113, 0.1) !important;
 }
 
-/* استایل دهی دکمه اصلی (برای هاور) */
 .result-actions .btn-submit:not(.btn-secondary):hover {
   box-shadow: 0 6px 10px rgba(46, 204, 113, 0.4);
   transform: translateY(-2px);
 }
 
-/* استایل برای متن‌های زیر نتیجه (دقت مدل و یادآوری چکاپ) */
-#accuracy-info, #annual-checkup {
-    text-align: center;
-    font-size: 0.9rem;
-    color: #666;
-    margin-top: 15px;
+#accuracy-info,
+#annual-checkup {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 15px;
 }
 
-body.dark-theme #accuracy-info, body.dark-theme #annual-checkup {
-    color: #aaa;
+body.dark-theme #accuracy-info,
+body.dark-theme #annual-checkup {
+  color: #aaa;
 }
 
-/* استایل برای صفحه تشکر */
 .thanks-content {
-    text-align: center;
-    padding: 20px;
+  text-align: center;
+  padding: 20px;
 }
 
 .thanks-content h2 {
-    color: var(--primary-color);
-    margin-bottom: 20px;
+  color: var(--primary-color);
+  margin-bottom: 20px;
 }
 
 .thanks-content p {
-    font-size: 1.1rem;
-    margin-bottom: 30px;
+  font-size: 1.1rem;
+  margin-bottom: 30px;
 }
 body {
-  /* فونت پیش‌فرض برای زبان انگلیسی/لاتین */
-  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
   font-size: 16px;
-  /* ... بقیه کدهای body ... */
 }
-/* اعمال فونت Vazir فقط در صورتی که کلاس lang-fa به body اضافه شده باشد */
+
 body.lang-fa {
-    font-family: 'Vazir', 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Vazir", "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }

@@ -15,39 +15,40 @@
 
 <body class="light-theme">
     <div class="container">
-<header>
-  <div class="header-top">
-    <!-- سمت چپ: دکمه تم -->
-    <div class="left-section">
-      <button id="theme-btn" class="btn-theme">🌙</button>
-    </div>
+        <header>
+            <div class="header-top">
 
-    <!-- سمت راست: دکمه زبان -->
-    <div class="right-section">
-      <div class="lang-flags">
-        <span id="flag-fa" class="flag active" data-lang="fa">🇮🇷</span>
-        <span id="flag-en" class="flag" data-lang="en">🇺🇸/🇬🇧</span>
-      </div>
-    </div>
-  </div>
+                <div class="left-section">
+                    <button id="theme-btn" class="btn-theme">🌙</button>
+                </div>
 
-  <!-- وسط: لوگو و عنوان اصلی -->
-  <div class="title-section">
-      <a href="index.html">
-          <img src="logo.png" alt="Logo" class="logo">
-      </a>
-      <div class="title-only">
-          <h1 id="main-title">دیاکو - محاسبه BMI</h1>
-      </div>
-      <!-- لوگو برای قابلیت کلیک برای دیدن اطلاعات بیشتر -->
-      <p id="logo-click-message" class="logo-click-message">برای دیدن اطلاعات بیشتر، روی لوگو کلیک کنید</p>
-  </div>
 
-</header>
+                <div class="right-section">
+                    <div class="lang-flags">
+                        <span id="flag-fa" class="flag active" data-lang="fa">🇮🇷</span>
+                        <span id="flag-en" class="flag" data-lang="en">🇺🇸/🇬🇧</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="title-section">
+                <a href="index.html">
+                    <img src="logo.png" alt="Logo" class="logo">
+                </a>
+                <div class="title-only">
+                    <h1 id="main-title">دیاکو - محاسبه BMI</h1>
+                </div>
+
+                <p id="logo-click-message" class="logo-click-message">برای دیدن اطلاعات بیشتر، روی لوگو کلیک کنید</p>
+            </div>
+
+        </header>
 
         <div class="bmi-page-form">
             <div class="subtitle-section">
-                <p id="subtitle"><strong>شاخص توده بدنی (BMI)</strong> یک معیار ساده برای ارزیابی وزن شما نسبت به قدتان است.</p>
+                <p id="subtitle"><strong>شاخص توده بدنی (BMI)</strong> یک معیار ساده برای ارزیابی وزن شما نسبت به قدتان
+                    است.</p>
             </div>
 
             <img id="bmi-formula-img" src="per-bmi-calculate.jpg" alt="فرمول محاسبه BMI" class="bmi-formula-img">
@@ -69,7 +70,7 @@
                     <h3 id="bmi-result-label">BMI شما:</h3>
                     <p id="bmi-result" style="font-size: 1.5rem; color: #2ecc71; text-align: center;"></p>
                 </div>
-            
+
                 <div class="bmi-actions">
                     <a href="index.html" class="btn-bmi btn-secondary" id="back-to-main">بازگشت به فرم اصلی</a>
                     <button type="submit" class="btn-submit" id="calculate-btn">محاسبه BMI</button>
