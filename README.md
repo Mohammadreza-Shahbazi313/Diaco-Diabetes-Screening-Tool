@@ -5,15 +5,15 @@
 A **bilingual (English/Persian) diabetes screening tool** built with pure **HTML, CSS, and JavaScript**.
 This project is designed as a **foundational Proof-of-Concept (V1)** focusing on dynamic UI, form validation, and client-side logic based on known risk factors.
 ``
-``
+
 ---
 
 ## 🚀 Live Demo
-``
+
 Experience it live on **GitHub Pages** 👇  
 👉 [**Open Diaco (Live)**](https://Mohammadreza-Shahbazi313.github.io/Diaco-Diabetes-Screening-Tool/)
 ``
-``
+
 ---
 
 ## 🧱 Project Structure
