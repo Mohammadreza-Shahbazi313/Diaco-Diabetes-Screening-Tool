@@ -9,8 +9,6 @@ This project is designed as a **foundational Proof-of-Concept (V1)** focusing on
 ## 🚀 Live Demo
 Experience it live on **GitHub Pages** 👇  
 👉 [**Open Diaco (Live)**](https://Mohammadreza-Shahbazi313.github.io/Diaco-Diabetes-Screening-Tool/)
-
-*(Note: Please replace the URL above with your final GitHub Pages link.)*
 ---
 
 ## 🧱 Project Structure
