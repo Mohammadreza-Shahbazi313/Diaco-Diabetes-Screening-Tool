@@ -1,5 +1,5 @@
 
-```markdown
+
 # 🩺 Diaco - Diabetes Screening Tool (V1)
 
 A **bilingual (English/Persian) diabetes screening tool** built with pure **HTML, CSS, and JavaScript**.
