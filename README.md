@@ -2,13 +2,19 @@
 
 # 🩺 Diaco - Diabetes Screening Tool (V1)
 
+
 A **bilingual (English/Persian) diabetes screening tool** built with pure **HTML, CSS, and JavaScript**.
 This project is designed as a **foundational Proof-of-Concept (V1)** focusing on dynamic UI, form validation, and client-side logic based on known risk factors.
 
+
 ---
+
 ## 🚀 Live Demo
+
 Experience it live on **GitHub Pages** 👇  
 👉 [**Open Diaco (Live)**](https://Mohammadreza-Shahbazi313.github.io/Diaco-Diabetes-Screening-Tool/)
+
+
 ---
 
 ## 🧱 Project Structure
@@ -34,13 +40,14 @@ Diaco-Diabetes-Screening-Tool/
 ---
 
 ## ⚙️ Features
-✅ **Fully Bilingual:** Seamless switching between English (LTR) and Persian (RTL).
-✅ **Risk Analysis:** A Proof-of-Concept (PoC) model that assesses risk based on key factors (Age, Glucose, BMI, Pedigree).
-✅ **Light/Dark Mode:** Dynamic theme switching for user comfort.
-✅ **BMI Calculator:** A built-in utility page to help users calculate their BMI.
-✅ **Client-Side Validation:** Robust form validation to ensure data integrity.
-✅ **Responsive Design:** Clean, centered layout that works well on mobile and desktop.
-✅ **Vanilla JS:** Built with zero dependencies for maximum performance and readability.
+
+-✅ **Fully Bilingual:** Seamless switching between English (LTR) and Persian (RTL).
+-✅ **Risk Analysis:** A Proof-of-Concept (PoC) model that assesses risk based on key factors (Age, Glucose, BMI, Pedigree).
+-✅ **Light/Dark Mode:** Dynamic theme switching for user comfort.
+-✅ **BMI Calculator:** A built-in utility page to help users calculate their BMI.
+-✅ **Client-Side Validation:** Robust form validation to ensure data integrity.
+-✅ **Responsive Design:** Clean, centered layout that works well on mobile and desktop.
+-✅ **Vanilla JS:** Built with zero dependencies for maximum performance and readability.
 
 ---
 
