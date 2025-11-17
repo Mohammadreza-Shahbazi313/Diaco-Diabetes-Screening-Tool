@@ -1,74 +1,110 @@
 <!DOCTYPE html>
+<!-- Document declaration. Default language is set to Persian (fa) with RTL direction. 
+     This will be dynamically overridden by script.js based on user's last preference. -->
 <html lang="fa" dir="rtl">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>دیاکو - تشکر</title>
+  
+  <!-- Persian Font Import (Vazir) for high-quality RTL display -->
   <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet"
     type="text/css" />
+    
+  <!-- Standard Latin Font Import (Inter) for English text and general component styling -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+  <!-- Linking the main CSS stylesheet (includes responsive design and theme logic) -->
   <link rel="stylesheet" href="style.css">
 </head>
 
+<!-- Body element defaults to 'light-theme'. JavaScript toggles this class for Dark Mode. -->
 <body class="light-theme">
+  <!-- Main layout container for screen centering and fluid responsiveness -->
   <div class="container">
+    
+    <!-- HEADER SECTION: Contains all navigation and global controls -->
     <header>
+      <!-- Top Bar: Houses the utility controls (Theme & Language) -->
       <div class="header-top">
+        <!-- Left Section: Theme Toggle -->
         <div class="left-section">
+          <!-- Button to toggle between light and dark themes (controlled by 'theme-btn' ID in JS) -->
           <button id="theme-btn" class="btn-theme">🌙</button>
         </div>
 
+        <!-- Right Section: Language Flags -->
         <div class="right-section">
           <div class="lang-flags">
+            <!-- Persian Flag (Default Active) - Data-lang attribute used by JS for language switching -->
             <span id="flag-fa" class="flag active" data-lang="fa">🇮🇷</span>
+            <!-- English Flag -->
             <span id="flag-en" class="flag" data-lang="en">🇺🇸/🇬🇧</span>
           </div>
         </div>
       </div>
 
+      <!-- Logo and Page Title Section -->
       <div class="title-section">
+        <!-- Logo link that directs back to the main index page -->
         <a href="index.html">
           <img src="logo.png" alt="Logo" class="logo">
         </a>
         <div class="title-only">
+          <!-- Main Page Title - Content dynamically translated by script.js -->
           <h1 id="main-title">دیاکو - تشکر</h1>
         </div>
       </div>
     </header>
 
+    <!-- Content Wrapper for the main page area -->
     <div class="container">
       <header>
-      </header>
+      </header> 
 
+      <!-- Main Thank You Content Box - Centerpiece of the page -->
       <div class="content-box thanks-content" id="thanks-content">
+        <!-- Thank You Headline - Content dynamically translated by script.js -->
         <h2 id="thanks-header">از شما متشکریم!</h2>
 
+        <!-- Personalized Thank You Message: Content will be injected here by script.js, often including the user's name. -->
         <p id="thank-message-professional">
         </p>
 
+        <!-- Container for the Call-to-Action button -->
         <div style="margin-top: 30px;">
+          <!-- CTA Button to restart the test (links back to index.html) -->
           <a href="index.html" class="btn-submit" id="test-again-link-thanks">آزمایش دوباره</a>
         </div>
       </div>
     </div>
-
+    
+    <!-- FOOTER SECTION: Contains legal, credits, and links -->
     <footer class="footer">
       <div class="footer-content">
+        <!-- Special Acknowledgement/Credit (Content dynamically translated) -->
         <p id="footer-thanks">تشکر ویژه از دکتر سیامک سلیمی</p>
+        <!-- Author/Creator Tag (Content dynamically translated) -->
         <p id="footer-text">ساخته شده توسط محمدرضا شهبازی </p>
+        
+        <!-- GitHub Profile Section -->
         <div class="github-section">
           <a href="https://github.com/Mohammadreza-Shahbazi313" target="_blank" class="github-link"
             title="GitHub Profile">
+            <!-- GitHub Icon using Icons8 (linked externally) -->
             <img width="32" height="32" src="https://img.icons8.com/glyph-neue/64/github.png" alt="GitHub"
               class="github-logo">
           </a>
+          <!-- Encouragement Tagline (Content dynamically translated) -->
           <p class="github-tag" id="github-tag">اگر حمایت کنید خوشحال می‌شم</p>
         </div>
       </div>
     </footer>
+    
+    <!-- SCRIPT LINK: The essential JavaScript file that controls all dynamic behavior (theme, language, content loading) -->
     <script src="script.js"></script>
 </body>
 
