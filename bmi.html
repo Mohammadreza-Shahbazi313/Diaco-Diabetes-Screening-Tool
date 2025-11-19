@@ -6,29 +6,29 @@
 <html lang="fa" dir="rtl">
 
 <head>
-    <meta charset="UTF-8">    <!-- Character encoding & responsive viewport -->
+    <meta charset="UTF-8"> <!-- Character encoding & responsive viewport -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دیاکو - محاسبه BMI</title>    <!-- Page title -->
+    <title>دیاکو - محاسبه BMI</title> <!-- Page title -->
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet"
-        type="text/css" />    <!-- Persian Vazir font import -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">    <!-- English Inter font import -->
+        type="text/css" /> <!-- Persian Vazir font import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- English Inter font import -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="style.css"> <!-- Main stylesheet -->
 </head>
 
 <body class="light-theme">
-    <div class="container">  <!-- Header Section: Theme toggle, language flags, logo navigation -->
+    <div class="container"> <!-- Header Section: Theme toggle, language flags, logo navigation -->
         <header>
             <div class="header-top">
 
-                <div class="left-section">        <!-- Dark/Light Theme Button -->
+                <div class="left-section"> <!-- Dark/Light Theme Button -->
                     <button id="theme-btn" class="btn-theme">🌙</button>
                 </div>
 
 
-                <div class="right-section">   <!-- Language switching flags -->
-                    <div class="lang-flags"> 
+                <div class="right-section"> <!-- Language switching flags -->
+                    <div class="lang-flags">
                         <span id="flag-fa" class="flag active" data-lang="fa">🇮🇷</span>
                         <span id="flag-en" class="flag" data-lang="en">🇺🇸/🇬🇧</span>
                     </div>
@@ -36,7 +36,7 @@
             </div>
 
 
-            <div class="title-section">    <!-- Logo and Title Area -->
+            <div class="title-section"> <!-- Logo and Title Area -->
                 <a href="index.html">
                     <img src="logo.png" alt="Logo" class="logo">
                 </a>
@@ -49,7 +49,7 @@
 
         </header>
         <!-- Main BMI Calculator Form Section -->
-        <div class="bmi-page-form">     <!-- Short descriptive subtitle -->
+        <div class="bmi-page-form"> <!-- Short descriptive subtitle -->
             <div class="subtitle-section">
                 <p id="subtitle"><strong>شاخص توده بدنی (BMI)</strong> یک معیار ساده برای ارزیابی وزن شما نسبت به قدتان
                     است.</p>
@@ -58,17 +58,17 @@
             <img id="bmi-formula-img" src="per-bmi-calculate.jpg" alt="فرمول محاسبه BMI" class="bmi-formula-img">
             <!-- BMI Input Form -->
             <form id="bmi-form">
-                <div class="form-group">       <!-- Weight Input -->
+                <div class="form-group"> <!-- Weight Input -->
                     <label for="weight" id="weight-label">وزن (کیلوگرم)</label>
                     <input type="number" id="weight" name="weight" step="0.1" min="10" max="250" required>
-                       <!-- Dynamic error for weight validation -->
+                    <!-- Dynamic error for weight validation -->
                     <div class="error" id="weight-error"></div>
                 </div>
                 <!-- Height Input -->
                 <div class="form-group">
                     <label for="height" id="height-label">قد (متر)</label>
                     <input type="number" id="height" name="height" step="0.01" min="0.5" max="2.5" required>
-                      <!-- Dynamic error for height validation -->
+                    <!-- Dynamic error for height validation -->
                     <div class="error" id="height-error"></div>
                 </div>
                 <!-- BMI Result Box (shown only after calculation) -->
@@ -88,7 +88,7 @@
     <footer class="footer">
         <div class="footer-content">
             <p id="footer-text">ساخته شده توسط محمدرضا شهبازی </p>
-             <!-- GitHub Profile Link -->
+            <!-- GitHub Profile Link -->
             <div class="github-section">
                 <a href="https://github.com/Mohammadreza-Shahbazi313" target="_blank" class="github-link"
                     title="GitHub Profile">
@@ -100,7 +100,7 @@
             <p id="footer-thanks">تشکر ویژه از دکتر سیامک سلیمی </p>
         </div>
     </footer>
-        <!-- Main script: form handling, theme switching, language toggling -->
+    <!-- Main script: form handling, theme switching, language toggling -->
     <script src="script.js"></script>
 </body>
 
