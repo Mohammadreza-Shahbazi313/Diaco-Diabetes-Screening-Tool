@@ -2,6 +2,7 @@
 <html lang="fa" dir="rtl">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="result-page-title">دیاکو - نتیجه آزمایش</title>
@@ -11,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body class="light-theme">
@@ -48,6 +50,17 @@
             <div id="result-box" class="result-box result-negative-bg">
                 <h2 id="prediction-result" class="result-negative">نتیجه: عدم احتمال دیابت</h2>
             </div>
+
+
+            <div id="riskArea" style="max-width:420px; margin:18px auto;">
+                <div style="position:relative; height:220px;">
+                    <canvas id="riskDonut" width="220" height="220"></canvas>
+                </div>
+                <div id="riskPercent" style="text-align:center; font-weight:700; margin-top:8px">%</div>
+                <div id="riskMessage" style="text-align:center; color:#444; margin-top:6px"></div>
+            </div>
+
+
 
 
             <div class="user-data-table">
