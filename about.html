@@ -1,135 +1,92 @@
 <!DOCTYPE html>
-<!-- Document declaration setting the default language to Persian (fa) and direction to Right-to-Left (rtl).
-     This ensures proper rendering for the primary language before JS takes over. -->
 <html lang="fa" dir="rtl">
 
 <head>
-    <!-- Viewport meta tag for responsive design on mobile devices -->
-    <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Dynamic Page Title: The ID allows script.js to translate this based on the selected language. -->
+  <meta charset="UTF-8">
 
-    <title>دیاکو - درباره من و پروژه</title>
-    <!-- Persian Font Import (Vazir): Essential for a professional look in the Persian interface. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>دیاکو - درباره من و پروژه</title>
 
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet"
-        type="text/css" />
-    <!-- Latin Font Import (Inter): Used for English text to ensure readability and modern aesthetics. -->
+  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet"
+    type="text/css" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <!-- Main Stylesheet: Controls layout, themes (dark/light), and responsiveness. -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<!-- Body initialized with 'light-theme'. The theme toggle logic is handled in script.js. -->
 
 <body class="light-theme">
-    <!-- Main container to center content and provide consistent padding/margins -->
-
-    <div class="container">
-        <!-- HEADER SECTION: Navigation, Theme Toggle, and Language Switcher -->
-
-        <header>
-            <!-- Top Bar containing utility buttons -->
-
-            <div class="header-top">
-                <!-- Theme Toggle Button (Left aligned) -->
-
-                <div class="left-section">
-                    <button id="theme-btn" class="btn-theme">🌙</button>
-                </div>
-                <!-- Language Switcher Flags (Right aligned) -->
-
-                <div class="right-section">
-                    <div class="lang-flags">
-                        <!-- Persian Flag (Active by default) -->
-
-                        <span id="flag-fa" class="flag active" data-lang="fa">🇮🇷</span>
-                        <!-- English Flag -->
-
-                        <span id="flag-en" class="flag" data-lang="en">🇺🇸/🇬🇧</span>
-                    </div>
-                </div>
-            </div>
-            <!-- Logo and Main Title Area -->
-
-            <div class="title-section">
-                <!-- Clickable Logo returning to Home -->
-
-                <a href="index.html">
-                    <img src="logo.png" alt="Logo" class="logo">
-                </a>
-                <div class="title-only">
-                    <!-- Main Page Headline: ID allows for dynamic translation via script.js -->
-
-                    <h1 id="main-title">دیاکو - درباره من و پروژه</h1>
-                </div>
-                <p id="logo-click-message" class="logo-click-message">برای دیدن اطلاعات بیشتر، روی لوگو کلیک کنید</p>
-            </div>
-
-
-        </header>
-        <!-- ABOUT CONTENT SECTION: The core informational part of this page -->
-
-        <div class="about-content" id="about-content">
-            <!-- ABOUT CONTENT SECTION: The core informational part of this page -->
-
-            <h2 id="about-header">درباره پروژه</h2> <!-- Translated Header -->
-            <p id="about-project">
-                <!-- Content injected by script.js based on selected language (fa/en) -->
-
-            </p>
-            <!-- Content injected by script.js based on selected language (fa/en) -->
-
-            <h2 id="about-author">درباره من</h2> <!-- Translated Header -->
-            <p id="about-me">
-                <!-- Dynamic Content: This paragraph includes HTML links (LinkedIn, GitHub, Email) 
-             and is injected using innerHTML in script.js for rich text support. -->
-
-            </p>
-            <!-- Model Accuracy Details -->
-
-            <h2 id="accuracy-info">دقت مدل</h2> <!-- Translated Header -->
-            <p id="accuracy-desc">
-                <!-- Technical details about the model's accuracy and dataset (PoC explanation) -->
-
-            </p>
+  <div class="container">
+    <header>
+      <div class="header-top">
+        <div class="left-section">
+          <button id="theme-btn" class="btn-theme">🌙</button>
         </div>
+
+        <div class="right-section">
+          <div class="lang-flags">
+            <span id="flag-fa" class="flag active" data-lang="fa">🇮🇷</span>
+            <span id="flag-en" class="flag" data-lang="en">🇺🇸/🇬🇧</span>
+          </div>
+        </div>
+      </div>
+      <div class="title-section">
+        <a href="index.html">
+          <img src="logo.png" alt="Logo" class="logo">
+        </a>
+        <div class="title-only">
+          <h1 id="main-title">دیاکو - درباره من و پروژه</h1>
+        </div>
+        <p id="logo-click-message" class="logo-click-message">برای دیدن اطلاعات بیشتر، روی لوگو کلیک کنید</p>
+      </div>
+
+
+    </header>
+
+    <div class="about-content" id="about-content">
+      <h2 id="about-header">درباره پروژه</h2>
+      <p id="about-project">
+      </p>
+
+      <h2 id="about-author">درباره من</h2>
+      <p id="about-me">
+      </p>
+
+      <h2 id="accuracy-info">دقت مدل</h2>
+      <p id="accuracy-desc">
+      </p>
+
+<div class="result-actions" style="margin-top: 24px;">
+  <a href="index.html" id="back-to-main" class="btn-bmi btn-secondary" role="button" aria-label="بازگشت به صفحهٔ اصلی">
+    بازگشت به فرم اصلی
+  </a>
+</div>
 
     </div>
-    <!-- Technical details about the model's accuracy and dataset (PoC explanation) -->
 
-    <footer class="footer">
-        <div class="footer-content">
-            <!-- Developer Credit -->
+  </div>
+  <footer class="footer">
+    <div class="footer-content">
+      <p id="footer-text">ساخته شده توسط محمدرضا شهبازی </p>
+      <div class="github-section">
+        <a href="https://github.com/Mohammadreza-Shahbazi313" target="_blank" class="github-link"
+          title="GitHub Profile">
+          <img width="32" height="32" src="https://img.icons8.com/glyph-neue/64/github.png" alt="GitHub"
+            class="github-logo">
+        </a>
+        <p class="github-tag" id="github-tag">اگر حمایت کنید خوشحال می‌شم</p>
+      </div>
+      <p id="footer-thanks">تشکر ویژه از دکتر سیامک سلیمی </p>
+    </div>
+  </footer>
 
-            <p id="footer-text">ساخته شده توسط محمدرضا شهبازی </p>
-            <!-- GitHub Link Section -->
-
-            <div class="github-section">
-                <a href="https://github.com/Mohammadreza-Shahbazi313" target="_blank" class="github-link"
-                    title="GitHub Profile">
-                    <img width="32" height="32" src="https://img.icons8.com/glyph-neue/64/github.png" alt="GitHub"
-                        class="github-logo">
-                </a>
-                <!-- Support/Call-to-Action Tagline -->
-
-                <p class="github-tag" id="github-tag">اگر حمایت کنید خوشحال می‌شم</p>
-            </div>
-            <!-- Special Acknowledgment (Translated) -->
-
-            <p id="footer-thanks">تشکر ویژه از دکتر سیامک سلیمی </p>
-        </div>
-    </footer>
-    <!-- CORE SCRIPT: Handles all dynamic behavior, translations, and theme logic -->
-
-    <script src="script.js"></script>
-     
+  <script src="script.js"></script>
 </body>
 
 </html>
