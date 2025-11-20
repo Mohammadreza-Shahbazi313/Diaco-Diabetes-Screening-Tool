@@ -631,3 +631,36 @@ body {
 body.lang-fa {
   font-family: "Vazir", "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+
+
+.attention-note {
+  font-size: 0.95rem;
+  color: #e74c3c;                  
+  font-weight: 500;
+  padding: 8px 12px;              
+  background-color: #ffebee;      
+  border-radius: 6px;             
+  border: 1px solid #f19c9c;      
+  max-width: 600px;               
+  text-align: center;              
+  margin: 10px auto 0 auto;        
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  line-height: 1.45;
+}
+
+
+.attention-note strong { font-weight: 700; color: #c0392b; }
+.attention-note em { font-style: normal; font-weight: 600; color: #c0392b; }
+
+
+body.dark-theme .attention-note {
+  color: #ff9d9d;
+  background-color: #4a2c2c;
+  border: 1px solid #7a4a4a;
+  box-shadow: none;
+}
+body.dark-theme .attention-note strong { color: #ff7b72; }
+body.dark-theme .attention-note em { color: #ff7b72; }
+
+body[dir="ltr"] .attention-note { text-align: left; }
+
