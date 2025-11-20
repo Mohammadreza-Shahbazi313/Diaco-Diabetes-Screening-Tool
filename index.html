@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body class="light-theme">
@@ -57,6 +58,7 @@
                 <input type="number" id="age" name="age" min="1" max="120" required>
                 <div class="caption" id="age-caption">بین 1 تا 120</div>
                 <div class="error" id="age-error"></div>
+
             </div>
 
             <div class="form-group">
@@ -64,6 +66,7 @@
                 <input type="number" id="glucose" name="glucose" min="0" max="400" required>
                 <div class="caption" id="glucose-caption">بین 0 تا 400</div>
                 <div class="error" id="glucose-error"></div>
+                <div id="glucose-note" class="attention-note" role="note" aria-live="polite" aria-atomic="true" style="display:none; margin-top:10px;"></div>
             </div>
 
             <div class="form-group">
