@@ -55,6 +55,7 @@ const messages = {
         logoClickMessage: 'برای دیدن اطلاعات بیشتر، روی لوگو کلیک کنید',
         inputDataHeader: 'داده‌های ورودی',
         bmiFormulaImg: 'per-bmi-calculate.jpg',
+        fastingNotice: '<strong>نکتهٔ مهم:</strong> مقدار <em>گلوکز ناشتا</em> را وارد کنید (بعد از حداقل ۸ ساعت ناشتا بودن).',
     },
     en: {
         title: 'Diaco - Diabetes Test',
@@ -110,6 +111,7 @@ const messages = {
         githubTag: 'I would be happy if you support me',
         logoClickMessage: 'Click on the logo for more information',
         bmiFormulaImg: 'en-bmi-calculate.png',
+        fastingNotice: '<strong>Important:</strong> Please enter <em>fasting glucose</em> value (after at least 8 hours fasting).',
     }
 };
 
@@ -186,6 +188,12 @@ function setLanguage(lang) {
         if (mainTitleElement) mainTitleElement.textContent = m.mainTitleAbout;
     }
 
+    const glucoseNoteEl = document.getElementById('glucose-note');
+if (glucoseNoteEl) {
+    const noteHtml = messages[lang].fastingNotice || messages[currentLang].fastingNotice;
+    glucoseNoteEl.innerHTML = noteHtml;
+    glucoseNoteEl.style.display = noteHtml ? 'block' : 'none';
+}
 
 
     if (document.getElementById('logo-click-message')) {
@@ -282,6 +290,11 @@ function setLanguage(lang) {
         document.getElementById('accuracy-desc').textContent = m.accuracyDesc;
     }
 
+
+    const backToMainEl = document.getElementById('back-to-main');
+if (backToMainEl) {
+    backToMainEl.textContent = m.backToMain;
+}
 
     if (document.getElementById('thanks-content')) {
 
@@ -481,15 +494,72 @@ function loadInputData() {
     if (dataString) {
         const data = JSON.parse(dataString);
 
-        document.getElementById('result-name').textContent = data.name;
-        document.getElementById('result-age').textContent = data.age;
-        document.getElementById('result-glucose').textContent = data.glucose;
-        document.getElementById('result-bmi').textContent = data.bmi.toFixed(2);
-        document.getElementById('result-pedigree').textContent = data.pedigree.toFixed(3);
+        // پر کردن جدول مقادیر ورودی
+        document.getElementById('result-name').textContent = data.name || '';
+        document.getElementById('result-age').textContent = data.age || '';
+        document.getElementById('result-glucose').textContent = data.glucose || '';
+        document.getElementById('result-bmi').textContent = (typeof data.bmi === 'number') ? data.bmi.toFixed(2) : '';
+        document.getElementById('result-pedigree').textContent = (typeof data.pedigree === 'number') ? data.pedigree.toFixed(3) : '';
 
+        // --- محاسبه احتمال با مدل ---
+        // اول سعی کن fetch-based model را استفاده کنی، اگر نبود از مدل تعبیه‌شده استفاده کن
+        let prob = null;
+        try {
+            if (typeof predictFromModel === 'function') {
+                prob = predictFromModel([data.glucose, data.bmi, data.age, data.pedigree]);
+            }
+        } catch (e) { console.warn('predictFromModel error', e); }
+
+        if ((prob === null || typeof prob === 'undefined') && typeof predictFromModelEmbedded === 'function') {
+            try {
+                prob = predictFromModelEmbedded([data.glucose, data.bmi, data.age, data.pedigree]);
+            } catch (e) { console.warn('predictFromModelEmbedded error', e); prob = null; }
+        }
+
+        // اگر احتمال محاسبه شد، رسم donut و به‌روزرسانی متن نتیجه
+        if (prob !== null && typeof prob !== 'undefined') {
+            const percent = Math.max(0, Math.min(100, Math.round(prob * 100)));
+
+            // رسم نمودار (elementهای riskDonut/riskPercent باید در result.html حاضر باشند)
+            if (typeof renderDonutEmbedded === 'function') {
+                renderDonutEmbedded(percent, 'riskDonut', 'riskPercent');
+            } else if (typeof renderDonut === 'function') {
+                renderDonut(percent, 'riskDonut', 'riskPercent');
+            }
+
+            // بروزرسانی عنوان نتیجه و استایل با توجه به درصد یا آستانه 0.5
+            const resultTextEl = document.getElementById('prediction-result');
+            const resultBoxEl = document.getElementById('result-box');
+            const m = messages[currentLang] || messages['fa'];
+
+            if (percent >= 50) {
+                if (resultTextEl) {
+                    resultTextEl.textContent = m.resultPositive;
+                    resultTextEl.classList.remove('result-negative');
+                    resultTextEl.classList.add('result-positive');
+                }
+                if (resultBoxEl) {
+                    resultBoxEl.classList.remove('result-negative-bg');
+                    resultBoxEl.classList.add('result-positive-bg');
+                }
+            } else {
+                if (resultTextEl) {
+                    resultTextEl.textContent = m.resultNegative;
+                    resultTextEl.classList.remove('result-positive');
+                    resultTextEl.classList.add('result-negative');
+                }
+                if (resultBoxEl) {
+                    resultBoxEl.classList.remove('result-positive-bg');
+                    resultBoxEl.classList.add('result-negative-bg');
+                }
+            }
+        } else {
+            console.warn('No model probability available to render donut.');
+        }
 
     }
 }
+
 
 
 
@@ -601,3 +671,334 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+
+// load model JSON (async)
+let LR_model = null;
+async function loadLRModel() {
+  try {
+    const res = await fetch('model_from_excel.json');
+    LR_model = await res.json();
+    console.log('Loaded LR model:', LR_model);
+  } catch (err) {
+    console.error('Error loading model_from_excel.json', err);
+  }
+}
+loadLRModel();
+
+// sigmoid
+function sigmoid(z){ return 1 / (1 + Math.exp(-z)); }
+
+// predict: features must be in same order as model.features
+function predictFromModel(valuesArray) {
+  if (!LR_model) return null;
+  const means = LR_model.scaler_mean;
+  const scales = LR_model.scaler_scale;
+  const coefs = LR_model.coef;
+  const intercept = LR_model.intercept;
+  let z = intercept;
+  for (let i = 0; i < coefs.length; i++) {
+    const x = Number(valuesArray[i]) || 0;
+    const xnorm = (x - means[i]) / scales[i];
+    z += coefs[i] * xnorm;
+  }
+  return sigmoid(z); // 0..1
+}
+
+// Donut chart (Chart.js)
+let donutChart = null;
+function getColorForPercent(pct) {
+  if (pct >= 65) return '#e74c3c';
+  if (pct >= 35) return '#f39c12';
+  return '#2ecc71';
+}
+function renderDonut(percent, canvasId='riskDonut', labelId='riskPercent'){
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const color = getColorForPercent(percent);
+  const data = {
+    datasets:[{
+      data:[percent, Math.max(0, 100-percent)],
+      backgroundColor:[color, '#e6e6e6'],
+      borderWidth:0
+    }]
+  };
+  const options = { cutout:'70%', plugins:{legend:{display:false}}, maintainAspectRatio:false };
+  if (donutChart) donutChart.destroy();
+  donutChart = new Chart(ctx, { type:'doughnut', data, options });
+  const lbl = document.getElementById(labelId);
+  if (lbl) lbl.textContent = percent.toFixed(0) + '%';
+}
+
+// Hook into your form submit (IDs must match your inputs)
+function handlePredictionAndShow(e){
+  if (e && e.preventDefault) e.preventDefault();
+  const glucose = Number(document.getElementById('glucose').value);
+  const bmi = Number(document.getElementById('bmi').value);
+  const age = Number(document.getElementById('age').value);
+  const pedigree = Number(document.getElementById('pedigree').value);
+
+  const prob = predictFromModel([glucose, bmi, age, pedigree]);
+  if (prob === null) { alert('Model not loaded. Put model_from_excel.json next to script.js and refresh.'); return; }
+  const percent = Math.max(0, Math.min(100, Math.round(prob*100)));
+  renderDonut(percent, 'riskDonut', 'riskPercent');
+
+  const msgEl = document.getElementById('riskMessage');
+  if (msgEl) {
+    const msg = percent >= 65 ? 'در معرض خطر — مراجعه به پزشک' :
+                percent >= 35 ? 'خطر متوسط — توصیه به بررسی' : 'خطر پایین';
+    msgEl.textContent = msg;
+  }
+}
+
+// bind form
+// const diabetesForm = document.getElementById('diabetes-form');
+// if (diabetesForm) diabetesForm.addEventListener('submit', handlePredictionAndShow);
+
+
+/* === EMBEDDED LR MODEL + DONUT (added by assistant) === */
+const LR_MODEL = {
+  "features": [
+    "Glucose",
+    "BMI",
+    "Age",
+    "DiabetesPedigreeFunction"
+  ],
+  "coef": [
+    1.0627,
+    0.6159,
+    0.2876,
+    0.1965
+  ],
+  "intercept": -0.85006,
+  "scaler_mean": [
+    120.9106,
+    32.1346,
+    33.5512,
+    0.4805
+  ],
+  "scaler_scale": [
+    31.2642,
+    7.7995,
+    11.7837,
+    0.3349
+  ]
+};
+
+// sigmoid
+function _sigmoid(z) { return 1 / (1 + Math.exp(-z)); }
+
+// predict using embedded model (features array must follow model.features order)
+function predictFromModelEmbedded(valuesArray) {
+  if (!LR_MODEL) return null;
+  const means = LR_MODEL.scaler_mean;
+  const scales = LR_MODEL.scaler_scale;
+  const coefs = LR_MODEL.coef;
+  const intercept = LR_MODEL.intercept;
+  let z = intercept;
+  for (let i = 0; i < coefs.length; i++) {
+    const x = Number(valuesArray[i]) || 0;
+    const xnorm = (x - means[i]) / scales[i];
+    z += coefs[i] * xnorm;
+  }
+  return _sigmoid(z);
+}
+
+// Donut render (Chart.js required). This function ensures canvas has proper height and destroys previous chart.
+let __assistant_donut_chart = null;
+function getColorForPercent(pct) {
+  if (pct >= 65) return '#e74c3c';    // red
+  if (pct >= 35) return '#f39c12';    // orange
+  return '#2ecc71';                   // green
+}
+
+function renderDonutEmbedded(percent, canvasId='riskDonut', labelId='riskPercent') {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  // ensure container height so Chart.js can draw
+  const parent = canvas.parentElement;
+  if (parent) parent.style.height = parent.style.height || '220px';
+
+  // set explicit canvas css size to help Chart.js render correctly
+  canvas.style.width = '220px';
+  canvas.style.height = '220px';
+
+  const ctx = canvas.getContext('2d');
+  const color = getColorForPercent(percent);
+
+  const data = {
+    labels: ['Risk', 'Remaining'],
+    datasets: [{ data: [percent, Math.max(0, 100 - percent)], backgroundColor: [color, '#e6e6e6'], borderWidth: 0 }]
+  };
+
+  const options = {
+    cutout: '70%',
+    plugins: { legend: { display: false } },
+    responsive: true,
+    maintainAspectRatio: false,
+    animation: { animateRotate: true, duration: 800 }
+  };
+
+  if (__assistant_donut_chart) __assistant_donut_chart.destroy();
+  __assistant_donut_chart = new Chart(ctx, { type: 'doughnut', data: data, options: options });
+
+  const lbl = document.getElementById(labelId);
+  if (lbl) lbl.textContent = percent.toFixed(0) + '%';
+}
+
+// binding helper: find form and attach listener (safe: allows existing handlers to run first)
+function attachEmbeddedPrediction() {
+  const diabetesForm = document.getElementById('diabetes-form');
+  if (!diabetesForm) return;
+
+  diabetesForm.addEventListener('submit', function(e) {
+    try { e.preventDefault(); } catch(_){ }
+
+    const glucose = Number(document.getElementById('glucose')?.value || 0);
+    const bmi = Number(document.getElementById('bmi')?.value || 0);
+    const age = Number(document.getElementById('age')?.value || 0);
+    const pedigree = Number(document.getElementById('pedigree')?.value || 0);
+
+    const prob = predictFromModelEmbedded([glucose, bmi, age, pedigree]);
+    if (prob === null) { alert('Embedded model not available'); return; }
+
+    const percent = Math.max(0, Math.min(100, Math.round(prob * 100)));
+    // ensure risk area exists (if not, create one below the form)
+    let riskArea = document.getElementById('riskArea');
+    if (!riskArea) {
+      riskArea = document.createElement('div');
+      riskArea.id = 'riskArea';
+      riskArea.style.maxWidth = '420px';
+      riskArea.style.margin = '18px auto';
+      riskArea.innerHTML = `
+        <div style="position:relative; height:220px;">
+          <canvas id="riskDonut" width="220" height="220"></canvas>
+        </div>
+        <div id="riskPercent" style="text-align:center; font-weight:700; margin-top:8px">%</div>
+        <div id="riskMessage" style="text-align:center; color:#444; margin-top:6px"></div>
+      `;
+      // insert after the form
+      const form = document.getElementById('diabetes-form');
+      form.parentNode.insertBefore(riskArea, form.nextSibling);
+    }
+
+    renderDonutEmbedded(percent, 'riskDonut', 'riskPercent');
+
+    const msgEl = document.getElementById('riskMessage');
+    if (msgEl) {
+      const msg = percent >= 65 ? 'در معرض خطر — مراجعه به پزشک' :
+                  percent >= 35 ? 'خطر متوسط — توصیه به بررسی' : 'خطر پایین';
+      msgEl.textContent = msg;
+    }
+
+    // optionally scroll into view
+    riskArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+}
+
+// attach when DOM ready
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', attachEmbeddedPrediction);
+else attachEmbeddedPrediction();
+
+/* === end embedded block === */
+
+// ===============================
+// Logistic Regression Model (Embedded)
+// ===============================
+
+window.LR_MODEL = {
+    "features":["Glucose","BMI","Age","DiabetesPedigreeFunction"],
+    "coef":[1.0627147491079607,0.6159082371269606,0.2875955304896891,0.1965362662301343],
+    "intercept":-0.8500588559470118,
+    "scaler_mean":[120.91061452513966,32.13463687150836,33.5512104283054,0.4805288640595905],
+    "scaler_scale":[31.26416876550776,7.799533929898061,11.783651973905455,0.3349411849829437]
+};
+
+function _sigmoid(z){
+    return 1/(1+Math.exp(-z));
+}
+
+window.predictFromModelEmbedded = function(valuesArray){
+    const means = LR_MODEL.scaler_mean;
+    const scales = LR_MODEL.scaler_scale;
+    const coefs = LR_MODEL.coef;
+    const intercept = LR_MODEL.intercept;
+
+    let z = intercept;
+
+    for(let i=0;i<coefs.length;i++){
+        const x = Number(valuesArray[i] || 0);
+        const xnorm = (x - means[i]) / scales[i];
+        z += coefs[i] * xnorm;
+    }
+
+    return _sigmoid(z);
+};
+
+// ===============================
+// Donut Chart Renderer
+// ===============================
+
+window.__assistant_donut_chart = null;
+
+window.renderDonutEmbedded = function(percent, canvasId='riskDonut', labelId='riskPercent'){
+    const canvas = document.getElementById(canvasId);
+
+    if (!canvas) {
+        const container = document.createElement('div');
+        container.id = 'riskArea';
+        container.style.maxWidth = '420px';
+        container.style.margin = '18px auto';
+
+        container.innerHTML = `
+           <div style="position:relative;height:220px;">
+              <canvas id="${canvasId}" width="220" height="220"></canvas>
+           </div>
+           <div id="${labelId}" style="text-align:center;font-weight:700;margin-top:8px"></div>
+           <div id="riskMessage" style="text-align:center;color:#444;margin-top:6px"></div>
+        `;
+        document.body.appendChild(container);
+    }
+
+    const c = document.getElementById(canvasId);
+    const ctx = c.getContext('2d');
+
+    const color =
+        percent >= 65 ? '#e74c3c' :
+        percent >= 35 ? '#f39c12' :
+        '#2ecc71';
+
+    const data = {
+        labels:['Risk','Remaining'],
+        datasets:[{
+            data:[percent, 100-percent],
+            backgroundColor:[color, '#e6e6e6'],
+            borderWidth:0
+        }]
+    };
+
+    const options = {
+        cutout:'70%',
+        plugins:{ legend:{ display:false }},
+        maintainAspectRatio:false,
+        responsive:true,
+        animation:{ duration:700 }
+    };
+
+    if (window.__assistant_donut_chart)
+        window.__assistant_donut_chart.destroy();
+
+    window.__assistant_donut_chart = new Chart(ctx, {
+        type:'doughnut',
+        data,
+        options
+    });
+
+    document.getElementById(labelId).textContent = percent.toFixed(0) + '%';
+
+    const msg = document.getElementById('riskMessage');
+    msg.textContent =
+        percent >= 65 ? 'در معرض خطر — مراجعه به پزشک' :
+        percent >= 35 ? 'خطر متوسط — توصیه به بررسی' :
+        'خطر پایین';
+};
