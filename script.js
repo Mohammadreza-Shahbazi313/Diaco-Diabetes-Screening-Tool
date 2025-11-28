@@ -56,7 +56,7 @@ const messages = {
         inputDataHeader: 'داده‌های ورودی',
         bmiFormulaImg: 'per-bmi-calculate.jpg',
         fastingNotice: '<strong>نکتهٔ مهم:</strong> مقدار <em>گلوکز ناشتا</em> را وارد کنید (بعد از حداقل ۸ ساعت ناشتا بودن).',
-        name-tooltip:'.این فیلد اختیاری است',
+        nametooltip:'.این فیلد اختیاری است',
     },
     en: {
         title: 'Diaco - Diabetes Test',
@@ -113,7 +113,7 @@ const messages = {
         logoClickMessage: 'Click on the logo for more information',
         bmiFormulaImg: 'en-bmi-calculate.png',
         fastingNotice: '<strong>Important:</strong> Please enter <em>fasting glucose</em> value (after at least 8 hours fasting).',
-        name-tooltip:'This field is optional.',
+        nametooltip:'This field is optional.',
     }
 };
 
