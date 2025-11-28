@@ -223,7 +223,11 @@ if (glucoseNoteEl) {
             subtitleElement.innerHTML = m.subtitle;
         }
 
-        document.getElementById('name-label').textContent = m.nameLabel;
+                    const nameLabel = document.getElementById('name-label');
+            if (nameLabel) {
+                nameLabel.innerHTML = `${m.nameLabel} <span class="tooltip">${m.nameTooltip}</span>`;
+            }
+
         document.getElementById('age-label').textContent = m.ageLabel;
         document.getElementById('glucose-label').textContent = m.glucoseLabel;
         document.getElementById('bmi-label').textContent = m.bmiLabel;
