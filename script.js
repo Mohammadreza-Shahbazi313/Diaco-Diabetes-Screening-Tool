@@ -119,7 +119,12 @@ const messages = {
 
 let currentLang = localStorage.getItem('appLang') || 'fa';
 
-
+function setNameTooltipText(lang) {
+  const el = document.getElementById('nametooltip');
+  if (!el) return;
+  const txt = (messages[lang] && messages[lang].nameTooltip) ? messages[lang].nameTooltip : '';
+  el.textContent = txt;
+}
 
 function displayResultText(lang) {
 
