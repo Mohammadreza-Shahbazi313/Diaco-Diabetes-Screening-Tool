@@ -693,3 +693,56 @@ body[dir="ltr"] .tooltip { margin-inline-start: 0; margin-inline-end: 8px; }
   padding: 0;
   font-weight: 600;
 }
+
+
+
+.field-note {
+  display: block;                 
+  font-size: 0.95rem;
+  color: #e74c3c;
+  font-weight: 500;
+  padding: 8px 12px;
+  background-color: #ffebee;
+  border-radius: 6px;
+  border: 1px solid #f19c9c;
+  max-width: 600px;
+  width: 100%;                  
+  text-align: center;
+  margin: 8px 0 0 0;             
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  line-height: 1.45;
+}
+
+
+.field-note.inline {
+  display: inline-block;
+  vertical-align: middle;
+  width: auto;
+  padding: 4px 8px;
+  font-size: 0.85rem;
+  margin: 0 0 0 8px;             
+}
+
+
+body.dark-theme .field-note {
+  color: #ff9d9d;
+  background-color: #4a2c2c;
+  border: 1px solid #7a4a4a;
+  box-shadow: none;
+}
+body.dark-theme .field-note strong,
+body.dark-theme .field-note em {
+  color: #ff7b72;
+}
+
+
+.field-note strong { font-weight: 700; color: #c0392b; }
+.field-note em { font-style: normal; font-weight: 600; color: #c0392b; }
+
+
+@media (max-width: 520px) {
+  .field-note.inline { display: block; width: 100%; margin-top: 6px; text-align: center; }
+}
+
+
+
