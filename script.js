@@ -158,6 +158,32 @@ function setLanguage(lang) {
     const isRtl = lang === 'fa';
 
 
+const nameLabelEl = document.getElementById('name-label');
+const nameTooltipEl = document.getElementById('name-tooltip');
+
+if (nameLabelEl) {
+
+  const plainLabel = m.nameLabel || 'نام و نام خانوادگی';
+
+  const existingTooltip = nameLabelEl.querySelector('#name-tooltip');
+  if (existingTooltip) {
+
+    existingTooltip.textContent = m.nameTooltip || '';
+
+    const firstChild = nameLabelEl.childNodes[0];
+    if (firstChild && firstChild.nodeType === Node.TEXT_NODE) {
+      firstChild.textContent = plainLabel + ' ';
+    } else {
+
+      nameLabelEl.innerHTML = `${plainLabel} <span id="name-tooltip" class="tooltip">${m.nameTooltip || ''}</span>`;
+    }
+  } else {
+
+    nameLabelEl.innerHTML = `${plainLabel} <span id="name-tooltip" class="tooltip">${m.nameTooltip || ''}</span>`;
+  }
+}
+
+
     document.documentElement.dir = isRtl ? 'rtl' : 'ltr';
     document.body.setAttribute('dir', isRtl ? 'rtl' : 'ltr');
 
