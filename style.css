@@ -663,3 +663,33 @@ body.dark-theme .attention-note em { color: #ff7b72; }
 
 body[dir="ltr"] .attention-note { text-align: left; }
 
+
+
+
+.tooltip {
+  display: inline-block;
+  margin-inline-start: 8px;   
+  padding: 2px 8px;
+  font-size: 12px;
+  line-height: 1;
+  background: #3498db;
+  color: #fff;
+  border-radius: 6px;
+  vertical-align: middle;
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity 0.15s;
+}
+
+
+body[dir="rtl"] .tooltip { margin-inline-start: 8px; margin-inline-end: 0; }
+
+body[dir="ltr"] .tooltip { margin-inline-start: 0; margin-inline-end: 8px; }
+
+
+.tooltip.icon {
+  background: transparent;
+  color: #777;
+  padding: 0;
+  font-weight: 600;
+}
