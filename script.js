@@ -158,72 +158,83 @@ function setLanguage(lang) {
     const isRtl = lang === 'fa';
 
 
-(function updateNameTooltip(){
-  const label = document.getElementById('name-label');
-  if (!label) return;
 
-  const tooltipId = 'name-tooltip';
-  let tip = document.getElementById(tooltipId);
+const nameLabelEl = document.getElementById('name-label');
+let nameTooltipEl = document.getElementById('name-tooltip');
+
+if (nameLabelEl && nameTooltipEl) {
+
+    
+  if (!nameLabelEl.contains(nameTooltipEl)) {
+    nameLabelEl.appendChild(nameTooltipEl);
+  }
+
+
+  const plainLabelText = m.nameLabel || 'نام و نام خانوادگی';
+ 
+  const firstNode = nameLabelEl.childNodes[0];
+  if (firstNode && firstNode.nodeType === Node.TEXT_NODE) {
+    firstNode.nodeValue = plainLabelText + ' ';
+  } else {
+      
+    nameLabelEl.innerHTML = `${plainLabelText} <span id="name-tooltip" class="field-note inline" role="note" aria-live="polite" aria-atomic="true" style="display:none;"></span>`;
+    nameTooltipEl = document.getElementById('name-tooltip');
+  }
+
+
+  const tooltipText = (m.nameTooltip || '').trim();
+  if (tooltipText) {
+    nameTooltipEl.textContent = tooltipText;
+    nameTooltipEl.style.display = 'inline-block';
+    nameTooltipEl.setAttribute('aria-hidden', 'false');
+  } else {
+    nameTooltipEl.textContent = '';
+    nameTooltipEl.style.display = 'none';
+    nameTooltipEl.setAttribute('aria-hidden', 'true');
+  }
+}
+
+    
+// (function updateNameTooltip(){
+//   const label = document.getElementById('name-label');
+//   if (!label) return;
+
+//   const tooltipId = 'name-tooltip';
+//   let tip = document.getElementById(tooltipId);
 
   
-  if (!tip) {
-    tip = document.createElement('div');
-    tip.id = tooltipId;
-    tip.className = 'field-note'; 
-    tip.setAttribute('role', 'note');
-    tip.setAttribute('aria-live', 'polite');
-    tip.setAttribute('aria-atomic', 'true');
-    tip.style.display = 'none';
+//   if (!tip) {
+//     tip = document.createElement('div');
+//     tip.id = tooltipId;
+//     tip.className = 'field-note'; 
+//     tip.setAttribute('role', 'note');
+//     tip.setAttribute('aria-live', 'polite');
+//     tip.setAttribute('aria-atomic', 'true');
+//     tip.style.display = 'none';
     
-    if (label.parentNode) {
+//     if (label.parentNode) {
      
-      label.parentNode.insertBefore(tip, label.nextSibling);
-    } else {
-     
-      label.appendChild(tip);
-    }
-  }
-
-
-  const txt = (m && m.nameTooltip) ? m.nameTooltip : '';
-
-  if (txt && txt.toString().trim().length > 0) {
-    tip.innerHTML = txt;            
-    tip.style.display = 'block';
-    tip.setAttribute('aria-hidden', 'false');
-  } else {
-    tip.innerHTML = '';
-    tip.style.display = 'none';
-    tip.setAttribute('aria-hidden', 'true');
-  }
-})();
-
-    
-
-// const nameLabelEl = document.getElementById('name-label');
-// const nameTooltipEl = document.getElementById('name-tooltip');
-
-// if (nameLabelEl) {
-
-//   const plainLabel = m.nameLabel || 'نام و نام خانوادگی';
-
-//   const existingTooltip = nameLabelEl.querySelector('#name-tooltip');
-//   if (existingTooltip) {
-
-//     existingTooltip.textContent = m.nameTooltip || '';
-
-//     const firstChild = nameLabelEl.childNodes[0];
-//     if (firstChild && firstChild.nodeType === Node.TEXT_NODE) {
-//       firstChild.textContent = plainLabel + ' ';
+//       label.parentNode.insertBefore(tip, label.nextSibling);
 //     } else {
-
-//       nameLabelEl.innerHTML = `${plainLabel} <span id="name-tooltip" class="tooltip">${m.nameTooltip || ''}</span>`;
+     
+//       label.appendChild(tip);
 //     }
-//   } else {
-
-//     nameLabelEl.innerHTML = `${plainLabel} <span id="name-tooltip" class="tooltip">${m.nameTooltip || ''}</span>`;
 //   }
-// }
+
+
+//   const txt = (m && m.nameTooltip) ? m.nameTooltip : '';
+
+//   if (txt && txt.toString().trim().length > 0) {
+//     tip.innerHTML = txt;            
+//     tip.style.display = 'block';
+//     tip.setAttribute('aria-hidden', 'false');
+//   } else {
+//     tip.innerHTML = '';
+//     tip.style.display = 'none';
+//     tip.setAttribute('aria-hidden', 'true');
+//   }
+// })();
+// ------------
 
 
     document.documentElement.dir = isRtl ? 'rtl' : 'ltr';
@@ -291,10 +302,6 @@ if (glucoseNoteEl) {
             subtitleElement.innerHTML = m.subtitle;
         }
 
-            //         const nameLabel = document.getElementById('name-label');
-            // if (nameLabel) {
-            //     nameLabel.innerHTML = `${m.nameLabel} <span class="tooltip">${m.nameTooltip}</span>`;
-            // }
 
         document.getElementById('age-label').textContent = m.ageLabel;
         document.getElementById('glucose-label').textContent = m.glucoseLabel;
