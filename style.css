@@ -719,10 +719,26 @@ body[dir="ltr"] .tooltip { margin-inline-start: 0; margin-inline-end: 8px; }
   vertical-align: middle;
   width: auto;
   padding: 4px 8px;
-  font-size: 0.85rem;
-  margin: 0 0 0 8px;             
+  font-size: 0.82rem;         
+  margin-inline-start: 0.6rem; 
+  margin-inline-end: 0;
+  color: #e74c3c;
+  font-weight: 500;
+  background-color: #ffebee;
+  border-radius: 6px;
+  border: 1px solid #f19c9c;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  line-height: 1;
+  white-space: nowrap;
+  text-align: center;
 }
 
+body.dark-theme .field-note.inline {
+  color: #ff9d9d;
+  background-color: #4a2c2c;
+  border: 1px solid #7a4a4a;
+  box-shadow: none;
+}
 
 body.dark-theme .field-note {
   color: #ff9d9d;
@@ -741,7 +757,14 @@ body.dark-theme .field-note em {
 
 
 @media (max-width: 520px) {
-  .field-note.inline { display: block; width: 100%; margin-top: 6px; text-align: center; }
+  .field-note.inline {
+    display: block;
+    width: 100%;
+    margin: 6px 0 0 0;
+    font-size: 0.9rem;
+    text-align: center;
+    white-space: normal;
+  }
 }
 
 
