@@ -158,30 +158,72 @@ function setLanguage(lang) {
     const isRtl = lang === 'fa';
 
 
-const nameLabelEl = document.getElementById('name-label');
-const nameTooltipEl = document.getElementById('name-tooltip');
+(function updateNameTooltip(){
+  const label = document.getElementById('name-label');
+  if (!label) return;
 
-if (nameLabelEl) {
+  const tooltipId = 'name-tooltip';
+  let tip = document.getElementById(tooltipId);
 
-  const plainLabel = m.nameLabel || 'نام و نام خانوادگی';
-
-  const existingTooltip = nameLabelEl.querySelector('#name-tooltip');
-  if (existingTooltip) {
-
-    existingTooltip.textContent = m.nameTooltip || '';
-
-    const firstChild = nameLabelEl.childNodes[0];
-    if (firstChild && firstChild.nodeType === Node.TEXT_NODE) {
-      firstChild.textContent = plainLabel + ' ';
+  
+  if (!tip) {
+    tip = document.createElement('div');
+    tip.id = tooltipId;
+    tip.className = 'field-note'; 
+    tip.setAttribute('role', 'note');
+    tip.setAttribute('aria-live', 'polite');
+    tip.setAttribute('aria-atomic', 'true');
+    tip.style.display = 'none';
+    
+    if (label.parentNode) {
+     
+      label.parentNode.insertBefore(tip, label.nextSibling);
     } else {
-
-      nameLabelEl.innerHTML = `${plainLabel} <span id="name-tooltip" class="tooltip">${m.nameTooltip || ''}</span>`;
+     
+      label.appendChild(tip);
     }
-  } else {
-
-    nameLabelEl.innerHTML = `${plainLabel} <span id="name-tooltip" class="tooltip">${m.nameTooltip || ''}</span>`;
   }
-}
+
+
+  const txt = (m && m.nameTooltip) ? m.nameTooltip : '';
+
+  if (txt && txt.toString().trim().length > 0) {
+    tip.innerHTML = txt;            
+    tip.style.display = 'block';
+    tip.setAttribute('aria-hidden', 'false');
+  } else {
+    tip.innerHTML = '';
+    tip.style.display = 'none';
+    tip.setAttribute('aria-hidden', 'true');
+  }
+})();
+
+    
+
+// const nameLabelEl = document.getElementById('name-label');
+// const nameTooltipEl = document.getElementById('name-tooltip');
+
+// if (nameLabelEl) {
+
+//   const plainLabel = m.nameLabel || 'نام و نام خانوادگی';
+
+//   const existingTooltip = nameLabelEl.querySelector('#name-tooltip');
+//   if (existingTooltip) {
+
+//     existingTooltip.textContent = m.nameTooltip || '';
+
+//     const firstChild = nameLabelEl.childNodes[0];
+//     if (firstChild && firstChild.nodeType === Node.TEXT_NODE) {
+//       firstChild.textContent = plainLabel + ' ';
+//     } else {
+
+//       nameLabelEl.innerHTML = `${plainLabel} <span id="name-tooltip" class="tooltip">${m.nameTooltip || ''}</span>`;
+//     }
+//   } else {
+
+//     nameLabelEl.innerHTML = `${plainLabel} <span id="name-tooltip" class="tooltip">${m.nameTooltip || ''}</span>`;
+//   }
+// }
 
 
     document.documentElement.dir = isRtl ? 'rtl' : 'ltr';
@@ -249,10 +291,10 @@ if (glucoseNoteEl) {
             subtitleElement.innerHTML = m.subtitle;
         }
 
-                    const nameLabel = document.getElementById('name-label');
-            if (nameLabel) {
-                nameLabel.innerHTML = `${m.nameLabel} <span class="tooltip">${m.nameTooltip}</span>`;
-            }
+            //         const nameLabel = document.getElementById('name-label');
+            // if (nameLabel) {
+            //     nameLabel.innerHTML = `${m.nameLabel} <span class="tooltip">${m.nameTooltip}</span>`;
+            // }
 
         document.getElementById('age-label').textContent = m.ageLabel;
         document.getElementById('glucose-label').textContent = m.glucoseLabel;
