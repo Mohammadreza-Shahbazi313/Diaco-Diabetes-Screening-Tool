@@ -89,7 +89,8 @@ open index.html   # (on macOS)
 
 ## 👨‍💻 Author
 
-**Mohammadreza Shahbazi (M.SH)** 
+**Mohammadreza Shahbazi (M.SH)**  
+
 📧 [eminemengland2000@gmail.com](mailto:eminemengland2000@gmail.com)  
 🌐 [LinkedIn](https://www.linkedin.com/in/mohammadreza-shahbazi-313sh/)  
 💬 [Telegram](https://t.me/STANsoSAD)
