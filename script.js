@@ -125,6 +125,7 @@ const messages = {
         riskMessage_mid: 'Moderate risk — check-up recommended',
         riskMessage_high: 'High risk — medical consultation advised',
         attentionCheckup: '<strong>ATTENTION:</strong> This tool is solely a predictive model based on statistical data and is never a substitute for a specialist physician\'s diagnosis. <strong>Please take annual checkups and tests seriously and consult your doctor to ensure your full health status.</strong>',
+        inputDataHeader: 'Input Data',
     }
 };
 
