@@ -316,8 +316,9 @@ if (glucoseNoteEl) {
 
         const inputHeaderElement = document.getElementById('input-data-header');
         if (inputHeaderElement) {
-            inputHeaderElement.textContent = m.inputDataHeader;
+            inputHeaderElement.textContent = (m.inputDataHeader || messages['fa'].inputDataHeader || '');
         }
+
 
         const checkupElement = document.getElementById('annual-checkup');
         if (checkupElement) {
