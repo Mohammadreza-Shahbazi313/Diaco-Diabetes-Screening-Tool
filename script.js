@@ -319,7 +319,10 @@ if (glucoseNoteEl) {
         }
 
         const checkupElement = document.getElementById('annual-checkup');
-        checkupElement.innerHTML = m.attentionCheckup;
+        if (checkupElement) {
+            checkupElement.innerHTML = m.attentionCheckup;
+        }
+
 
         document.getElementById('thanks-link').textContent = m.thanksLink;
         document.getElementById('test-again-link').textContent = m.testAgainLink;
@@ -816,6 +819,7 @@ function handlePredictionAndShow(e){
     const key = percent >= 65 ? 'riskMessage_high' : (percent >= 35 ? 'riskMessage_mid' : 'riskMessage_low');
     msgEl.textContent = m[key] || messages['fa'][key] || '';
   }
+}
 
 
 /* === EMBEDDED LR MODEL + DONUT (added by assistant) === */
