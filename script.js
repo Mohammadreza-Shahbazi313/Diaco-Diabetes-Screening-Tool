@@ -200,47 +200,7 @@ if (nameLabelEl && nameTooltipEl) {
   }
 }
 
-    
-// (function updateNameTooltip(){
-//   const label = document.getElementById('name-label');
-//   if (!label) return;
 
-//   const tooltipId = 'name-tooltip';
-//   let tip = document.getElementById(tooltipId);
-
-  
-//   if (!tip) {
-//     tip = document.createElement('div');
-//     tip.id = tooltipId;
-//     tip.className = 'field-note'; 
-//     tip.setAttribute('role', 'note');
-//     tip.setAttribute('aria-live', 'polite');
-//     tip.setAttribute('aria-atomic', 'true');
-//     tip.style.display = 'none';
-    
-//     if (label.parentNode) {
-     
-//       label.parentNode.insertBefore(tip, label.nextSibling);
-//     } else {
-     
-//       label.appendChild(tip);
-//     }
-//   }
-
-
-//   const txt = (m && m.nameTooltip) ? m.nameTooltip : '';
-
-//   if (txt && txt.toString().trim().length > 0) {
-//     tip.innerHTML = txt;            
-//     tip.style.display = 'block';
-//     tip.setAttribute('aria-hidden', 'false');
-//   } else {
-//     tip.innerHTML = '';
-//     tip.style.display = 'none';
-//     tip.setAttribute('aria-hidden', 'true');
-//   }
-// })();
-// ------------
 
 
     document.documentElement.dir = isRtl ? 'rtl' : 'ltr';
@@ -406,6 +366,21 @@ if (backToMainEl) {
             flag.classList.add('active');
         }
     });
+
+
+        // --- refresh risk message if percent already shown ---
+    try {
+      const riskPercentEl = document.getElementById('riskPercent');
+      const riskMsgEl = document.getElementById('riskMessage');
+      if (riskPercentEl && riskMsgEl) {
+        const pctText = (riskPercentEl.textContent || '').toString().trim();
+        const pct = parseInt(pctText.replace('%', ''), 10);
+        if (!isNaN(pct)) {
+          const key = pct >= 65 ? 'riskMessage_high' : (pct >= 35 ? 'riskMessage_mid' : 'riskMessage_low');
+          riskMsgEl.textContent = messages[currentLang][key] || messages['fa'][key] || '';
+        }
+      }
+    } catch (e) { /* noop */ }
 
 
     updateThemeButton();
@@ -832,15 +807,10 @@ function handlePredictionAndShow(e){
 
   const msgEl = document.getElementById('riskMessage');
   if (msgEl) {
-    const msg = percent >= 65 ? 'در معرض خطر — مراجعه به پزشک' :
-                percent >= 35 ? 'خطر متوسط — توصیه به بررسی' : 'خطر پایین';
-    msgEl.textContent = msg;
+    const m = messages[currentLang] || messages['fa'];
+    const key = percent >= 65 ? 'riskMessage_high' : (percent >= 35 ? 'riskMessage_mid' : 'riskMessage_low');
+    msgEl.textContent = m[key] || messages['fa'][key] || '';
   }
-}
-
-// bind form
-// const diabetesForm = document.getElementById('diabetes-form');
-// if (diabetesForm) diabetesForm.addEventListener('submit', handlePredictionAndShow);
 
 
 /* === EMBEDDED LR MODEL + DONUT (added by assistant) === */
@@ -973,10 +943,11 @@ function attachEmbeddedPrediction() {
 
     const msgEl = document.getElementById('riskMessage');
     if (msgEl) {
-      const msg = percent >= 65 ? 'در معرض خطر — مراجعه به پزشک' :
-                  percent >= 35 ? 'خطر متوسط — توصیه به بررسی' : 'خطر پایین';
-      msgEl.textContent = msg;
+      const m = messages[currentLang] || messages['fa'];
+      const key = percent >= 65 ? 'riskMessage_high' : (percent >= 35 ? 'riskMessage_mid' : 'riskMessage_low');
+      msgEl.textContent = m[key] || messages['fa'][key] || '';
     }
+
 
     // optionally scroll into view
     riskArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1083,9 +1054,11 @@ window.renderDonutEmbedded = function(percent, canvasId='riskDonut', labelId='ri
 
     document.getElementById(labelId).textContent = percent.toFixed(0) + '%';
 
-    const msg = document.getElementById('riskMessage');
-    msg.textContent =
-        percent >= 65 ? 'در معرض خطر — مراجعه به پزشک' :
-        percent >= 35 ? 'خطر متوسط — توصیه به بررسی' :
-        'خطر پایین';
+    const msgEl = document.getElementById('riskMessage');
+    if (msgEl) {
+      const m = messages[currentLang] || messages['fa'];
+      const key = percent >= 65 ? 'riskMessage_high' : (percent >= 35 ? 'riskMessage_mid' : 'riskMessage_low');
+      msgEl.textContent = m[key] || messages['fa'][key] || '';
+    }
+
 };
