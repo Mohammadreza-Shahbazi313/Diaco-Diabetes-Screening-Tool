@@ -649,6 +649,7 @@ body.lang-fa {
 
 
 .attention-note strong { font-weight: 700; color: #c0392b; }
+
 .attention-note em { font-style: normal; font-weight: 600; color: #c0392b; }
 
 
@@ -658,7 +659,9 @@ body.dark-theme .attention-note {
   border: 1px solid #7a4a4a;
   box-shadow: none;
 }
+
 body.dark-theme .attention-note strong { color: #ff7b72; }
+
 body.dark-theme .attention-note em { color: #ff7b72; }
 
 body[dir="ltr"] .attention-note { text-align: left; }
