@@ -771,5 +771,37 @@ body.dark-theme .field-note em {
   }
 }
 
+.lang-flags { display:flex; gap:10px; align-items:center; }
+
+
+.lang-flags .flag {
+  background: transparent;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: transform 0.12s ease, box-shadow .12s ease;
+}
+
+
+.lang-flags .flag img {
+  display: block;
+  width: 28px;    
+  height: auto;
+  line-height: 1;
+  vertical-align: middle;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+
+.lang-flags .flag.active {
+  transform: scale(1.05);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+  outline: 2px solid rgba(0,0,0,0.06);
+}
 
 
