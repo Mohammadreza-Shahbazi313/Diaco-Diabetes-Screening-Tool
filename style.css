@@ -875,7 +875,7 @@ body.dark-theme .field-note em {
   font-size:0.95rem;
   color: var(--text-light);
   white-space:nowrap;
-  min-width:64px;
+  min-width:40px;
   text-align:left;
 }
 
