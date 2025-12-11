@@ -805,3 +805,102 @@ body.dark-theme .field-note em {
 }
 
 
+
+
+.theme-toggle-wrapper { display:inline-flex; align-items:center; gap:10px; }
+.theme-toggle {
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  cursor:pointer;
+  user-select:none;
+  -webkit-tap-highlight-color: transparent;
+}
+.theme-checkbox {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0; height: 0;
+}
+
+
+.theme-track {
+  width: 68px;
+  height: 34px;
+  border-radius: 34px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0.01));
+  border: 1px solid rgba(0,0,0,0.06);
+  position: relative;
+  transition: background 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+  display: inline-block;
+}
+
+
+.theme-knob {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #ffffff;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  transition: transform 260ms cubic-bezier(.22,.9,.3,1), box-shadow 260ms;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size: 14px;
+  color: #2ecc71;
+}
+
+
+.theme-checkbox:checked + .theme-track {
+  background: linear-gradient(180deg,#30db87,#27ae60);
+  border-color: rgba(0,0,0,0.06);
+  box-shadow: 0 8px 20px rgba(39,174,96,0.12);
+}
+.theme-checkbox:checked + .theme-track .theme-knob {
+  transform: translateX(34px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+  color: #ffffff;
+}
+
+
+.theme-knob .icon { font-size: 14px; line-height:1; }
+
+
+.theme-toggle-label {
+  font-weight:600;
+  font-size:0.95rem;
+  color: var(--text-light);
+  white-space:nowrap;
+  min-width:64px;
+  text-align:left;
+}
+
+
+body.dark-theme .theme-toggle-label {
+  color: var(--text-dark);
+}
+
+
+.theme-checkbox:focus + .theme-track {
+  outline: 3px solid rgba(46,204,113,0.16);
+  outline-offset: 4px;
+}
+
+
+body[dir="rtl"] .theme-toggle { flex-direction: row-reverse; }
+body[dir="rtl"] .theme-toggle-label { text-align: right; }
+
+
+@media (max-width:480px) {
+  .theme-track { width:56px; height:30px; }
+  .theme-checkbox:checked + .theme-track .theme-knob { transform: translateX(26px); }
+  .theme-knob { width:24px; height:24px; top:3px; left:3px; }
+  .theme-toggle-label { font-size:0.9rem; min-width:50px; }
+}
+
+
+
