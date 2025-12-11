@@ -60,6 +60,8 @@ const messages = {
         riskMessage_low: 'خطر پایین',
         riskMessage_mid: 'خطر متوسط — توصیه به بررسی',
         riskMessage_high: 'در معرض خطر — مراجعه به پزشک',
+        themeLabel_light: 'روشن',
+        themeLabel_dark: 'تاریک',
         
     },
     en: {
@@ -125,6 +127,8 @@ const messages = {
         riskMessage_mid: 'Moderate risk — check-up recommended',
         riskMessage_high: 'High risk — medical consultation advised',
         inputDataHeader: 'Input Data',
+        themeLabel_light: 'Light',
+        themeLabel_dark: 'Dark',
     }
 };
 
@@ -565,15 +569,14 @@ function loadInputData() {
     if (dataString) {
         const data = JSON.parse(dataString);
 
-        // پر کردن جدول مقادیر ورودی
+       
         document.getElementById('result-name').textContent = data.name || '';
         document.getElementById('result-age').textContent = data.age || '';
         document.getElementById('result-glucose').textContent = data.glucose || '';
         document.getElementById('result-bmi').textContent = (typeof data.bmi === 'number') ? data.bmi.toFixed(2) : '';
         document.getElementById('result-pedigree').textContent = (typeof data.pedigree === 'number') ? data.pedigree.toFixed(3) : '';
 
-        // --- محاسبه احتمال با مدل ---
-        // اول سعی کن fetch-based model را استفاده کنی، اگر نبود از مدل تعبیه‌شده استفاده کن
+   
         let prob = null;
         try {
             if (typeof predictFromModel === 'function') {
@@ -587,18 +590,18 @@ function loadInputData() {
             } catch (e) { console.warn('predictFromModelEmbedded error', e); prob = null; }
         }
 
-        // اگر احتمال محاسبه شد، رسم donut و به‌روزرسانی متن نتیجه
+        
         if (prob !== null && typeof prob !== 'undefined') {
             const percent = Math.max(0, Math.min(100, Math.round(prob * 100)));
 
-            // رسم نمودار (elementهای riskDonut/riskPercent باید در result.html حاضر باشند)
+            
             if (typeof renderDonutEmbedded === 'function') {
                 renderDonutEmbedded(percent, 'riskDonut', 'riskPercent');
             } else if (typeof renderDonut === 'function') {
                 renderDonut(percent, 'riskDonut', 'riskPercent');
             }
 
-            // بروزرسانی عنوان نتیجه و استایل با توجه به درصد یا آستانه 0.5
+        
             const resultTextEl = document.getElementById('prediction-result');
             const resultBoxEl = document.getElementById('result-box');
             const m = messages[currentLang] || messages['fa'];
@@ -691,6 +694,121 @@ function loadThanksData() {
 
 
 
+function initFancyThemeToggle() {
+  
+  const oldBtn = document.getElementById('theme-btn');
+  if (oldBtn && oldBtn.parentNode) {
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = `
+      <div id="theme-toggle-wrapper" class="theme-toggle-wrapper" aria-hidden="false">
+        <label class="theme-toggle" for="theme-checkbox" aria-labelledby="theme-toggle-label">
+          <input id="theme-checkbox" class="theme-checkbox" type="checkbox" role="switch" aria-checked="false" />
+          <span class="theme-track" aria-hidden="true">
+            <span class="theme-knob" aria-hidden="true"><span class="icon" id="theme-knob-icon">☀️</span></span>
+          </span>
+          <span id="theme-toggle-label" class="theme-toggle-label" aria-live="polite"></span>
+        </label>
+      </div>
+    `;
+    oldBtn.parentNode.replaceChild(wrapper.firstElementChild, oldBtn);
+  } else {
+    
+    if (!document.getElementById('theme-toggle-wrapper')) {
+      const place = document.querySelector('.left-section') || document.body;
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = `
+        <div id="theme-toggle-wrapper" class="theme-toggle-wrapper" aria-hidden="false">
+          <label class="theme-toggle" for="theme-checkbox" aria-labelledby="theme-toggle-label">
+            <input id="theme-checkbox" class="theme-checkbox" type="checkbox" role="switch" aria-checked="false" />
+            <span class="theme-track" aria-hidden="true">
+              <span class="theme-knob" aria-hidden="true"><span class="icon" id="theme-knob-icon">☀️</span></span>
+            </span>
+            <span id="theme-toggle-label" class="theme-toggle-label" aria-live="polite"></span>
+          </label>
+        </div>`;
+      place.insertBefore(wrapper.firstElementChild, place.firstChild);
+    }
+  }
+
+  const checkbox = document.getElementById('theme-checkbox');
+  const labelEl = document.getElementById('theme-toggle-label');
+  const knobIcon = document.getElementById('theme-knob-icon');
+
+  if (!checkbox || !labelEl) return;
+
+ 
+  const saved = localStorage.getItem('theme'); 
+  const initialDark = (saved === 'dark') || document.body.classList.contains('dark-theme');
+
+ 
+  if (initialDark) {
+    document.body.classList.add('dark-theme');
+    document.body.classList.remove('light-theme');
+  } else {
+    document.body.classList.remove('dark-theme');
+    document.body.classList.add('light-theme');
+  }
+
+  
+  function updateToggleUI() {
+    const isDark = document.body.classList.contains('dark-theme');
+    
+    let m = null;
+    try { m = (typeof messages !== 'undefined' && messages[currentLang]) ? messages[currentLang] : messages['fa']; } catch(e){ m = messages['fa']; }
+    const txt = isDark ? (m.themeLabel_dark || 'تاریک') : (m.themeLabel_light || 'روشن');
+    labelEl.textContent = txt;
+    checkbox.checked = !!isDark;
+    checkbox.setAttribute('aria-checked', isDark ? 'true' : 'false');
+    
+    if (knobIcon) knobIcon.textContent = isDark ? '🌙' : '☀️';
+  }
+
+ 
+  updateToggleUI();
+
+  
+  checkbox.addEventListener('change', function () {
+    const isDark = this.checked;
+    if (isDark) {
+      document.body.classList.add('dark-theme');
+      document.body.classList.remove('light-theme');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.body.classList.remove('dark-theme');
+      document.body.classList.add('light-theme');
+      localStorage.setItem('theme', 'light');
+    }
+    updateToggleUI();
+   
+    if (typeof updateThemeButton === 'function') {
+      try { updateThemeButton(isDark); } catch (e) { /* noop */ }
+    }
+  });
+
+  
+  document.querySelectorAll('.flag').forEach(f => {
+    f.addEventListener('click', () => {
+      setTimeout(updateToggleUI, 30); 
+    });
+  });
+
+ 
+  window.refreshThemeToggleLabel = updateToggleUI;
+}
+
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initFancyThemeToggle);
+} else {
+  initFancyThemeToggle();
+}
+
+
+
+
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
 
     const savedTheme = localStorage.getItem('theme') || 'light';
@@ -743,7 +861,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-// load model JSON (async)
+
 let LR_model = null;
 async function loadLRModel() {
   try {
@@ -756,10 +874,10 @@ async function loadLRModel() {
 }
 loadLRModel();
 
-// sigmoid
+
 function sigmoid(z){ return 1 / (1 + Math.exp(-z)); }
 
-// predict: features must be in same order as model.features
+
 function predictFromModel(valuesArray) {
   if (!LR_model) return null;
   const means = LR_model.scaler_mean;
@@ -772,10 +890,10 @@ function predictFromModel(valuesArray) {
     const xnorm = (x - means[i]) / scales[i];
     z += coefs[i] * xnorm;
   }
-  return sigmoid(z); // 0..1
+  return sigmoid(z);
 }
 
-// Donut chart (Chart.js)
+
 let donutChart = null;
 function getColorForPercent(pct) {
   if (pct >= 65) return '#e74c3c';
@@ -801,7 +919,7 @@ function renderDonut(percent, canvasId='riskDonut', labelId='riskPercent'){
   if (lbl) lbl.textContent = percent.toFixed(0) + '%';
 }
 
-// Hook into your form submit (IDs must match your inputs)
+
 function handlePredictionAndShow(e){
   if (e && e.preventDefault) e.preventDefault();
   const glucose = Number(document.getElementById('glucose').value);
@@ -823,7 +941,7 @@ function handlePredictionAndShow(e){
 }
 
 
-/* === EMBEDDED LR MODEL + DONUT (added by assistant) === */
+
 const LR_MODEL = {
   "features": [
     "Glucose",
@@ -852,10 +970,10 @@ const LR_MODEL = {
   ]
 };
 
-// sigmoid
+
 function _sigmoid(z) { return 1 / (1 + Math.exp(-z)); }
 
-// predict using embedded model (features array must follow model.features order)
+
 function predictFromModelEmbedded(valuesArray) {
   if (!LR_MODEL) return null;
   const means = LR_MODEL.scaler_mean;
@@ -871,22 +989,22 @@ function predictFromModelEmbedded(valuesArray) {
   return _sigmoid(z);
 }
 
-// Donut render (Chart.js required). This function ensures canvas has proper height and destroys previous chart.
+
 let __assistant_donut_chart = null;
 function getColorForPercent(pct) {
-  if (pct >= 65) return '#e74c3c';    // red
-  if (pct >= 35) return '#f39c12';    // orange
-  return '#2ecc71';                   // green
+  if (pct >= 65) return '#e74c3c';    
+  if (pct >= 35) return '#f39c12';    
+  return '#2ecc71';                   
 }
 
 function renderDonutEmbedded(percent, canvasId='riskDonut', labelId='riskPercent') {
   const canvas = document.getElementById(canvasId);
   if (!canvas) return;
-  // ensure container height so Chart.js can draw
+  
   const parent = canvas.parentElement;
   if (parent) parent.style.height = parent.style.height || '220px';
 
-  // set explicit canvas css size to help Chart.js render correctly
+  
   canvas.style.width = '220px';
   canvas.style.height = '220px';
 
@@ -913,7 +1031,7 @@ function renderDonutEmbedded(percent, canvasId='riskDonut', labelId='riskPercent
   if (lbl) lbl.textContent = percent.toFixed(0) + '%';
 }
 
-// binding helper: find form and attach listener (safe: allows existing handlers to run first)
+
 function attachEmbeddedPrediction() {
   const diabetesForm = document.getElementById('diabetes-form');
   if (!diabetesForm) return;
@@ -930,7 +1048,7 @@ function attachEmbeddedPrediction() {
     if (prob === null) { alert('Embedded model not available'); return; }
 
     const percent = Math.max(0, Math.min(100, Math.round(prob * 100)));
-    // ensure risk area exists (if not, create one below the form)
+    
     let riskArea = document.getElementById('riskArea');
     if (!riskArea) {
       riskArea = document.createElement('div');
@@ -944,7 +1062,7 @@ function attachEmbeddedPrediction() {
         <div id="riskPercent" style="text-align:center; font-weight:700; margin-top:8px">%</div>
         <div id="riskMessage" style="text-align:center; color:#444; margin-top:6px"></div>
       `;
-      // insert after the form
+      
       const form = document.getElementById('diabetes-form');
       form.parentNode.insertBefore(riskArea, form.nextSibling);
     }
@@ -959,20 +1077,15 @@ function attachEmbeddedPrediction() {
     }
 
 
-    // optionally scroll into view
+   
     riskArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
 }
 
-// attach when DOM ready
+
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', attachEmbeddedPrediction);
 else attachEmbeddedPrediction();
 
-/* === end embedded block === */
-
-// ===============================
-// Logistic Regression Model (Embedded)
-// ===============================
 
 window.LR_MODEL = {
     "features":["Glucose","BMI","Age","DiabetesPedigreeFunction"],
@@ -1003,9 +1116,7 @@ window.predictFromModelEmbedded = function(valuesArray){
     return _sigmoid(z);
 };
 
-// ===============================
-// Donut Chart Renderer
-// ===============================
+
 
 window.__assistant_donut_chart = null;
 
