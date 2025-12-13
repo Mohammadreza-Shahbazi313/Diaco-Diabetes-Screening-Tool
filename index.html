@@ -19,21 +19,23 @@
 <body class="light-theme">
     <div class="container">
         <header>
-            <div class="header-top">
-                <div class="left-section">
-                    
-                <button id="theme-btn" class="btn-theme" aria-label="Theme toggle">
-                  <img
-                    id="theme-icon"
-                    src="https://img.icons8.com/external-justicon-lineal-color-justicon/64/external-sun-weather-justicon-lineal-color-justicon-1.png"
-                    alt="light theme"
-                    width="26"
-                    height="26"
-                  />
-                </button>
+            
+            <div class="theme-toggle-wrapper" id="theme-toggle-wrapper">
+              <label class="theme-toggle" for="theme-checkbox">
+                <input id="theme-checkbox" class="theme-checkbox" type="checkbox" aria-role="switch" />
+                <span class="theme-track" aria-hidden="true">
+                  <span class="theme-knob" aria-hidden="true">
+                    <img id="theme-knob-icon"
+                         src="https://img.icons8.com/external-justicon-lineal-color-justicon/64/external-sun-weather-justicon-lineal-color-justicon-1.png"
+                         alt="light theme"
+                         width="16" height="16" />
+                  </span>
+                </span>
+                <span id="theme-toggle-label" class="theme-toggle-label" aria-live="polite">روشن</span>
+              </label>
+            </div>
 
 
-                </div>
                     <div class="right-section">
                     <div class="lang-flags">
                       <button id="flag-fa" class="flag active" data-lang="fa" aria-label="فارسی" title="فارسی">
