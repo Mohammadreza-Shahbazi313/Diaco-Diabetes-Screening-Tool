@@ -408,6 +408,9 @@ function toggleTheme() {
 
 function updateThemeButton(isDark = document.body.classList.contains('dark-theme')) {
     const themeBtn = document.getElementById('theme-btn');
+    
+    if (typeof window.refreshThemeToggleLabel === 'function') window.refreshThemeToggleLabel(); //  here!!!!!
+    
     if (themeBtn) {
         if (isDark) {
             themeBtn.textContent = '☀️';
@@ -1183,36 +1186,4 @@ window.renderDonutEmbedded = function(percent, canvasId='riskDonut', labelId='ri
     }
 
 };
-
-
-const themeBtn = document.getElementById("theme-btn");
-const themeIcon = document.getElementById("theme-icon");
-
-function updateThemeIcon() {
-  const isDark = document.body.classList.contains("dark-theme");
-
-  if (isDark) {
-    themeIcon.src = "https://img.icons8.com/color/48/moon-satellite.png";
-    themeIcon.alt = "dark theme";
-  } else {
-    themeIcon.src =
-      "https://img.icons8.com/external-justicon-lineal-color-justicon/64/external-sun-weather-justicon-lineal-color-justicon-1.png";
-    themeIcon.alt = "light theme";
-  }
-}
-
-
-themeBtn.addEventListener("click", () => {
-  document.body.classList.toggle("dark-theme");
-  document.body.classList.toggle("light-theme");
-
-  const isDark = document.body.classList.contains("dark-theme");
-  localStorage.setItem("theme", isDark ? "dark" : "light");
-
-  updateThemeIcon();
-});
-
-
-updateThemeIcon();
-
 
