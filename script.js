@@ -696,54 +696,45 @@ function loadThanksData() {
 
 
 
-
 function initFancyThemeToggle() {
-  
+  const SUN_ICON = "https://img.icons8.com/external-justicon-lineal-color-justicon/64/external-sun-weather-justicon-lineal-color-justicon-1.png";
+  const MOON_ICON = "https://img.icons8.com/color/48/moon-satellite.png";
+
+  if (document.getElementById('theme-toggle-wrapper')) return;
+
   const oldBtn = document.getElementById('theme-btn');
-  if (oldBtn && oldBtn.parentNode) {
-    const wrapper = document.createElement('div');
-    wrapper.innerHTML = `
-      <div id="theme-toggle-wrapper" class="theme-toggle-wrapper" aria-hidden="false">
-        <label class="theme-toggle" for="theme-checkbox" aria-labelledby="theme-toggle-label">
-          <input id="theme-checkbox" class="theme-checkbox" type="checkbox" role="switch" aria-checked="false" />
-          <span class="theme-track" aria-hidden="true">
-            <span class="theme-knob" aria-hidden="true"><span class="icon" id="theme-knob-icon">☀️</span></span>
+  const place = (oldBtn && oldBtn.parentNode) ? oldBtn.parentNode : (document.querySelector('.left-section') || document.body);
+
+  const wrapper = document.createElement('div');
+  wrapper.innerHTML = `
+    <div id="theme-toggle-wrapper" class="theme-toggle-wrapper" aria-hidden="false">
+      <label class="theme-toggle" for="theme-checkbox" aria-labelledby="theme-toggle-label">
+        <input id="theme-checkbox" class="theme-checkbox" type="checkbox" role="switch" aria-checked="false" />
+        <span class="theme-track" aria-hidden="true">
+          <span class="theme-knob" aria-hidden="true">
+            <img id="theme-knob-icon" src="${SUN_ICON}" alt="theme icon" width="20" height="20" />
           </span>
-          <span id="theme-toggle-label" class="theme-toggle-label" aria-live="polite"></span>
-        </label>
-      </div>
-    `;
+        </span>
+        <span id="theme-toggle-label" class="theme-toggle-label" aria-live="polite"></span>
+      </label>
+    </div>
+  `;
+
+  if (oldBtn && oldBtn.parentNode) {
     oldBtn.parentNode.replaceChild(wrapper.firstElementChild, oldBtn);
   } else {
-    
-    if (!document.getElementById('theme-toggle-wrapper')) {
-      const place = document.querySelector('.left-section') || document.body;
-      const wrapper = document.createElement('div');
-      wrapper.innerHTML = `
-        <div id="theme-toggle-wrapper" class="theme-toggle-wrapper" aria-hidden="false">
-          <label class="theme-toggle" for="theme-checkbox" aria-labelledby="theme-toggle-label">
-            <input id="theme-checkbox" class="theme-checkbox" type="checkbox" role="switch" aria-checked="false" />
-            <span class="theme-track" aria-hidden="true">
-              <span class="theme-knob" aria-hidden="true"><span class="icon" id="theme-knob-icon">☀️</span></span>
-            </span>
-            <span id="theme-toggle-label" class="theme-toggle-label" aria-live="polite"></span>
-          </label>
-        </div>`;
-      place.insertBefore(wrapper.firstElementChild, place.firstChild);
-    }
+    place.insertBefore(wrapper.firstElementChild, place.firstChild);
   }
 
   const checkbox = document.getElementById('theme-checkbox');
   const labelEl = document.getElementById('theme-toggle-label');
-  const knobIcon = document.getElementById('theme-knob-icon');
+  const knobImg = document.getElementById('theme-knob-icon');
 
-  if (!checkbox || !labelEl) return;
+  if (!checkbox || !labelEl || !knobImg) return;
 
- 
-  const saved = localStorage.getItem('theme'); 
+  const saved = localStorage.getItem('theme');
   const initialDark = (saved === 'dark') || document.body.classList.contains('dark-theme');
 
- 
   if (initialDark) {
     document.body.classList.add('dark-theme');
     document.body.classList.remove('light-theme');
@@ -752,24 +743,22 @@ function initFancyThemeToggle() {
     document.body.classList.add('light-theme');
   }
 
-  
   function updateToggleUI() {
     const isDark = document.body.classList.contains('dark-theme');
-    
-    let m = null;
-    try { m = (typeof messages !== 'undefined' && messages[currentLang]) ? messages[currentLang] : messages['fa']; } catch(e){ m = messages['fa']; }
-    const txt = isDark ? (m.themeLabel_dark || 'تاریک') : (m.themeLabel_light || 'روشن');
-    labelEl.textContent = txt;
     checkbox.checked = !!isDark;
     checkbox.setAttribute('aria-checked', isDark ? 'true' : 'false');
-    
-    if (knobIcon) knobIcon.textContent = isDark ? '🌙' : '☀️';
+
+    knobImg.src = isDark ? MOON_ICON : SUN_ICON;
+    knobImg.alt = isDark ? 'dark theme' : 'light theme';
+
+    let m = (typeof messages !== 'undefined' && messages[currentLang]) ? messages[currentLang] : messages['fa'];
+    labelEl.textContent = isDark ? (m.themeLabel_dark || 'تاریک') : (m.themeLabel_light || 'روشن');
+
+    try { if (typeof updateThemeButton === 'function') updateThemeButton(isDark); } catch (e) {}
   }
 
- 
   updateToggleUI();
 
-  
   checkbox.addEventListener('change', function () {
     const isDark = this.checked;
     if (isDark) {
@@ -782,20 +771,8 @@ function initFancyThemeToggle() {
       localStorage.setItem('theme', 'light');
     }
     updateToggleUI();
-   
-    if (typeof updateThemeButton === 'function') {
-      try { updateThemeButton(isDark); } catch (e) { /* noop */ }
-    }
   });
 
-  
-  document.querySelectorAll('.flag').forEach(f => {
-    f.addEventListener('click', () => {
-      setTimeout(updateToggleUI, 30); 
-    });
-  });
-
- 
   window.refreshThemeToggleLabel = updateToggleUI;
 }
 
@@ -822,10 +799,10 @@ document.addEventListener('DOMContentLoaded', () => {
     setLanguage(currentLang);
 
 
-    const themeBtn = document.getElementById('theme-btn');
-    if (themeBtn) {
-        themeBtn.addEventListener('click', toggleTheme);
-    }
+    // const themeBtn = document.getElementById('theme-btn');
+    // if (themeBtn) {
+    //     themeBtn.addEventListener('click', toggleTheme);
+    // }
 
 
     document.querySelectorAll('.flag').forEach(flag => {
