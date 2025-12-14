@@ -210,8 +210,6 @@ if (nameLabelEl && nameTooltipEl) {
 }
 
 
-
-
     document.documentElement.dir = isRtl ? 'rtl' : 'ltr';
     document.body.setAttribute('dir', isRtl ? 'rtl' : 'ltr');
 
