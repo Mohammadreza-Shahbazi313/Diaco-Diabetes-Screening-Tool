@@ -205,6 +205,7 @@ body.dark-theme .caption {
 }
 
 .btn-bmi {
+  font-family: "Vazir", "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   padding: 12px 20px;
   border: none;
   border-radius: var(--radius);
@@ -945,6 +946,24 @@ body.dark-theme .btn-theme {
   margin: -1px;
 }
 
+.btn-bmi, .btn-submit {
+  font-family: "Vazir", "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;            
+  font-weight: 600;          
+  line-height: 1.2;
+  letter-spacing: 0.0px;     
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 
 
-
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;               
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  padding: 12px 20px;         
+  border-radius: var(--radius);
+  transition: transform 0.3s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
