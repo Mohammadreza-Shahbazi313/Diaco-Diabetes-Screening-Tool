@@ -1,695 +1,768 @@
 
 const messages = {
-    fa: {
-        title: 'دیاکو - آزمایش دیابت',
-        titleResult: 'دیاکو - نتیجه آزمایش',
-        titleBMI: 'دیاکو - محاسبه BMI',
-        titleThanks: 'دیاکو - تشکر',
-        titleAbout: 'دیاکو - درباره من و پروژه',
-        mainTitleAbout: 'دیاکو - درباره من و پروژه',
-        langBtn: 'English',
-        themeBtn: '☀️',
-        nameLabel: 'نام و نام خانوادگی',
-        ageLabel: 'سن (سال)',
-        glucoseLabel: 'غلظت گلوکز (mg/dL)',
-        bmiLabel: 'BMI (شاخص توده بدنی)',
-        pedigreeLabel: 'تابع خانوادگی دیابت (0.0 - 2.5)',
-        ageCaption: 'بین 1 تا 120',
-        glucoseCaption: 'بین 0 تا 400',
-        bmiCaption: 'بین 10 تا 70 (مثلا 24.5)',
-        pedigreeCaption: 'بین 0 تا 2.5 (مثلا 0.52)',
-        bmiBtn: 'کمک برای محاسبه BMI',
-        submitBtn: 'بررسی دیابت',
-        nameError: 'نام فقط باید شامل حروف فارسی یا انگلیسی باشد',
-        numberError: 'مقدار وارد شده معتبر نیست',
-        requiredError: 'این فیلد الزامی است',
-        rangeError: 'مقدار وارد شده در محدوده مجاز نیست',
-        resultPositive: 'نتیجه: احتمال وجود دیابت',
-        resultNegative: 'نتیجه: عدم احتمال دیابت',
-        attentionCheckup: '<strong>توجه:</strong> این ابزار صرفاً یک مدل پیش‌بینی‌کننده بر اساس داده‌های آماری است و هرگز جایگزین تشخیص پزشک متخصص نمی‌شود. <strong>لطفاً برای اطمینان کامل از وضعیت سلامتی خود، چکاپ و آزمایش‌های سالانه را جدی بگیرید و با پزشک مشورت نمایید.</strong>',
-        thanksHeaderTitle: 'از شما متشکریم!',
-        testAgainButton: 'آزمایش دوباره',
-        thankMessageNamed: (name) => `از جناب اقای/سرکار خانم <strong>${name} گرامی</strong> بابت شرکت در این آزمایش متشکریم.`,
-        thankMessageGeneric: 'از شما <strong>آزمایش‌دهنده گرامی</strong> بابت شرکت در این آزمایش متشکریم.',
-        thanksHeaderNamed: (name) => `سپاسگزاریم، ${name}!`,
-        subtitle: 'دیاکو یک ابزار آزمایش و <strong>غربالگری</strong> دیابت است. <strong>نتایج کامل نیستند</strong>، برای اطمینان کامل به پزشک مراجعه کنید.',
-        footerThanks: 'تشکر ویژه از دکتر سیامک سلیمی',
-        checkupReminder: 'لطفاً برای اطمینان کامل از وضعیت سلامتی خود، چکاپ و آزمایشات سالانه را نادیده نگیرید.',
-        thanksLink: 'مشاهده صفحه تشکر',
-        testAgainLink: 'آزمایش مجدد',
-        resultPageTitle: 'دیاکو - نتیجه آزمایش',
-        bmiSubtitle: '<strong>شاخص توده بدنی (BMI)</strong> یک معیار ساده برای ارزیابی وزن شما نسبت به قدتان است.',
-        weightLabel: 'وزن (کیلوگرم)',
-        heightLabel: 'قد (متر)',
-        calculateBtn: 'محاسبه BMI',
-        bmiResultLabel: 'BMI شما:',
-        backToMain: 'بازگشت به فرم اصلی',
-        aboutHeader: 'درباره پروژه',
-        aboutAuthor: 'درباره من',
-        aboutProject: 'این پروژه با هدف کمک به شناسایی اولیه دیابت طراحی شده است. این ابزار بر اساس یک مدل یادگیری ماشین ساده عمل می‌کند و نتیجه‌ای تقریبی را ارائه می‌دهد.',
-        aboutMe: `من  <strong>محمدرضا شهبازی</strong> هستم، توسعه‌دهنده وب و علاقه‌مند به هوش مصنوعی و علم داده. پروژه دیاکو، تلاشی شخصی برای ترکیب مهارت‌های توسعه وب با مدل‌های ساده یادگیری ماشین است. هدف من، ساختن ابزارهای کاربردی و دقیق برای جامعه است.<br><br> برای دیدن پروژه‌های بیشتر یا ارتباط کاری با من، می‌توانید از طریق لینک‌های زیر در تماس باشید: <br> 🔗 لینکدین: <a href="https://www.linkedin.com/in/mohammadreza-shahbazi-313sh" target="_blank">mohammadreza-shahbazi-313sh</a> <br> 💻 گیت‌هاب: <a href="https://github.com/Mohammadreza-Shahbazi313" target="_blank">Mohammadreza-Shahbazi313</a> <br> 📧 ایمیل: <a href="mailto:eminemengland2000@gmail.com">eminemengland2000@gmail.com</a>`,
-        accuracyInfo: 'دقت مدل:',
-        accuracyDesc: 'این مدل یک نمونه اولیه (Proof-of-Concept) است که بر اساس وزن‌دهی به عوامل خطر شناخته‌شده دیابت توسعه یافته است. دقت مدل، با استناد به نتایج حاصل از یک دیتاست معتبر (مانند دیتاسِت Pima Indian Diabetes) و برای نمایش توانایی‌های الگوریتم، حدود ۸۵٪ در نظر گرفته شده است.',
-        footerText: 'ساخته شده توسط محمدرضا شهبازی',
-        githubTag: 'اگر حمایت کنید خوشحال می‌شم',
-        logoClickMessage: 'برای دیدن اطلاعات بیشتر، روی لوگو کلیک کنید',
-        inputDataHeader: 'داده‌های ورودی',
-        bmiFormulaImg: 'per-bmi-calculate.jpg',
-        fastingNotice: '<strong>نکتهٔ مهم:</strong> مقدار <em>گلوکز ناشتا</em> را وارد کنید (بعد از حداقل ۸ ساعت ناشتا بودن).',
-        nameTooltip: 'این فیلد اختیاری است',
-        riskMessage_low: 'خطر پایین',
-        riskMessage_mid: 'خطر متوسط — توصیه به بررسی',
-        riskMessage_high: 'در معرض خطر — مراجعه به پزشک',
-        themeLabel_light: 'روشن',
-        themeLabel_dark: 'تاریک',
-        
-    },
-    en: {
-        title: 'Diaco - Diabetes Test',
-        titleResult: 'Diaco - Test Result',
-        titleBMI: 'Diaco - BMI Calculation',
-        titleThanks: 'Diaco - Thank You',
-        titleAbout: 'Diaco - About Me & Project',
-        mainTitleAbout: 'Diaco - About Me & Project',
-        langBtn: 'فارسی',
-        themeBtn: '🌙',
-        nameLabel: 'Full Name',
-        ageLabel: 'Age (years)',
-        glucoseLabel: 'Glucose Concentration (mg/dL)',
-        bmiLabel: 'BMI (Body Mass Index)',
-        pedigreeLabel: 'Diabetes Pedigree Function (0.0 - 2.5)',
-        ageCaption: 'Between 1 to 120',
-        glucoseCaption: 'Between 0 to 400',
-        bmiCaption: 'Between 10 to 70 (e.g., 24.5)',
-        pedigreeCaption: 'Between 0 to 2.5 (e.g., 0.52)',
-        bmiBtn: 'Help with BMI Calculation',
-        submitBtn: 'Check for Diabetes',
-        nameError: 'Name should only contain letters',
-        numberError: 'Invalid number value',
-        requiredError: 'This field is required',
-        rangeError: 'Value is outside the allowed range',
-        resultPositive: 'Result: Potential Diabetes',
-        resultNegative: 'Result: Low Diabetes Likelihood',
-        attentionCheckup: '<strong>ATTENTION:</strong> This tool is solely a predictive model based on statistical data and is never a substitute for a specialist physician\'s diagnosis. <strong>Please take annual checkups and tests seriously and consult your doctor to ensure your full health status.</strong>',
-        thanksHeaderTitle: 'Thank You!',
-        testAgainButton: 'Test Again',
-        thankMessageNamed: (name) => `We sincerely thank **${name}** for participating in this screening.`,
-        thankMessageGeneric: 'We sincerely thank the **dear test-taker** for participating in this screening.',
-        thanksHeaderNamed: (name) => `Thank You, ${name}!`,
-        subtitle: 'Diaco is a diabetes testing and <strong>screening</strong> tool. <strong>Results are not complete</strong>; consult a doctor for full assurance.',
-        footerThanks: 'Special thanks to Dr. Siamak Salimy',
-        checkupReminder: 'Please do not neglect annual checkups and tests for complete assurance of your health status.',
-        thanksLink: 'View Thank You Page',
-        testAgainLink: 'Test Again',
-        resultPageTitle: 'Diaco - Test Result',
-        bmiSubtitle: '<strong>Body Mass Index (BMI)</strong> is a simple measure used to assess your body weight relative to your height.',
-        weightLabel: 'Weight (kg)',
-        heightLabel: 'Height (m)',
-        calculateBtn: 'Calculate BMI',
-        bmiResultLabel: 'Your BMI:',
-        backToMain: 'Back to Main Form',
-        aboutHeader: 'About the Project',
-        aboutAuthor: 'About Me',
-        aboutProject: 'This project is designed to assist in the early identification of diabetes. The tool operates based on a simple Machine Learning model and provides an approximate result.',
-        aboutMe: `I am <strong>Mohammadreza Shahbazi</strong>, a Web Developer and enthusiast of AI and Data Science. The Diaco project is a personal endeavor to merge web development skills with simple Machine Learning models. My goal is to build practical and accurate tools for the community.<br><br> You can connect with me for more projects or career opportunities using the links below: <br> 🔗 LinkedIn: <a href="https://www.linkedin.com/in/mohammadreza-shahbazi-313sh" target="_blank">mohammadreza-shahbazi-313sh</a> <br> 💻 GitHub: <a href="https://github.com/Mohammadreza-Shahbazi313" target="_blank">Mohammadreza-Shahbazi313</a> <br> 📧 Email: <a href="mailto:eminemengland2000@gmail.com">eminemengland2000@gmail.com</a>`,
-        accuracyInfo: 'Model Accuracy:',
-        accuracyDesc: 'This model is a Proof-of-Concept developed based on weighting known diabetes risk factors. The model\'s accuracy is set to approximately 85% (referencing results from a reliable dataset like the Pima Indian Diabetes Dataset) to demonstrate the algorithm\'s potential capabilities.',
-        footerText: 'Made by Mohammadreza Shahbazi',
-        githubTag: 'I would be happy if you support me',
-        logoClickMessage: 'Click on the logo for more information',
-        bmiFormulaImg: 'en-bmi-calculate.png',
-        fastingNotice: '<strong>Important:</strong> Please enter <em>fasting glucose</em> value (after at least 8 hours fasting).',
-        nameTooltip: 'This field is optional.',
-        riskMessage_low: 'Low risk',
-        riskMessage_mid: 'Moderate risk — check-up recommended',
-        riskMessage_high: 'High risk — medical consultation advised',
-         riskMessage_low: 'Low risk',
-        riskMessage_mid: 'Moderate risk — check-up recommended',
-        riskMessage_high: 'High risk — medical consultation advised',
-        inputDataHeader: 'Input Data',
-        themeLabel_light: 'Light',
-        themeLabel_dark: 'Dark',
-    }
+  fa: {
+    title: 'دیاکو - آزمایش دیابت',
+    titleResult: 'دیاکو - نتیجه آزمایش',
+    titleBMI: 'دیاکو - محاسبه BMI',
+    titleThanks: 'دیاکو - تشکر',
+    titleAbout: 'دیاکو - درباره من و پروژه',
+    mainTitleAbout: 'دیاکو - درباره من و پروژه',
+    langBtn: 'English',
+    themeBtn: '☀️',
+    nameLabel: 'نام و نام خانوادگی',
+    ageLabel: 'سن (سال)',
+    glucoseLabel: 'غلظت گلوکز (mg/dL)',
+    bmiLabel: 'BMI (شاخص توده بدنی)',
+    pedigreeLabel: 'تابع خانوادگی دیابت (0.0 - 2.5)',
+    ageCaption: 'بین 1 تا 120',
+    glucoseCaption: 'بین 0 تا 400',
+    bmiCaption: 'بین 10 تا 70 (مثلا 24.5)',
+    pedigreeCaption: 'بین 0 تا 2.5 (مثلا 0.52)',
+    bmiBtn: 'کمک برای محاسبه BMI',
+    submitBtn: 'بررسی دیابت',
+    nameError: 'نام فقط باید شامل حروف فارسی یا انگلیسی باشد',
+    numberError: 'مقدار وارد شده معتبر نیست',
+    requiredError: 'این فیلد الزامی است',
+    rangeError: 'مقدار وارد شده در محدوده مجاز نیست',
+    resultPositive: 'نتیجه: احتمال وجود دیابت',
+    resultNegative: 'نتیجه: عدم احتمال دیابت',
+    attentionCheckup: '<strong>توجه:</strong> این ابزار صرفاً یک مدل پیش‌بینی‌کننده بر اساس داده‌های آماری است و هرگز جایگزین تشخیص پزشک متخصص نمی‌شود. <strong>لطفاً برای اطمینان کامل از وضعیت سلامتی خود، چکاپ و آزمایش‌های سالانه را جدی بگیرید و با پزشک مشورت نمایید.</strong>',
+    thanksHeaderTitle: 'از شما متشکریم!',
+    testAgainButton: 'آزمایش دوباره',
+    thankMessageNamed: (name) => `از جناب اقای/سرکار خانم <strong>${name} گرامی</strong> بابت شرکت در این آزمایش متشکریم.`,
+    thankMessageGeneric: 'از شما <strong>آزمایش‌دهنده گرامی</strong> بابت شرکت در این آزمایش متشکریم.',
+    thanksHeaderNamed: (name) => `سپاسگزاریم، ${name}!`,
+    subtitle: 'دیاکو یک ابزار آزمایش و <strong>غربالگری</strong> دیابت است. <strong>نتایج کامل نیستند</strong>، برای اطمینان کامل به پزشک مراجعه کنید.',
+    footerThanks: 'تشکر ویژه از دکتر سیامک سلیمی',
+    checkupReminder: 'لطفاً برای اطمینان کامل از وضعیت سلامتی خود، چکاپ و آزمایشات سالانه را نادیده نگیرید.',
+    thanksLink: 'مشاهده صفحه تشکر',
+    testAgainLink: 'آزمایش مجدد',
+    resultPageTitle: 'دیاکو - نتیجه آزمایش',
+    bmiSubtitle: '<strong>شاخص توده بدنی (BMI)</strong> یک معیار ساده برای ارزیابی وزن شما نسبت به قدتان است.',
+    weightLabel: 'وزن (کیلوگرم)',
+    heightLabel: 'قد (متر)',
+    calculateBtn: 'محاسبه BMI',
+    bmiResultLabel: 'BMI شما:',
+    backToMain: 'بازگشت به فرم اصلی',
+    aboutHeader: 'درباره پروژه',
+    aboutAuthor: 'درباره من',
+    aboutProject: 'این پروژه با هدف کمک به شناسایی اولیه دیابت طراحی شده است. این ابزار بر اساس یک مدل یادگیری ماشین ساده عمل می‌کند و نتیجه‌ای تقریبی را ارائه می‌دهد.',
+    aboutMe: `من  <strong>محمدرضا شهبازی</strong> هستم، توسعه‌دهنده وب و علاقه‌مند به هوش مصنوعی و علم داده. پروژه دیاکو، تلاشی شخصی برای ترکیب مهارت‌های توسعه وب با مدل‌های ساده یادگیری ماشین است. هدف من، ساختن ابزارهای کاربردی و دقیق برای جامعه است.<br><br> برای دیدن پروژه‌های بیشتر یا ارتباط کاری با من، می‌توانید از طریق لینک‌های زیر در تماس باشید: <br> 🔗 لینکدین: <a href="https://www.linkedin.com/in/mohammadreza-shahbazi-313sh" target="_blank">mohammadreza-shahbazi-313sh</a> <br> 💻 گیت‌هاب: <a href="https://github.com/Mohammadreza-Shahbazi313" target="_blank">Mohammadreza-Shahbazi313</a> <br> 📧 ایمیل: <a href="mailto:eminemengland2000@gmail.com">eminemengland2000@gmail.com</a>`,
+    accuracyInfo: 'دقت مدل:',
+    accuracyDesc: 'این مدل یک نمونه اولیه (Proof-of-Concept) است که بر اساس وزن‌دهی به عوامل خطر شناخته‌شده دیابت توسعه یافته است. دقت مدل، با استناد به نتایج حاصل از یک دیتاست معتبر (مانند دیتاسِت Pima Indian Diabetes) و برای نمایش توانایی‌های الگوریتم، حدود ۸۵٪ در نظر گرفته شده است.',
+    footerText: 'ساخته شده توسط محمدرضا شهبازی',
+    githubTag: 'اگر حمایت کنید خوشحال می‌شم',
+    logoClickMessage: 'برای دیدن اطلاعات بیشتر، روی لوگو کلیک کنید',
+    inputDataHeader: 'داده‌های ورودی',
+    bmiFormulaImg: 'per-bmi-calculate.jpg',
+    fastingNotice: '<strong>نکتهٔ مهم:</strong> مقدار <em>گلوکز ناشتا</em> را وارد کنید (بعد از حداقل ۸ ساعت ناشتا بودن).',
+    nameTooltip: 'این فیلد اختیاری است',
+    riskMessage_low: 'خطر پایین',
+    riskMessage_mid: 'خطر متوسط — توصیه به بررسی',
+    riskMessage_high: 'در معرض خطر — مراجعه به پزشک',
+    themeLabel_light: 'روشن',
+    themeLabel_dark: 'تاریک',
+
+  },
+  en: {
+    title: 'Diaco - Diabetes Test',
+    titleResult: 'Diaco - Test Result',
+    titleBMI: 'Diaco - BMI Calculation',
+    titleThanks: 'Diaco - Thank You',
+    titleAbout: 'Diaco - About Me & Project',
+    mainTitleAbout: 'Diaco - About Me & Project',
+    langBtn: 'فارسی',
+    themeBtn: '🌙',
+    nameLabel: 'Full Name',
+    ageLabel: 'Age (years)',
+    glucoseLabel: 'Glucose Concentration (mg/dL)',
+    bmiLabel: 'BMI (Body Mass Index)',
+    pedigreeLabel: 'Diabetes Pedigree Function (0.0 - 2.5)',
+    ageCaption: 'Between 1 to 120',
+    glucoseCaption: 'Between 0 to 400',
+    bmiCaption: 'Between 10 to 70 (e.g., 24.5)',
+    pedigreeCaption: 'Between 0 to 2.5 (e.g., 0.52)',
+    bmiBtn: 'Help with BMI Calculation',
+    submitBtn: 'Check for Diabetes',
+    nameError: 'Name should only contain letters',
+    numberError: 'Invalid number value',
+    requiredError: 'This field is required',
+    rangeError: 'Value is outside the allowed range',
+    resultPositive: 'Result: Potential Diabetes',
+    resultNegative: 'Result: Low Diabetes Likelihood',
+    attentionCheckup: '<strong>ATTENTION:</strong> This tool is solely a predictive model based on statistical data and is never a substitute for a specialist physician\'s diagnosis. <strong>Please take annual checkups and tests seriously and consult your doctor to ensure your full health status.</strong>',
+    thanksHeaderTitle: 'Thank You!',
+    testAgainButton: 'Test Again',
+    thankMessageNamed: (name) => `We sincerely thank ${name} for participating in this screening.`,
+    thankMessageGeneric: 'We sincerely thank the dear test-taker for participating in this screening.',
+    thanksHeaderNamed: (name) => `Thank You, ${name}!`,
+    subtitle: 'Diaco is a diabetes testing and <strong>screening</strong> tool. <strong>Results are not complete</strong>; consult a doctor for full assurance.',
+    footerThanks: 'Special thanks to Dr. Siamak Salimy',
+    checkupReminder: 'Please do not neglect annual checkups and tests for complete assurance of your health status.',
+    thanksLink: 'View Thank You Page',
+    testAgainLink: 'Test Again',
+    resultPageTitle: 'Diaco - Test Result',
+    bmiSubtitle: '<strong>Body Mass Index (BMI)</strong> is a simple measure used to assess your body weight relative to your height.',
+    weightLabel: 'Weight (kg)',
+    heightLabel: 'Height (m)',
+    calculateBtn: 'Calculate BMI',
+    bmiResultLabel: 'Your BMI:',
+    backToMain: 'Back to Main Form',
+    aboutHeader: 'About the Project',
+    aboutAuthor: 'About Me',
+    aboutProject: 'This project is designed to assist in the early identification of diabetes. The tool operates based on a simple Machine Learning model and provides an approximate result.',
+    aboutMe: `I am <strong>Mohammadreza Shahbazi</strong>, a Web Developer and enthusiast of AI and Data Science. The Diaco project is a personal endeavor to merge web development skills with simple Machine Learning models. My goal is to build practical and accurate tools for the community.<br><br> You can connect with me for more projects or career opportunities using the links below: <br> 🔗 LinkedIn: <a href="https://www.linkedin.com/in/mohammadreza-shahbazi-313sh" target="_blank">mohammadreza-shahbazi-313sh</a> <br> 💻 GitHub: <a href="https://github.com/Mohammadreza-Shahbazi313" target="_blank">Mohammadreza-Shahbazi313</a> <br> 📧 Email: <a href="mailto:eminemengland2000@gmail.com">eminemengland2000@gmail.com</a>`,
+    accuracyInfo: 'Model Accuracy:',
+    accuracyDesc: 'This model is a Proof-of-Concept developed based on weighting known diabetes risk factors. The model\'s accuracy is set to approximately 85% (referencing results from a reliable dataset like the Pima Indian Diabetes Dataset) to demonstrate the algorithm\'s potential capabilities.',
+    footerText: 'Made by Mohammadreza Shahbazi',
+    githubTag: 'I would be happy if you support me',
+    logoClickMessage: 'Click on the logo for more information',
+    bmiFormulaImg: 'en-bmi-calculate.png',
+    fastingNotice: '<strong>Important:</strong> Please enter <em>fasting glucose</em> value (after at least 8 hours fasting).',
+    nameTooltip: 'This field is optional.',
+    riskMessage_low: 'Low risk',
+    riskMessage_mid: 'Moderate risk — check-up recommended',
+    riskMessage_high: 'High risk — medical consultation advised',
+    riskMessage_low: 'Low risk',
+    riskMessage_mid: 'Moderate risk — check-up recommended',
+    riskMessage_high: 'High risk — medical consultation advised',
+    inputDataHeader: 'Input Data',
+    themeLabel_light: 'Light',
+    themeLabel_dark: 'Dark',
+    thankMessageNamed: (name) => `We sincerely thank <strong>${name}</strong> for participating in this screening.`,
+
+  }
 };
 
 let currentLang = localStorage.getItem('appLang') || 'fa';
 
 
-
 function displayResultText(lang) {
 
-    if (!document.getElementById('result-container')) return;
+  if (!document.getElementById('result-container')) return;
 
-    const dataString = sessionStorage.getItem('diabetesResultData');
-    if (!dataString) return;
+  const dataString = sessionStorage.getItem('diabetesResultData');
+  if (!dataString) return;
 
-    const data = JSON.parse(dataString);
-    const m = messages[lang || currentLang];
+  const data = JSON.parse(dataString);
+  const m = messages[lang || currentLang];
 
-    const resultText = document.getElementById('prediction-result');
-    const resultBox = document.getElementById('result-box');
+  const resultText = document.getElementById('prediction-result');
+  const resultBox = document.getElementById('result-box');
 
-    if (resultText && resultBox) {
-        if (data.isPositive) {
-            resultText.textContent = m.resultPositive;
-            resultText.classList.remove('result-negative');
-            resultText.classList.add('result-positive');
-            resultBox.classList.remove('result-negative-bg');
-            resultBox.classList.add('result-positive-bg');
-        } else {
-            resultText.textContent = m.resultNegative;
-            resultText.classList.remove('result-positive');
-            resultText.classList.add('result-negative');
-            resultBox.classList.remove('result-positive-bg');
-            resultBox.classList.add('result-negative-bg');
-        }
+  if (resultText && resultBox) {
+    if (data.isPositive) {
+      resultText.textContent = m.resultPositive;
+      resultText.classList.remove('result-negative');
+      resultText.classList.add('result-positive');
+      resultBox.classList.remove('result-negative-bg');
+      resultBox.classList.add('result-positive-bg');
+    } else {
+      resultText.textContent = m.resultNegative;
+      resultText.classList.remove('result-positive');
+      resultText.classList.add('result-negative');
+      resultBox.classList.remove('result-positive-bg');
+      resultBox.classList.add('result-negative-bg');
     }
+  }
 }
 
 function setLanguage(lang) {
-    currentLang = lang;
-    localStorage.setItem('appLang', lang);
-    const m = messages[lang];
-    const isRtl = lang === 'fa';
+  currentLang = lang;
+  localStorage.setItem('appLang', lang);
+  const m = messages[lang];
+  const isRtl = lang === 'fa';
 
 
 
-const nameLabelEl = document.getElementById('name-label');
-let nameTooltipEl = document.getElementById('name-tooltip');
+  const nameLabelEl = document.getElementById('name-label');
+  let nameTooltipEl = document.getElementById('name-tooltip');
 
-if (nameLabelEl && nameTooltipEl) {
-
-    
-  if (!nameLabelEl.contains(nameTooltipEl)) {
-    nameLabelEl.appendChild(nameTooltipEl);
-  }
+  if (nameLabelEl && nameTooltipEl) {
 
 
-  const plainLabelText = m.nameLabel || 'نام و نام خانوادگی';
- 
-  const firstNode = nameLabelEl.childNodes[0];
-  if (firstNode && firstNode.nodeType === Node.TEXT_NODE) {
-    firstNode.nodeValue = plainLabelText + ' ';
-  } else {
-      
-    nameLabelEl.innerHTML = `${plainLabelText} <span id="name-tooltip" class="field-note inline" role="note" aria-live="polite" aria-atomic="true" style="display:none;"></span>`;
-    nameTooltipEl = document.getElementById('name-tooltip');
-  }
+    if (!nameLabelEl.contains(nameTooltipEl)) {
+      nameLabelEl.appendChild(nameTooltipEl);
+    }
 
 
-  const tooltipText = (m.nameTooltip || '').trim();
-  if (tooltipText) {
-    nameTooltipEl.textContent = tooltipText;
-    nameTooltipEl.style.display = 'inline-block';
-    nameTooltipEl.setAttribute('aria-hidden', 'false');
-  } else {
-    nameTooltipEl.textContent = '';
-    nameTooltipEl.style.display = 'none';
-    nameTooltipEl.setAttribute('aria-hidden', 'true');
-  }
-}
+    const plainLabelText = m.nameLabel || 'نام و نام خانوادگی';
 
-
-    document.documentElement.dir = isRtl ? 'rtl' : 'ltr';
-    document.body.setAttribute('dir', isRtl ? 'rtl' : 'ltr');
-
-    if (isRtl) {
-        document.body.classList.add('lang-fa');
-        document.body.classList.remove('lang-en');
+    const firstNode = nameLabelEl.childNodes[0];
+    if (firstNode && firstNode.nodeType === Node.TEXT_NODE) {
+      firstNode.nodeValue = plainLabelText + ' ';
     } else {
-        document.body.classList.remove('lang-fa');
-        document.body.classList.add('lang-en');
+
+      nameLabelEl.innerHTML = `${plainLabelText} <span id="name-tooltip" class="field-note inline" role="note" aria-live="polite" aria-atomic="true" style="display:none;"></span>`;
+      nameTooltipEl = document.getElementById('name-tooltip');
     }
 
-    const mainTitleElement = document.getElementById('main-title');
-    const resultPageTitleElement = document.getElementById('result-page-title');
 
-    if (document.getElementById('diabetes-form')) {
-        document.title = m.title;
-        if (mainTitleElement) mainTitleElement.textContent = m.title;
-    } else if (document.getElementById('bmi-form')) {
-        document.title = m.titleBMI;
-        if (mainTitleElement) mainTitleElement.textContent = m.titleBMI;
-    } else if (document.getElementById('result-container')) {
-        document.title = m.titleResult;
-        if (mainTitleElement) mainTitleElement.textContent = m.titleResult;
-        if (resultPageTitleElement) resultPageTitleElement.textContent = m.titleResult;
-    } else if (document.getElementById('thanks-content')) {
-        document.title = m.titleThanks;
-        if (mainTitleElement) mainTitleElement.textContent = m.titleThanks;
-    } else if (document.getElementById('about-content')) {
-        document.title = m.titleAbout;
-        if (mainTitleElement) mainTitleElement.textContent = m.mainTitleAbout;
+    const tooltipText = (m.nameTooltip || '').trim();
+    if (tooltipText) {
+      nameTooltipEl.textContent = tooltipText;
+      nameTooltipEl.style.display = 'inline-block';
+      nameTooltipEl.setAttribute('aria-hidden', 'false');
+    } else {
+      nameTooltipEl.textContent = '';
+      nameTooltipEl.style.display = 'none';
+      nameTooltipEl.setAttribute('aria-hidden', 'true');
     }
+  }
 
-    const glucoseNoteEl = document.getElementById('glucose-note');
-if (glucoseNoteEl) {
+
+
+
+  document.documentElement.dir = isRtl ? 'rtl' : 'ltr';
+  document.body.setAttribute('dir', isRtl ? 'rtl' : 'ltr');
+
+  if (isRtl) {
+    document.body.classList.add('lang-fa');
+    document.body.classList.remove('lang-en');
+  } else {
+    document.body.classList.remove('lang-fa');
+    document.body.classList.add('lang-en');
+  }
+
+  const mainTitleElement = document.getElementById('main-title');
+  const resultPageTitleElement = document.getElementById('result-page-title');
+
+  if (document.getElementById('diabetes-form')) {
+    document.title = m.title;
+    if (mainTitleElement) mainTitleElement.textContent = m.title;
+  } else if (document.getElementById('bmi-form')) {
+    document.title = m.titleBMI;
+    if (mainTitleElement) mainTitleElement.textContent = m.titleBMI;
+  } else if (document.getElementById('result-container')) {
+    document.title = m.titleResult;
+    if (mainTitleElement) mainTitleElement.textContent = m.titleResult;
+    if (resultPageTitleElement) resultPageTitleElement.textContent = m.titleResult;
+  } else if (document.getElementById('thanks-content')) {
+    document.title = m.titleThanks;
+    if (mainTitleElement) mainTitleElement.textContent = m.titleThanks;
+  } else if (document.getElementById('about-content')) {
+    document.title = m.titleAbout;
+    if (mainTitleElement) mainTitleElement.textContent = m.mainTitleAbout;
+  }
+
+  const glucoseNoteEl = document.getElementById('glucose-note');
+  if (glucoseNoteEl) {
     const noteHtml = messages[lang].fastingNotice || messages[currentLang].fastingNotice;
     glucoseNoteEl.innerHTML = noteHtml;
     glucoseNoteEl.style.display = noteHtml ? 'block' : 'none';
-}
+  }
 
 
-    if (document.getElementById('logo-click-message')) {
-        document.getElementById('logo-click-message').textContent = m.logoClickMessage;
+  if (document.getElementById('logo-click-message')) {
+    document.getElementById('logo-click-message').textContent = m.logoClickMessage;
+  }
+
+
+  if (document.getElementById('footer-text')) {
+    document.getElementById('footer-text').textContent = m.footerText;
+  }
+  if (document.getElementById('github-tag')) {
+    document.getElementById('github-tag').textContent = m.githubTag;
+  }
+
+  const footerThanksElement = document.getElementById('footer-thanks');
+  if (footerThanksElement) {
+    footerThanksElement.textContent = m.footerThanks;
+  }
+
+
+  if (document.getElementById('diabetes-form')) {
+
+    const subtitleElement = document.getElementById('subtitle');
+    if (subtitleElement) {
+      subtitleElement.innerHTML = m.subtitle;
     }
 
 
-    if (document.getElementById('footer-text')) {
-        document.getElementById('footer-text').textContent = m.footerText;
+    document.getElementById('age-label').textContent = m.ageLabel;
+    document.getElementById('glucose-label').textContent = m.glucoseLabel;
+    document.getElementById('bmi-label').textContent = m.bmiLabel;
+    document.getElementById('pedigree-label').textContent = m.pedigreeLabel;
+
+    document.getElementById('age-caption').textContent = m.ageCaption;
+    document.getElementById('glucose-caption').textContent = m.glucoseCaption;
+    document.getElementById('bmi-caption').textContent = m.bmiCaption;
+    document.getElementById('pedigree-caption').textContent = m.pedigreeCaption;
+
+    document.getElementById('bmi-btn').textContent = m.bmiBtn;
+    document.getElementById('submit-btn').textContent = m.submitBtn;
+  }
+
+
+  if (document.getElementById('bmi-form')) {
+    const bmiSubtitleElement = document.getElementById('subtitle');
+    if (bmiSubtitleElement) {
+      bmiSubtitleElement.innerHTML = m.bmiSubtitle;
     }
-    if (document.getElementById('github-tag')) {
-        document.getElementById('github-tag').textContent = m.githubTag;
+    document.getElementById('weight-label').textContent = m.weightLabel;
+    document.getElementById('height-label').textContent = m.heightLabel;
+    document.getElementById('calculate-btn').textContent = m.calculateBtn;
+    document.getElementById('bmi-result-label').textContent = m.bmiResultLabel;
+    document.getElementById('back-to-main').textContent = m.backToMain;
+    const bmiImg = document.getElementById('bmi-formula-img');
+    if (bmiImg) {
+      bmiImg.src = m.bmiFormulaImg;
     }
-
-    const footerThanksElement = document.getElementById('footer-thanks');
-    if (footerThanksElement) {
-        footerThanksElement.textContent = m.footerThanks;
-    }
+  }
 
 
-    if (document.getElementById('diabetes-form')) {
+  if (document.getElementById('result-container')) {
+    document.getElementById('nameResult').textContent = m.nameLabel + ':';
+    document.getElementById('ageResult').textContent = m.ageLabel + ':';
+    document.getElementById('glucoseResult').textContent = m.glucoseLabel + ':';
+    document.getElementById('bmiResult').textContent = m.bmiLabel + ':';
+    document.getElementById('pedigreeResult').textContent = m.pedigreeLabel + ':';
 
-        const subtitleElement = document.getElementById('subtitle');
-        if (subtitleElement) {
-            subtitleElement.innerHTML = m.subtitle;
-        }
-
-
-        document.getElementById('age-label').textContent = m.ageLabel;
-        document.getElementById('glucose-label').textContent = m.glucoseLabel;
-        document.getElementById('bmi-label').textContent = m.bmiLabel;
-        document.getElementById('pedigree-label').textContent = m.pedigreeLabel;
-
-        document.getElementById('age-caption').textContent = m.ageCaption;
-        document.getElementById('glucose-caption').textContent = m.glucoseCaption;
-        document.getElementById('bmi-caption').textContent = m.bmiCaption;
-        document.getElementById('pedigree-caption').textContent = m.pedigreeCaption;
-
-        document.getElementById('bmi-btn').textContent = m.bmiBtn;
-        document.getElementById('submit-btn').textContent = m.submitBtn;
-    }
-
-
-    if (document.getElementById('bmi-form')) {
-        const bmiSubtitleElement = document.getElementById('subtitle');
-        if (bmiSubtitleElement) {
-            bmiSubtitleElement.innerHTML = m.bmiSubtitle;
-        }
-        document.getElementById('weight-label').textContent = m.weightLabel;
-        document.getElementById('height-label').textContent = m.heightLabel;
-        document.getElementById('calculate-btn').textContent = m.calculateBtn;
-        document.getElementById('bmi-result-label').textContent = m.bmiResultLabel;
-        document.getElementById('back-to-main').textContent = m.backToMain;
-        const bmiImg = document.getElementById('bmi-formula-img');
-        if (bmiImg) {
-            bmiImg.src = m.bmiFormulaImg;
-        }
+    const inputHeaderElement = document.getElementById('input-data-header');
+    if (inputHeaderElement) {
+      inputHeaderElement.textContent = (m.inputDataHeader || messages['fa'].inputDataHeader || '');
     }
 
 
-    if (document.getElementById('result-container')) {
-        document.getElementById('nameResult').textContent = m.nameLabel + ':';
-        document.getElementById('ageResult').textContent = m.ageLabel + ':';
-        document.getElementById('glucoseResult').textContent = m.glucoseLabel + ':';
-        document.getElementById('bmiResult').textContent = m.bmiLabel + ':';
-        document.getElementById('pedigreeResult').textContent = m.pedigreeLabel + ':';
-
-        const inputHeaderElement = document.getElementById('input-data-header');
-        if (inputHeaderElement) {
-            inputHeaderElement.textContent = (m.inputDataHeader || messages['fa'].inputDataHeader || '');
-        }
-
-
-        const checkupElement = document.getElementById('annual-checkup');
-        if (checkupElement) {
-            checkupElement.innerHTML = m.attentionCheckup;
-        }
-
-
-        document.getElementById('thanks-link').textContent = m.thanksLink;
-        document.getElementById('test-again-link').textContent = m.testAgainLink;
-
-
-        displayResultText(lang);
-
-    }
-
-    if (document.getElementById('about-content')) {
-        document.getElementById('about-header').textContent = m.aboutHeader;
-        document.getElementById('about-project').textContent = m.aboutProject;
-        document.getElementById('about-author').textContent = m.aboutAuthor;
-
-        const aboutMeElement = document.getElementById('about-me');
-        if (aboutMeElement) {
-            aboutMeElement.innerHTML = m.aboutMe;
-        }
-        document.getElementById('accuracy-info').textContent = m.accuracyInfo;
-        document.getElementById('accuracy-desc').textContent = m.accuracyDesc;
+    const checkupElement = document.getElementById('annual-checkup');
+    if (checkupElement) {
+      checkupElement.innerHTML = m.attentionCheckup;
     }
 
 
-    const backToMainEl = document.getElementById('back-to-main');
-if (backToMainEl) {
+    document.getElementById('thanks-link').textContent = m.thanksLink;
+    document.getElementById('test-again-link').textContent = m.testAgainLink;
+
+
+    displayResultText(lang);
+
+  }
+
+  if (document.getElementById('about-content')) {
+    document.getElementById('about-header').textContent = m.aboutHeader;
+    document.getElementById('about-project').textContent = m.aboutProject;
+    document.getElementById('about-author').textContent = m.aboutAuthor;
+
+    const aboutMeElement = document.getElementById('about-me');
+    if (aboutMeElement) {
+      aboutMeElement.innerHTML = m.aboutMe;
+    }
+    document.getElementById('accuracy-info').textContent = m.accuracyInfo;
+    document.getElementById('accuracy-desc').textContent = m.accuracyDesc;
+  }
+
+
+  const backToMainEl = document.getElementById('back-to-main');
+  if (backToMainEl) {
     backToMainEl.textContent = m.backToMain;
-}
+  }
 
-    if (document.getElementById('thanks-content')) {
+  if (document.getElementById('thanks-content')) {
 
-        const thanksHeader = document.getElementById('thanks-header');
-        if (thanksHeader) {
-            thanksHeader.textContent = m.thanksHeaderTitle;
-        }
-
-
-        const testAgainButton = document.getElementById('test-again-link-thanks');
-        if (testAgainButton) {
-            testAgainButton.textContent = m.testAgainButton;
-        }
-
-
-        loadThanksData();
+    const thanksHeader = document.getElementById('thanks-header');
+    if (thanksHeader) {
+      thanksHeader.textContent = m.thanksHeaderTitle;
     }
 
-    document.querySelectorAll('.flag').forEach(flag => {
-        flag.classList.remove('active');
-        if (flag.getAttribute('data-lang') === lang) {
-            flag.classList.add('active');
-        }
-    });
+
+    const testAgainButton = document.getElementById('test-again-link-thanks');
+    if (testAgainButton) {
+      testAgainButton.textContent = m.testAgainButton;
+    }
 
 
-        // --- refresh risk message if percent already shown ---
-    try {
-      const riskPercentEl = document.getElementById('riskPercent');
-      const riskMsgEl = document.getElementById('riskMessage');
-      if (riskPercentEl && riskMsgEl) {
-        const pctText = (riskPercentEl.textContent || '').toString().trim();
-        const pct = parseInt(pctText.replace('%', ''), 10);
-        if (!isNaN(pct)) {
-          const key = pct >= 65 ? 'riskMessage_high' : (pct >= 35 ? 'riskMessage_mid' : 'riskMessage_low');
-          riskMsgEl.textContent = messages[currentLang][key] || messages['fa'][key] || '';
-        }
+    loadThanksData();
+  }
+
+  document.querySelectorAll('.flag').forEach(flag => {
+    flag.classList.remove('active');
+    if (flag.getAttribute('data-lang') === lang) {
+      flag.classList.add('active');
+    }
+  });
+
+
+  // --- refresh risk message if percent already shown ---
+  try {
+    const riskPercentEl = document.getElementById('riskPercent');
+    const riskMsgEl = document.getElementById('riskMessage');
+    if (riskPercentEl && riskMsgEl) {
+      const pctText = (riskPercentEl.textContent || '').toString().trim();
+      const pct = parseInt(pctText.replace('%', ''), 10);
+      if (!isNaN(pct)) {
+        const key = pct >= 65 ? 'riskMessage_high' : (pct >= 35 ? 'riskMessage_mid' : 'riskMessage_low');
+        riskMsgEl.textContent = messages[currentLang][key] || messages['fa'][key] || '';
       }
-    } catch (e) { /* noop */ }
+    }
+  } catch (e) { /* noop */ }
 
 
-    updateThemeButton();
+  updateThemeButton();
 }
 
 
 function toggleTheme() {
-    const isDark = document.body.classList.toggle('dark-theme');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    updateThemeButton(isDark);
+  const isDark = document.body.classList.toggle('dark-theme');
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  updateThemeButton(isDark);
 }
 
 function updateThemeButton(isDark = document.body.classList.contains('dark-theme')) {
-    const themeBtn = document.getElementById('theme-btn');
-    
-    if (typeof window.refreshThemeToggleLabel === 'function') window.refreshThemeToggleLabel(); //  here!!!!!
-    
-    if (themeBtn) {
-        if (isDark) {
-            themeBtn.textContent = '☀️';
-            themeBtn.title = currentLang === 'fa' ? 'تم روشن' : 'Light Theme';
-        } else {
-            themeBtn.textContent = '🌙';
-            themeBtn.title = currentLang === 'fa' ? 'تم تیره' : 'Dark Theme';
-        }
+  const themeBtn = document.getElementById('theme-btn');
+
+  if (typeof window.refreshThemeToggleLabel === 'function') window.refreshThemeToggleLabel(); //  here!!!!!
+
+  if (themeBtn) {
+    if (isDark) {
+      themeBtn.textContent = '☀️';
+      themeBtn.title = currentLang === 'fa' ? 'تم روشن' : 'Light Theme';
+    } else {
+      themeBtn.textContent = '🌙';
+      themeBtn.title = currentLang === 'fa' ? 'تم تیره' : 'Dark Theme';
     }
+  }
 }
 
 
 function validateForm(formId) {
-    const form = document.getElementById(formId);
-    let isValid = true;
-    const lang = currentLang;
+  const form = document.getElementById(formId);
+  let isValid = true;
+  const lang = currentLang;
 
-    form.querySelectorAll('.error').forEach(e => { e.textContent = ''; e.style.display = 'none'; });
+  form.querySelectorAll('.error').forEach(e => { e.textContent = ''; e.style.display = 'none'; });
 
-    form.querySelectorAll('input[required]').forEach(input => {
-        const errorElement = document.getElementById(input.id + '-error');
-        const value = input.value.trim();
+  form.querySelectorAll('input[required]').forEach(input => {
+    const errorElement = document.getElementById(input.id + '-error');
+    const value = input.value.trim();
 
-        if (value === '') {
-            errorElement.textContent = messages[lang].requiredError;
-            errorElement.style.display = 'block';
-            isValid = false;
-            return;
-        }
+    if (value === '') {
+      errorElement.textContent = messages[lang].requiredError;
+      errorElement.style.display = 'block';
+      isValid = false;
+      return;
+    }
 
-        if (input.type === 'number') {
-            const numValue = parseFloat(value);
-            const min = parseFloat(input.min);
-            const max = parseFloat(input.max);
+    if (input.type === 'number') {
+      const numValue = parseFloat(value);
+      const min = parseFloat(input.min);
+      const max = parseFloat(input.max);
 
-            if (isNaN(numValue)) {
-                errorElement.textContent = messages[lang].numberError;
-                errorElement.style.display = 'block';
-                isValid = false;
-                return;
-            }
+      if (isNaN(numValue)) {
+        errorElement.textContent = messages[lang].numberError;
+        errorElement.style.display = 'block';
+        isValid = false;
+        return;
+      }
 
-            if ((min !== undefined && numValue < min) || (max !== undefined && numValue > max)) {
-                errorElement.textContent = messages[lang].rangeError;
-                errorElement.style.display = 'block';
-                isValid = false;
-                return;
-            }
-        }
+      if ((min !== undefined && numValue < min) || (max !== undefined && numValue > max)) {
+        errorElement.textContent = messages[lang].rangeError;
+        errorElement.style.display = 'block';
+        isValid = false;
+        return;
+      }
+    }
 
-        if (input.id === 'name') {
+    if (input.id === 'name') {
 
-            const nameRegex = /^[\u0600-\u06FF\sa-zA-Z]+$/;
-            if (!nameRegex.test(value)) {
-                errorElement.textContent = messages[lang].nameError;
-                errorElement.style.display = 'block';
-                isValid = false;
-                return;
-            }
-        }
-    });
+      const nameRegex = /^[\u0600-\u06FF\sa-zA-Z]+$/;
+      if (!nameRegex.test(value)) {
+        errorElement.textContent = messages[lang].nameError;
+        errorElement.style.display = 'block';
+        isValid = false;
+        return;
+      }
+    }
+  });
 
-    return isValid;
+  return isValid;
 }
 
 
 function predictDiabetes(data) {
 
-    let score = 0;
+  let score = 0;
 
 
-    if (data.age > 40) score += 10;
-    if (data.glucose > 140) score += 25;
-    if (data.bmi > 30) score += 15;
-    if (data.pedigree > 0.8) score += 10;
+  if (data.age > 40) score += 10;
+  if (data.glucose > 140) score += 25;
+  if (data.bmi > 30) score += 15;
+  if (data.pedigree > 0.8) score += 10;
 
 
-    if (data.glucose >= 100 && data.glucose <= 140) score += 8;
+  if (data.glucose >= 100 && data.glucose <= 140) score += 8;
 
 
-    if (data.bmi >= 25 && data.bmi <= 30) score += 5;
+  if (data.bmi >= 25 && data.bmi <= 30) score += 5;
 
 
-    if (Math.random() < 0.1) score -= 5;
-    if (Math.random() > 0.9) score += 5;
+  if (Math.random() < 0.1) score -= 5;
+  if (Math.random() > 0.9) score += 5;
 
 
-    return score > 30;
+  return score > 30;
 }
 
 
 function submitForm(event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    if (!validateForm('diabetes-form')) {
-        return;
-    }
+  if (!validateForm('diabetes-form')) {
+    return;
+  }
 
-    const form = document.getElementById('diabetes-form');
-    const formData = {
-        name: form.elements['name'].value.trim(),
-        age: parseFloat(form.elements['age'].value),
-        glucose: parseFloat(form.elements['glucose'].value),
-        bmi: parseFloat(form.elements['bmi'].value),
-        pedigree: parseFloat(form.elements['pedigree'].value),
-    };
+  const form = document.getElementById('diabetes-form');
+  const formData = {
+    name: form.elements['name'].value.trim(),
+    age: parseFloat(form.elements['age'].value),
+    glucose: parseFloat(form.elements['glucose'].value),
+    bmi: parseFloat(form.elements['bmi'].value),
+    pedigree: parseFloat(form.elements['pedigree'].value),
+  };
 
-    const isPositive = predictDiabetes(formData);
+  const isPositive = predictDiabetes(formData);
 
-    sessionStorage.setItem('diabetesResultData', JSON.stringify({
-        ...formData,
-        isPositive: isPositive
+  sessionStorage.setItem('diabetesResultData', JSON.stringify({
+    ...formData,
+    isPositive: isPositive
+  }));
+
+  try {
+    localStorage.setItem('diaco_lastData', JSON.stringify({
+      data: formData,
+      ts: Date.now()
     }));
+  } catch (e) { /* noop */ }
 
 
-    window.location.href = 'result.html';
+  window.location.href = 'result.html';
 }
 
 
 function calculateBMI(event) {
-    event.preventDefault();
+  event.preventDefault();
 
 
-    if (!validateForm('bmi-form')) {
-        return;
-    }
+  if (!validateForm('bmi-form')) {
+    return;
+  }
 
-    const weight = parseFloat(document.getElementById('weight').value);
-    const height = parseFloat(document.getElementById('height').value);
-
-
-    const bmiValue = weight / (height * height);
-
-    const bmiResultElement = document.getElementById('bmi-result');
-    const bmiResultBox = document.getElementById('bmi-result-box');
+  const weight = parseFloat(document.getElementById('weight').value);
+  const height = parseFloat(document.getElementById('height').value);
 
 
-    bmiResultElement.textContent = bmiValue.toFixed(2);
-    bmiResultBox.style.display = 'block';
+  const bmiValue = weight / (height * height);
+
+  const bmiResultElement = document.getElementById('bmi-result');
+  const bmiResultBox = document.getElementById('bmi-result-box');
 
 
-    bmiResultElement.style.color = getBMIColor(bmiValue);
+  bmiResultElement.textContent = bmiValue.toFixed(2);
+  bmiResultBox.style.display = 'block';
+
+
+  bmiResultElement.style.color = getBMIColor(bmiValue);
 }
 
 
 function getBMIColor(bmi) {
-    if (bmi < 18.5) return '#3498db';
-    if (bmi >= 18.5 && bmi < 25) return '#2ecc71';
-    if (bmi >= 25 && bmi < 30) return '#f39c12';
-    return '#e74c3c';
+  if (bmi < 18.5) return '#3498db';
+  if (bmi >= 18.5 && bmi < 25) return '#2ecc71';
+  if (bmi >= 25 && bmi < 30) return '#f39c12';
+  return '#e74c3c';
 }
 
 
 
 function loadInputData() {
 
-    const dataString = sessionStorage.getItem('diabetesResultData');
+  const dataString = sessionStorage.getItem('diabetesResultData');
 
-    if (dataString) {
-        const data = JSON.parse(dataString);
+  if (dataString) {
+    const data = JSON.parse(dataString);
 
-       
-        document.getElementById('result-name').textContent = data.name || '';
-        document.getElementById('result-age').textContent = data.age || '';
-        document.getElementById('result-glucose').textContent = data.glucose || '';
-        document.getElementById('result-bmi').textContent = (typeof data.bmi === 'number') ? data.bmi.toFixed(2) : '';
-        document.getElementById('result-pedigree').textContent = (typeof data.pedigree === 'number') ? data.pedigree.toFixed(3) : '';
 
-   
-        let prob = null;
-        try {
-            if (typeof predictFromModel === 'function') {
-                prob = predictFromModel([data.glucose, data.bmi, data.age, data.pedigree]);
-            }
-        } catch (e) { console.warn('predictFromModel error', e); }
+    document.getElementById('result-name').textContent = data.name || '';
+    document.getElementById('result-age').textContent = data.age || '';
+    document.getElementById('result-glucose').textContent = data.glucose || '';
+    document.getElementById('result-bmi').textContent = (typeof data.bmi === 'number') ? data.bmi.toFixed(2) : '';
+    document.getElementById('result-pedigree').textContent = (typeof data.pedigree === 'number') ? data.pedigree.toFixed(3) : '';
 
-        if ((prob === null || typeof prob === 'undefined') && typeof predictFromModelEmbedded === 'function') {
-            try {
-                prob = predictFromModelEmbedded([data.glucose, data.bmi, data.age, data.pedigree]);
-            } catch (e) { console.warn('predictFromModelEmbedded error', e); prob = null; }
-        }
 
-        
-        if (prob !== null && typeof prob !== 'undefined') {
-            const percent = Math.max(0, Math.min(100, Math.round(prob * 100)));
+    let prob = null;
+    try {
+      if (typeof predictFromModel === 'function') {
+        prob = predictFromModel([data.glucose, data.bmi, data.age, data.pedigree]);
+      }
+    } catch (e) { console.warn('predictFromModel error', e); }
 
-            
-            if (typeof renderDonutEmbedded === 'function') {
-                renderDonutEmbedded(percent, 'riskDonut', 'riskPercent');
-            } else if (typeof renderDonut === 'function') {
-                renderDonut(percent, 'riskDonut', 'riskPercent');
-            }
-
-        
-            const resultTextEl = document.getElementById('prediction-result');
-            const resultBoxEl = document.getElementById('result-box');
-            const m = messages[currentLang] || messages['fa'];
-
-            if (percent >= 50) {
-                if (resultTextEl) {
-                    resultTextEl.textContent = m.resultPositive;
-                    resultTextEl.classList.remove('result-negative');
-                    resultTextEl.classList.add('result-positive');
-                }
-                if (resultBoxEl) {
-                    resultBoxEl.classList.remove('result-negative-bg');
-                    resultBoxEl.classList.add('result-positive-bg');
-                }
-            } else {
-                if (resultTextEl) {
-                    resultTextEl.textContent = m.resultNegative;
-                    resultTextEl.classList.remove('result-positive');
-                    resultTextEl.classList.add('result-negative');
-                }
-                if (resultBoxEl) {
-                    resultBoxEl.classList.remove('result-positive-bg');
-                    resultBoxEl.classList.add('result-negative-bg');
-                }
-            }
-        } else {
-            console.warn('No model probability available to render donut.');
-        }
-
+    if ((prob === null || typeof prob === 'undefined') && typeof predictFromModelEmbedded === 'function') {
+      try {
+        prob = predictFromModelEmbedded([data.glucose, data.bmi, data.age, data.pedigree]);
+      } catch (e) { console.warn('predictFromModelEmbedded error', e); prob = null; }
     }
+
+
+    if (prob !== null && typeof prob !== 'undefined') {
+      const percent = Math.max(0, Math.min(100, Math.round(prob * 100)));
+
+
+      if (typeof renderDonutEmbedded === 'function') {
+        renderDonutEmbedded(percent, 'riskDonut', 'riskPercent');
+      } else if (typeof renderDonut === 'function') {
+        renderDonut(percent, 'riskDonut', 'riskPercent');
+      }
+
+
+      const resultTextEl = document.getElementById('prediction-result');
+      const resultBoxEl = document.getElementById('result-box');
+      const m = messages[currentLang] || messages['fa'];
+
+      if (percent >= 50) {
+        if (resultTextEl) {
+          resultTextEl.textContent = m.resultPositive;
+          resultTextEl.classList.remove('result-negative');
+          resultTextEl.classList.add('result-positive');
+        }
+        if (resultBoxEl) {
+          resultBoxEl.classList.remove('result-negative-bg');
+          resultBoxEl.classList.add('result-positive-bg');
+        }
+      } else {
+        if (resultTextEl) {
+          resultTextEl.textContent = m.resultNegative;
+          resultTextEl.classList.remove('result-positive');
+          resultTextEl.classList.add('result-negative');
+        }
+        if (resultBoxEl) {
+          resultBoxEl.classList.remove('result-positive-bg');
+          resultBoxEl.classList.add('result-negative-bg');
+        }
+      }
+    } else {
+      console.warn('No model probability available to render donut.');
+    }
+
+  }
 }
 
 
+// helper: امن‌سازی متن برای جلوگیری از XSS (اگر قبلاً قرار ندادی، این را بگذار)
+function escapeHtml(str) {
+  if (typeof str !== 'string') return '';
+  return str.replace(/[&<>"'`=\/]/g, function (s) {
+    return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;/", "/": "&#x2F;", "`": "&#x60;", "=": "&#x3D;" })[s];
+  });
+}
 
+// helper: تشخیص نوشتار نام — برمی‌گرداند 'fa' یا 'en' یا null
+function detectNameScript(name) {
+  if (!name || typeof name !== 'string') return null;
+  const persianRegex = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/g;
+  const latinRegex = /[A-Za-z]/g;
+  const persianMatches = name.match(persianRegex) || [];
+  const latinMatches = name.match(latinRegex) || [];
+  if (persianMatches.length === 0 && latinMatches.length === 0) return null;
+  if (persianMatches.length > latinMatches.length) return 'fa';
+  if (latinMatches.length > persianMatches.length) return 'en';
+  // در حالت مساوی، از currentLang استفاده کن
+  return (currentLang === 'fa') ? 'fa' : 'en';
+}
 
 function loadThanksData() {
-    const thanksMessageElement = document.getElementById('thank-message-professional');
-    const lang = currentLang;
-    const m = messages[lang];
+  const thanksMessageElement = document.getElementById('thank-message-professional');
+  const thanksHeaderEl = document.getElementById('thanks-header');
+  if (!thanksMessageElement || !thanksHeaderEl) return;
 
-    if (thanksMessageElement) {
-        const dataString = sessionStorage.getItem('diabetesResultData');
-        let name = '';
-        let finalMessage = m.thankMessageGeneric;
-        let nameEntered = false;
+  // 1) تلاش برای خواندن از sessionStorage (اولویت)
+  let raw = null;
+  try { raw = sessionStorage.getItem('diabetesResultData'); } catch (e) { raw = null; }
 
-        if (dataString) {
-            const parsedData = JSON.parse(dataString);
+  // 2) اگر session خالی بود، از localStorage backup استفاده کن
+  if (!raw) {
+    try {
+      const backup = localStorage.getItem('diaco_lastData');
+      if (backup) {
+        const parsed = JSON.parse(backup);
+        if (parsed && parsed.data) raw = JSON.stringify(parsed.data);
+      }
+    } catch (e) { raw = null; }
+  }
 
+  // زبان صفحه (پیش‌فرض از currentLang)
+  const pageLang = currentLang || (document.documentElement.lang || 'fa');
+  const mPageLang = messages[pageLang] || messages['fa'];
 
-            const rawName = parsedData.name;
-            if (typeof rawName === 'string') {
-                name = rawName.trim();
-            }
+  let name = '';
+  if (raw) {
+    try {
+      const parsed = JSON.parse(raw);
+      // parsed ممکن است یک آبجکت سطح بالا (همان ساختار sessionStorage قبلی یا backup)
+      // بعضی جاها ما فرم را مستقیم ذخیره کردیم، گاهی شی { data: {...}, ts:... }
+      if (parsed && typeof parsed === 'object') {
+        // اگر backup ساختار متفاوت دارد، سعی کن نام را از چند مسیر برداری
+        if (parsed.name) {
+          name = String(parsed.name).trim();
+        } else if (parsed.data && parsed.data.name) {
+          name = String(parsed.data.name).trim();
+        } else if (parsed.data && parsed.data.name === undefined) {
+          // پوششی: اگر parsed خودِ formData بود (بدون data wrapper)
+          name = String(parsed.name || '').trim();
         }
-
-
-        if (name.length > 0) {
-            nameEntered = true;
-            finalMessage = m.thankMessageNamed(name);
-        } else {
-            finalMessage = m.thankMessageGeneric;
-        }
-
-
-        thanksMessageElement.innerHTML = finalMessage;
-
-
-        const thanksHeader = document.getElementById('thanks-header');
-        if (thanksHeader) {
-            if (nameEntered) {
-
-                thanksHeader.textContent = m.thanksHeaderNamed(name);
-            } else {
-
-                thanksHeader.textContent = m.thanksHeaderTitle;
-            }
-        }
-
-
-
-
-
-        if (dataString) {
-            sessionStorage.removeItem('diabetesResultData');
-        }
+      }
+    } catch (e) {
+      name = '';
     }
+  }
+
+  // آماده‌سازی پیام‌ها
+  let finalMessageHtml = mPageLang.thankMessageGeneric || '';
+  let headerText = mPageLang.thanksHeaderTitle || '';
+
+  if (name && name.length > 0) {
+    const safeName = escapeHtml(name);
+    const mUse = messages[pageLang] || messages['fa'];
+
+    try {
+      if (typeof mUse.thankMessageNamed === 'function') {
+        finalMessageHtml = mUse.thankMessageNamed(safeName);
+      } else if (mUse.thankMessageNamed) {
+        finalMessageHtml = mUse.thankMessageNamed;
+      } else {
+        finalMessageHtml = mUse.thankMessageGeneric || finalMessageHtml;
+      }
+    } catch (e) {
+      finalMessageHtml = mUse.thankMessageGeneric || finalMessageHtml;
+    }
+  // }
+  
+  try {
+    if (typeof mUse.thanksHeaderNamed === 'function') {
+      headerText = mUse.thanksHeaderNamed(safeName);
+    } else if (mUse.thanksHeaderNamed) {
+      headerText = mUse.thanksHeaderNamed;
+    } else {
+      headerText = mUse.thanksHeaderTitle || headerText;
+    }
+  } catch (e) {
+    headerText = mUse.thanksHeaderTitle || headerText;
+  }
+} else {
+  // نام وارد نشده — پیام عمومی بر اساس زبان صفحه
+  finalMessageHtml = mPageLang.thankMessageGeneric || finalMessageHtml;
+  headerText = mPageLang.thanksHeaderTitle || headerText;
+
+  // — اختیاری: یک خط کوچک دربارهٔ "تشکر از بازدید" اضافه کن (این خط را در صورت نیاز فعال کن)
+  // if (pageLang === 'fa') finalMessageHtml += '<br><small>از اینکه به سایت ما سر زدید متشکریم.</small>';
+  // else finalMessageHtml += '<br><small>Thank you for visiting our site.</small>';
+}
+
+// درج در DOM
+thanksMessageElement.innerHTML = finalMessageHtml;
+thanksHeaderEl.textContent = headerText;
+
+// پاک‌سازی ذخیره‌ها — فقط بعد از نمایش
+try { sessionStorage.removeItem('diabetesResultData'); } catch (e) { /* noop */ }
+try { localStorage.removeItem('diaco_lastData'); } catch (e) { /* noop */ }
 }
 
 
@@ -752,7 +825,7 @@ function initFancyThemeToggle() {
     let m = (typeof messages !== 'undefined' && messages[currentLang]) ? messages[currentLang] : messages['fa'];
     labelEl.textContent = isDark ? (m.themeLabel_dark || 'تاریک') : (m.themeLabel_light || 'روشن');
 
-    try { if (typeof updateThemeButton === 'function') updateThemeButton(isDark); } catch (e) {}
+    try { if (typeof updateThemeButton === 'function') updateThemeButton(isDark); } catch (e) { }
   }
 
   updateToggleUI();
@@ -789,53 +862,53 @@ if (document.readyState === 'loading') {
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    document.body.classList.add(savedTheme + '-theme');
-    updateThemeButton(savedTheme === 'dark');
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  document.body.classList.add(savedTheme + '-theme');
+  updateThemeButton(savedTheme === 'dark');
 
 
-    setLanguage(currentLang);
+  setLanguage(currentLang);
 
 
-    // const themeBtn = document.getElementById('theme-btn');
-    // if (themeBtn) {
-    //     themeBtn.addEventListener('click', toggleTheme);
-    // }
+  // const themeBtn = document.getElementById('theme-btn');
+  // if (themeBtn) {
+  //     themeBtn.addEventListener('click', toggleTheme);
+  // }
 
 
-    document.querySelectorAll('.flag').forEach(flag => {
-        flag.addEventListener('click', () => {
-            const lang = flag.getAttribute('data-lang');
-            setLanguage(lang);
+  document.querySelectorAll('.flag').forEach(flag => {
+    flag.addEventListener('click', () => {
+      const lang = flag.getAttribute('data-lang');
+      setLanguage(lang);
 
-            document.querySelectorAll('.flag').forEach(f => f.classList.remove('active'));
-            flag.classList.add('active');
-        });
+      document.querySelectorAll('.flag').forEach(f => f.classList.remove('active'));
+      flag.classList.add('active');
     });
+  });
 
 
-    const diabetesForm = document.getElementById('diabetes-form');
+  const diabetesForm = document.getElementById('diabetes-form');
 
-    if (diabetesForm) {
-        diabetesForm.addEventListener('submit', submitForm);
-    }
-
-
-    const bmiForm = document.getElementById('bmi-form');
-    if (bmiForm) {
-        bmiForm.addEventListener('submit', calculateBMI);
-    }
+  if (diabetesForm) {
+    diabetesForm.addEventListener('submit', submitForm);
+  }
 
 
-    if (document.getElementById('result-container')) {
-        loadInputData();
-    }
+  const bmiForm = document.getElementById('bmi-form');
+  if (bmiForm) {
+    bmiForm.addEventListener('submit', calculateBMI);
+  }
 
 
-    if (window.location.pathname.endsWith('thanks.html')) {
+  if (document.getElementById('result-container')) {
+    loadInputData();
+  }
 
-        loadThanksData();
-    }
+
+  // if (window.location.pathname.endsWith('thanks.html')) {
+
+  //     loadThanksData();
+  // }
 
 });
 
@@ -853,7 +926,7 @@ async function loadLRModel() {
 loadLRModel();
 
 
-function sigmoid(z){ return 1 / (1 + Math.exp(-z)); }
+function sigmoid(z) { return 1 / (1 + Math.exp(-z)); }
 
 
 function predictFromModel(valuesArray) {
@@ -878,27 +951,27 @@ function getColorForPercent(pct) {
   if (pct >= 35) return '#f39c12';
   return '#2ecc71';
 }
-function renderDonut(percent, canvasId='riskDonut', labelId='riskPercent'){
+function renderDonut(percent, canvasId = 'riskDonut', labelId = 'riskPercent') {
   const canvas = document.getElementById(canvasId);
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
   const color = getColorForPercent(percent);
   const data = {
-    datasets:[{
-      data:[percent, Math.max(0, 100-percent)],
-      backgroundColor:[color, '#e6e6e6'],
-      borderWidth:0
+    datasets: [{
+      data: [percent, Math.max(0, 100 - percent)],
+      backgroundColor: [color, '#e6e6e6'],
+      borderWidth: 0
     }]
   };
-  const options = { cutout:'70%', plugins:{legend:{display:false}}, maintainAspectRatio:false };
+  const options = { cutout: '70%', plugins: { legend: { display: false } }, maintainAspectRatio: false };
   if (donutChart) donutChart.destroy();
-  donutChart = new Chart(ctx, { type:'doughnut', data, options });
+  donutChart = new Chart(ctx, { type: 'doughnut', data, options });
   const lbl = document.getElementById(labelId);
   if (lbl) lbl.textContent = percent.toFixed(0) + '%';
 }
 
 
-function handlePredictionAndShow(e){
+function handlePredictionAndShow(e) {
   if (e && e.preventDefault) e.preventDefault();
   const glucose = Number(document.getElementById('glucose').value);
   const bmi = Number(document.getElementById('bmi').value);
@@ -907,7 +980,7 @@ function handlePredictionAndShow(e){
 
   const prob = predictFromModel([glucose, bmi, age, pedigree]);
   if (prob === null) { alert('Model not loaded. Put model_from_excel.json next to script.js and refresh.'); return; }
-  const percent = Math.max(0, Math.min(100, Math.round(prob*100)));
+  const percent = Math.max(0, Math.min(100, Math.round(prob * 100)));
   renderDonut(percent, 'riskDonut', 'riskPercent');
 
   const msgEl = document.getElementById('riskMessage');
@@ -970,19 +1043,19 @@ function predictFromModelEmbedded(valuesArray) {
 
 let __assistant_donut_chart = null;
 function getColorForPercent(pct) {
-  if (pct >= 65) return '#e74c3c';    
-  if (pct >= 35) return '#f39c12';    
-  return '#2ecc71';                   
+  if (pct >= 65) return '#e74c3c';
+  if (pct >= 35) return '#f39c12';
+  return '#2ecc71';
 }
 
-function renderDonutEmbedded(percent, canvasId='riskDonut', labelId='riskPercent') {
+function renderDonutEmbedded(percent, canvasId = 'riskDonut', labelId = 'riskPercent') {
   const canvas = document.getElementById(canvasId);
   if (!canvas) return;
-  
+
   const parent = canvas.parentElement;
   if (parent) parent.style.height = parent.style.height || '220px';
 
-  
+
   canvas.style.width = '220px';
   canvas.style.height = '220px';
 
@@ -1014,8 +1087,8 @@ function attachEmbeddedPrediction() {
   const diabetesForm = document.getElementById('diabetes-form');
   if (!diabetesForm) return;
 
-  diabetesForm.addEventListener('submit', function(e) {
-    try { e.preventDefault(); } catch(_){ }
+  diabetesForm.addEventListener('submit', function (e) {
+    try { e.preventDefault(); } catch (_) { }
 
     const glucose = Number(document.getElementById('glucose')?.value || 0);
     const bmi = Number(document.getElementById('bmi')?.value || 0);
@@ -1026,7 +1099,7 @@ function attachEmbeddedPrediction() {
     if (prob === null) { alert('Embedded model not available'); return; }
 
     const percent = Math.max(0, Math.min(100, Math.round(prob * 100)));
-    
+
     let riskArea = document.getElementById('riskArea');
     if (!riskArea) {
       riskArea = document.createElement('div');
@@ -1040,7 +1113,7 @@ function attachEmbeddedPrediction() {
         <div id="riskPercent" style="text-align:center; font-weight:700; margin-top:8px">%</div>
         <div id="riskMessage" style="text-align:center; color:#444; margin-top:6px"></div>
       `;
-      
+
       const form = document.getElementById('diabetes-form');
       form.parentNode.insertBefore(riskArea, form.nextSibling);
     }
@@ -1055,7 +1128,7 @@ function attachEmbeddedPrediction() {
     }
 
 
-   
+
     riskArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
 }
@@ -1066,99 +1139,99 @@ else attachEmbeddedPrediction();
 
 
 window.LR_MODEL = {
-    "features":["Glucose","BMI","Age","DiabetesPedigreeFunction"],
-    "coef":[1.0627147491079607,0.6159082371269606,0.2875955304896891,0.1965362662301343],
-    "intercept":-0.8500588559470118,
-    "scaler_mean":[120.91061452513966,32.13463687150836,33.5512104283054,0.4805288640595905],
-    "scaler_scale":[31.26416876550776,7.799533929898061,11.783651973905455,0.3349411849829437]
+  "features": ["Glucose", "BMI", "Age", "DiabetesPedigreeFunction"],
+  "coef": [1.0627147491079607, 0.6159082371269606, 0.2875955304896891, 0.1965362662301343],
+  "intercept": -0.8500588559470118,
+  "scaler_mean": [120.91061452513966, 32.13463687150836, 33.5512104283054, 0.4805288640595905],
+  "scaler_scale": [31.26416876550776, 7.799533929898061, 11.783651973905455, 0.3349411849829437]
 };
 
-function _sigmoid(z){
-    return 1/(1+Math.exp(-z));
+function _sigmoid(z) {
+  return 1 / (1 + Math.exp(-z));
 }
 
-window.predictFromModelEmbedded = function(valuesArray){
-    const means = LR_MODEL.scaler_mean;
-    const scales = LR_MODEL.scaler_scale;
-    const coefs = LR_MODEL.coef;
-    const intercept = LR_MODEL.intercept;
+window.predictFromModelEmbedded = function (valuesArray) {
+  const means = LR_MODEL.scaler_mean;
+  const scales = LR_MODEL.scaler_scale;
+  const coefs = LR_MODEL.coef;
+  const intercept = LR_MODEL.intercept;
 
-    let z = intercept;
+  let z = intercept;
 
-    for(let i=0;i<coefs.length;i++){
-        const x = Number(valuesArray[i] || 0);
-        const xnorm = (x - means[i]) / scales[i];
-        z += coefs[i] * xnorm;
-    }
+  for (let i = 0; i < coefs.length; i++) {
+    const x = Number(valuesArray[i] || 0);
+    const xnorm = (x - means[i]) / scales[i];
+    z += coefs[i] * xnorm;
+  }
 
-    return _sigmoid(z);
+  return _sigmoid(z);
 };
 
 
 
 window.__assistant_donut_chart = null;
 
-window.renderDonutEmbedded = function(percent, canvasId='riskDonut', labelId='riskPercent'){
-    const canvas = document.getElementById(canvasId);
+window.renderDonutEmbedded = function (percent, canvasId = 'riskDonut', labelId = 'riskPercent') {
+  const canvas = document.getElementById(canvasId);
 
-    if (!canvas) {
-        const container = document.createElement('div');
-        container.id = 'riskArea';
-        container.style.maxWidth = '420px';
-        container.style.margin = '18px auto';
+  if (!canvas) {
+    const container = document.createElement('div');
+    container.id = 'riskArea';
+    container.style.maxWidth = '420px';
+    container.style.margin = '18px auto';
 
-        container.innerHTML = `
+    container.innerHTML = `
            <div style="position:relative;height:220px;">
               <canvas id="${canvasId}" width="220" height="220"></canvas>
            </div>
            <div id="${labelId}" style="text-align:center;font-weight:700;margin-top:8px"></div>
            <div id="riskMessage" style="text-align:center;color:#444;margin-top:6px"></div>
         `;
-        document.body.appendChild(container);
-    }
+    document.body.appendChild(container);
+  }
 
-    const c = document.getElementById(canvasId);
-    const ctx = c.getContext('2d');
+  const c = document.getElementById(canvasId);
+  const ctx = c.getContext('2d');
 
-    const color =
-        percent >= 65 ? '#e74c3c' :
-        percent >= 35 ? '#f39c12' :
+  const color =
+    percent >= 65 ? '#e74c3c' :
+      percent >= 35 ? '#f39c12' :
         '#2ecc71';
 
-    const data = {
-        labels:['Risk','Remaining'],
-        datasets:[{
-            data:[percent, 100-percent],
-            backgroundColor:[color, '#e6e6e6'],
-            borderWidth:0
-        }]
-    };
+  const data = {
+    labels: ['Risk', 'Remaining'],
+    datasets: [{
+      data: [percent, 100 - percent],
+      backgroundColor: [color, '#e6e6e6'],
+      borderWidth: 0
+    }]
+  };
 
-    const options = {
-        cutout:'70%',
-        plugins:{ legend:{ display:false }},
-        maintainAspectRatio:false,
-        responsive:true,
-        animation:{ duration:700 }
-    };
+  const options = {
+    cutout: '70%',
+    plugins: { legend: { display: false } },
+    maintainAspectRatio: false,
+    responsive: true,
+    animation: { duration: 700 }
+  };
 
-    if (window.__assistant_donut_chart)
-        window.__assistant_donut_chart.destroy();
+  if (window.__assistant_donut_chart)
+    window.__assistant_donut_chart.destroy();
 
-    window.__assistant_donut_chart = new Chart(ctx, {
-        type:'doughnut',
-        data,
-        options
-    });
+  window.__assistant_donut_chart = new Chart(ctx, {
+    type: 'doughnut',
+    data,
+    options
+  });
 
-    document.getElementById(labelId).textContent = percent.toFixed(0) + '%';
+  document.getElementById(labelId).textContent = percent.toFixed(0) + '%';
 
-    const msgEl = document.getElementById('riskMessage');
-    if (msgEl) {
-      const m = messages[currentLang] || messages['fa'];
-      const key = percent >= 65 ? 'riskMessage_high' : (percent >= 35 ? 'riskMessage_mid' : 'riskMessage_low');
-      msgEl.textContent = m[key] || messages['fa'][key] || '';
-    }
+  const msgEl = document.getElementById('riskMessage');
+  if (msgEl) {
+    const m = messages[currentLang] || messages['fa'];
+    const key = percent >= 65 ? 'riskMessage_high' : (percent >= 35 ? 'riskMessage_mid' : 'riskMessage_low');
+    msgEl.textContent = m[key] || messages['fa'][key] || '';
+  }
 
 };
 
