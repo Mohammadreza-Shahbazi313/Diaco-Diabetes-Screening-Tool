@@ -8,7 +8,7 @@ This project is designed as a **foundational Proof-of-Concept (V1)** focusing on
 
 ---
 
-## 🚀 Live Demo
+## 🚀 Live
 
 Experience it live on **GitHub Pages** 👇  
 👉 [**Open Diaco (Live)**](https://Mohammadreza-Shahbazi313.github.io/Diaco-Diabetes-Screening-Tool/)
