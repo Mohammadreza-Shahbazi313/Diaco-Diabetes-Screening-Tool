@@ -150,10 +150,26 @@ function displayResultText(lang) {
   const resultText = document.getElementById('prediction-result');
   const resultBox = document.getElementById('result-box');
 
-  if (resultText && resultBox) {
-    if (data.isPositive) {
-      resultText.textContent = m.resultPositive;
-      resultText.classList.remove('result-negative');
+
+
+
+
+
+//changed here last 👇
+
+  if (!resultText || !resultBox) return;
+
+    const isPositive =
+        (typeof data.probPercent === 'number')
+            ? Number(data.probPercent) >= 50
+            : Boolean(data.isPositive);
+
+    if (isPositive) {
+        resultText.textContent = m.resultPositive;
+     
+//changed till here for this part 👆
+
+ resultText.classList.remove('result-negative');
       resultText.classList.add('result-positive');
       resultBox.classList.remove('result-negative-bg');
       resultBox.classList.add('result-positive-bg');
