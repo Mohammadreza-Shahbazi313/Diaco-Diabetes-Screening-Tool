@@ -648,7 +648,6 @@ function loadInputData() {
 }
 
 
-// helper: امن‌سازی متن برای جلوگیری از XSS (اگر قبلاً قرار ندادی، این را بگذار)
 function escapeHtml(str) {
   if (typeof str !== 'string') return '';
   return str.replace(/[&<>"'`=\/]/g, function (s) {
@@ -656,7 +655,6 @@ function escapeHtml(str) {
   });
 }
 
-// helper: تشخیص نوشتار نام — برمی‌گرداند 'fa' یا 'en' یا null
 function detectNameScript(name) {
   if (!name || typeof name !== 'string') return null;
   const persianRegex = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/g;
@@ -666,7 +664,7 @@ function detectNameScript(name) {
   if (persianMatches.length === 0 && latinMatches.length === 0) return null;
   if (persianMatches.length > latinMatches.length) return 'fa';
   if (latinMatches.length > persianMatches.length) return 'en';
-  // در حالت مساوی، از currentLang استفاده کن
+  
   return (currentLang === 'fa') ? 'fa' : 'en';
 }
 
@@ -675,11 +673,11 @@ function loadThanksData() {
   const thanksHeaderEl = document.getElementById('thanks-header');
   if (!thanksMessageElement || !thanksHeaderEl) return;
 
-  // 1) تلاش برای خواندن از sessionStorage (اولویت)
+  
   let raw = null;
   try { raw = sessionStorage.getItem('diabetesResultData'); } catch (e) { raw = null; }
 
-  // 2) اگر session خالی بود، از localStorage backup استفاده کن
+  
   if (!raw) {
     try {
       const backup = localStorage.getItem('diaco_lastData');
@@ -690,7 +688,7 @@ function loadThanksData() {
     } catch (e) { raw = null; }
   }
 
-  // زبان صفحه (پیش‌فرض از currentLang)
+  
   const pageLang = currentLang || (document.documentElement.lang || 'fa');
   const mPageLang = messages[pageLang] || messages['fa'];
 
@@ -698,10 +696,12 @@ function loadThanksData() {
   if (raw) {
     try {
       const parsed = JSON.parse(raw);
-      // parsed ممکن است یک آبجکت سطح بالا (همان ساختار sessionStorage قبلی یا backup)
-      // بعضی جاها ما فرم را مستقیم ذخیره کردیم، گاهی شی { data: {...}, ts:... }
+      
+      sessionStorage قبلی یا backup)
+      
+      { data: {...}, ts:... }
       if (parsed && typeof parsed === 'object') {
-        // اگر backup ساختار متفاوت دارد، سعی کن نام را از چند مسیر برداری
+        
         if (parsed.name) {
           name = String(parsed.name).trim();
         } else if (parsed.data && parsed.data.name) {
@@ -716,7 +716,7 @@ function loadThanksData() {
     }
   }
 
-  // آماده‌سازی پیام‌ها
+  
   let finalMessageHtml = mPageLang.thankMessageGeneric || '';
   let headerText = mPageLang.thanksHeaderTitle || '';
 
@@ -749,20 +749,18 @@ function loadThanksData() {
     headerText = mUse.thanksHeaderTitle || headerText;
   }
 } else {
-  // نام وارد نشده — پیام عمومی بر اساس زبان صفحه
+ 
   finalMessageHtml = mPageLang.thankMessageGeneric || finalMessageHtml;
   headerText = mPageLang.thanksHeaderTitle || headerText;
 
-  // — اختیاری: یک خط کوچک دربارهٔ "تشکر از بازدید" اضافه کن (این خط را در صورت نیاز فعال کن)
+
   // if (pageLang === 'fa') finalMessageHtml += '<br><small>از اینکه به سایت ما سر زدید متشکریم.</small>';
   // else finalMessageHtml += '<br><small>Thank you for visiting our site.</small>';
 }
 
-// درج در DOM
 thanksMessageElement.innerHTML = finalMessageHtml;
 thanksHeaderEl.textContent = headerText;
 
-// پاک‌سازی ذخیره‌ها — فقط بعد از نمایش
 try { sessionStorage.removeItem('diabetesResultData'); } catch (e) { /* noop */ }
 try { localStorage.removeItem('diaco_lastData'); } catch (e) { /* noop */ }
 }
@@ -855,10 +853,6 @@ if (document.readyState === 'loading') {
 } else {
   initFancyThemeToggle();
 }
-
-
-
-
 
 
 
