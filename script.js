@@ -138,46 +138,42 @@ let currentLang = localStorage.getItem('appLang') || 'fa';
 
 
 function displayResultText(lang) {
-
   if (!document.getElementById('result-container')) return;
 
   const dataString = sessionStorage.getItem('diabetesResultData');
   if (!dataString) return;
 
-  const data = JSON.parse(dataString);
+  let data;
+  try {
+    data = JSON.parse(dataString);
+  } catch (e) {
+    console.warn('Invalid diabetesResultData JSON', e);
+    return;
+  }
+
   const m = messages[lang || currentLang];
 
   const resultText = document.getElementById('prediction-result');
   const resultBox = document.getElementById('result-box');
-
-
-
-
-//changed here last 👇
-
   if (!resultText || !resultBox) return;
 
-    const isPositive =
-        (typeof data.probPercent === 'number')
-            ? Number(data.probPercent) >= 50
-            : Boolean(data.isPositive);
+  const isPositive =
+    (typeof data.probPercent === 'number')
+      ? Number(data.probPercent) >= 50
+      : Boolean(data.isPositive);
 
-    if (isPositive) {
-        resultText.textContent = m.resultPositive;
-     
-//changed till here for this part 👆
-
- resultText.classList.remove('result-negative');
-      resultText.classList.add('result-positive');
-      resultBox.classList.remove('result-negative-bg');
-      resultBox.classList.add('result-positive-bg');
-    } else {
-      resultText.textContent = m.resultNegative;
-      resultText.classList.remove('result-positive');
-      resultText.classList.add('result-negative');
-      resultBox.classList.remove('result-positive-bg');
-      resultBox.classList.add('result-negative-bg');
-    }
+  if (isPositive) {
+    resultText.textContent = m.resultPositive;
+    resultText.classList.remove('result-negative');
+    resultText.classList.add('result-positive');
+    resultBox.classList.remove('result-negative-bg');
+    resultBox.classList.add('result-positive-bg');
+  } else {
+    resultText.textContent = m.resultNegative;
+    resultText.classList.remove('result-positive');
+    resultText.classList.add('result-negative');
+    resultBox.classList.remove('result-positive-bg');
+    resultBox.classList.add('result-negative-bg');
   }
 }
 
