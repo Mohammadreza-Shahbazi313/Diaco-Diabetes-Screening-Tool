@@ -754,7 +754,6 @@ function loadThanksData() {
     try {
       const parsed = JSON.parse(raw);
       
-      sessionStorage قبلی یا backup)
       
       { data: {...}, ts:... }
       if (parsed && typeof parsed === 'object') {
