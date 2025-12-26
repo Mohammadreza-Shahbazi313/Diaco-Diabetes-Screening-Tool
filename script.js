@@ -153,8 +153,6 @@ function displayResultText(lang) {
 
 
 
-
-
 //changed here last 👇
 
   if (!resultText || !resultBox) return;
@@ -622,7 +620,54 @@ function loadInputData() {
       // const percent = Math.max(0, Math.min(100, Math.round(prob * 100)));
       const percent = probToPercent(prob);
 
+//here
 
+try {
+    const existing = JSON.parse(sessionStorage.getItem('diabetesResultData')) || {};
+    existing.probPercent = percent;                // ذخیره درصد (0-100)
+    existing.isPositive = (percent >= 50);         // classification بر اساس آستانه 50
+    // همچنین می‌توانیم مقادیر ورودی را هم ذخیره کنیم (اختیاری)
+    existing.glucose = Number(data.glucose) || existing.glucose;
+    existing.bmi = Number(data.bmi) || existing.bmi;
+    existing.age = Number(data.age) || existing.age;
+    existing.pedigree = Number(data.pedigree) || existing.pedigree;
+    sessionStorage.setItem('diabetesResultData', JSON.stringify(existing));
+  } catch (e) { /* noop */ }
+  // --- end sync ---
+
+  if (typeof renderDonutEmbedded === 'function') {
+    renderDonutEmbedded(percent, 'riskDonut', 'riskPercent');
+  } else if (typeof renderDonut === 'function') {
+    renderDonut(percent, 'riskDonut', 'riskPercent');
+  }
+
+  const resultTextEl = document.getElementById('prediction-result');
+  const resultBoxEl = document.getElementById('result-box');
+  const m = messages[currentLang] || messages['fa'];
+
+  if (percent >= 50) {
+    if (resultTextEl) {
+      resultTextEl.textContent = m.resultPositive;
+      resultTextEl.classList.remove('result-negative');
+      resultTextEl.classList.add('result-positive');
+    }
+    if (resultBoxEl) {
+      resultBoxEl.classList.remove('result-negative-bg');
+      resultBoxEl.classList.add('result-positive-bg');
+    }
+  } else {
+    if (resultTextEl) {
+      resultTextEl.textContent = m.resultNegative;
+      resultTextEl.classList.remove('result-positive');
+      resultTextEl.classList.add('result-negative');
+    }
+    if (resultBoxEl) {
+      resultBoxEl.classList.remove('result-positive-bg');
+      resultBoxEl.classList.add('result-negative-bg');
+    }
+  }
+
+//till here
 
       if (typeof renderDonutEmbedded === 'function') {
         renderDonutEmbedded(percent, 'riskDonut', 'riskPercent');
@@ -960,7 +1005,7 @@ function predictFromModel(valuesArray) {
 function probToPercent(prob) {
   if (typeof prob !== 'number' || isNaN(prob)) return 0;
   const pct = Math.floor(prob * 100);
-  return Math.min(99, Math.max(0, pct));
+  return Math.min(100, Math.max(0, pct));
 }
 
 
@@ -1003,6 +1048,18 @@ function handlePredictionAndShow(e) {
   // const percent = Math.max(0, Math.min(100, Math.round(prob * 100)));
   const percent = probToPercent(prob);
   renderDonut(percent, 'riskDonut', 'riskPercent');
+
+// persist percent/classification to session so result page stays consistent
+  try {
+    const existing = JSON.parse(sessionStorage.getItem('diabetesResultData')) || {};
+    existing.probPercent = percent;
+    existing.isPositive = (percent >= 50);
+    existing.glucose = glucose;
+    existing.bmi = bmi;
+    existing.age = age;
+    existing.pedigree = pedigree;
+    sessionStorage.setItem('diabetesResultData', JSON.stringify(existing));
+  } catch (e) { /* noop */ }
 
   const msgEl = document.getElementById('riskMessage');
   if (msgEl) {
@@ -1121,6 +1178,19 @@ function attachEmbeddedPrediction() {
 
     // const percent = Math.max(0, Math.min(100, Math.round(prob * 100)));
     const percent = probToPercent(prob);
+
+
+// sync to sessionStorage so result.html will reflect same percent/classification
+    try {
+      const existing = JSON.parse(sessionStorage.getItem('diabetesResultData')) || {};
+      existing.probPercent = percent;
+      existing.isPositive = (percent >= 50);
+      existing.glucose = glucose;
+      existing.bmi = bmi;
+      existing.age = age;
+      existing.pedigree = pedigree;
+      sessionStorage.setItem('diabetesResultData', JSON.stringify(existing));
+    } catch (e) { /* noop */ }
 
 
     let riskArea = document.getElementById('riskArea');
