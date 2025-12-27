@@ -29,9 +29,9 @@ const messages = {
     attentionCheckup: '<strong>توجه:</strong> این ابزار صرفاً یک مدل پیش‌بینی‌کننده بر اساس داده‌های آماری است و هرگز جایگزین تشخیص پزشک متخصص نمی‌شود. <strong>لطفاً برای اطمینان کامل از وضعیت سلامتی خود، چکاپ و آزمایش‌های سالانه را جدی بگیرید و با پزشک مشورت نمایید.</strong>',
     thanksHeaderTitle: 'از شما متشکریم!',
     testAgainButton: 'آزمایش دوباره',
-    thankMessageNamed: (name) => از جناب اقای/سرکار خانم <strong>${name} گرامی</strong> بابت شرکت در این آزمایش متشکریم.,
+    thankMessageNamed: (name) => `از جناب اقای/سرکار خانم <strong>${name} گرامی</strong> بابت شرکت در این آزمایش متشکریم.`,
     thankMessageGeneric: 'از شما <strong>آزمایش‌دهنده گرامی</strong> بابت شرکت در این آزمایش متشکریم.',
-    thanksHeaderNamed: (name) => سپاسگزاریم، ${name}!,
+    thanksHeaderNamed: (name) => `سپاسگزاریم، ${name}!`,
     subtitle: 'دیاکو یک ابزار آزمایش و <strong>غربالگری</strong> دیابت است. <strong>نتایج کامل نیستند</strong>، برای اطمینان کامل به پزشک مراجعه کنید.',
     footerThanks: 'تشکر ویژه از دکتر سیامک سلیمی',
     checkupReminder: 'لطفاً برای اطمینان کامل از وضعیت سلامتی خود، چکاپ و آزمایشات سالانه را نادیده نگیرید.',
@@ -47,15 +47,14 @@ const messages = {
     aboutHeader: 'درباره پروژه',
     aboutAuthor: 'درباره من',
     aboutProject: 'این پروژه با هدف کمک به شناسایی اولیه دیابت طراحی شده است. این ابزار بر اساس یک مدل یادگیری ماشین ساده عمل می‌کند و نتیجه‌ای تقریبی را ارائه می‌دهد.',
-    aboutMe: من  <strong>محمدرضا شهبازی</strong> هستم، توسعه‌دهنده وب و علاقه‌مند به هوش مصنوعی و علم داده. پروژه دیاکو، تلاشی شخصی برای ترکیب مهارت‌های توسعه وب با مدل‌های ساده یادگیری ماشین است. هدف من، ساختن ابزارهای کاربردی و دقیق برای جامعه است.<br><br> برای دیدن پروژه‌های بیشتر یا ارتباط کاری با من، می‌توانید از طریق لینک‌های زیر در تماس باشید: <br> 🔗 لینکدین: <a href="https://www.linkedin.com/in/mohammadreza-shahbazi-313sh" target="_blank">mohammadreza-shahbazi-313sh</a> <br> 💻 گیت‌هاب: <a href="https://github.com/Mohammadreza-Shahbazi313" target="_blank">Mohammadreza-Shahbazi313</a> <br> 📧 ایمیل: <a href="mailto:eminemengland2000@gmail.com">eminemengland2000@gmail.com</a>,
+    aboutMe: `من  <strong>محمدرضا شهبازی</strong> هستم، توسعه‌دهنده وب و علاقه‌مند به هوش مصنوعی و علم داده. پروژه دیاکو، تلاشی شخصی برای ترکیب مهارت‌های توسعه وب با مدل‌های ساده یادگیری ماشین است. هدف من، ساختن ابزارهای کاربردی و دقیق برای جامعه است.<br><br> برای دیدن پروژه‌های بیشتر یا ارتباط کاری با من، می‌توانید از طریق لینک‌های زیر در تماس باشید: <br> 🔗 لینکدین: <a href="https://www.linkedin.com/in/mohammadreza-shahbazi-313sh" target="_blank">mohammadreza-shahbazi-313sh</a> <br> 💻 گیت‌هاب: <a href="https://github.com/Mohammadreza-Shahbazi313" target="_blank">Mohammadreza-Shahbazi313</a> <br> 📧 ایمیل: <a href="mailto:eminemengland2000@gmail.com">eminemengland2000@gmail.com</a>`,
     accuracyInfo: 'دقت مدل:',
     accuracyDesc: 'این مدل یک نمونه اولیه (Proof-of-Concept) است که بر اساس وزن‌دهی به عوامل خطر شناخته‌شده دیابت توسعه یافته است. دقت مدل، با استناد به نتایج حاصل از یک دیتاست معتبر (مانند دیتاسِت Pima Indian Diabetes) و برای نمایش توانایی‌های الگوریتم، حدود ۸۵٪ در نظر گرفته شده است.',
     footerText: 'ساخته شده توسط محمدرضا شهبازی',
     githubTag: 'اگر حمایت کنید خوشحال می‌شم',
     logoClickMessage: 'برای دیدن اطلاعات بیشتر، روی لوگو کلیک کنید',
     inputDataHeader: 'داده‌های ورودی',
-
-bmiFormulaImg: 'per-bmi-calculate.jpg',
+    bmiFormulaImg: 'per-bmi-calculate.jpg',
     fastingNotice: '<strong>نکتهٔ مهم:</strong> مقدار <em>گلوکز ناشتا</em> را وارد کنید (بعد از حداقل ۸ ساعت ناشتا بودن).',
     nameTooltip: 'این فیلد اختیاری است',
     riskMessage_low: 'خطر پایین',
@@ -94,9 +93,9 @@ bmiFormulaImg: 'per-bmi-calculate.jpg',
     attentionCheckup: '<strong>ATTENTION:</strong> This tool is solely a predictive model based on statistical data and is never a substitute for a specialist physician\'s diagnosis. <strong>Please take annual checkups and tests seriously and consult your doctor to ensure your full health status.</strong>',
     thanksHeaderTitle: 'Thank You!',
     testAgainButton: 'Test Again',
-    thankMessageNamed: (name) => We sincerely thank ${name} for participating in this screening.,
+    thankMessageNamed: (name) => `We sincerely thank ${name} for participating in this screening.`,
     thankMessageGeneric: 'We sincerely thank the dear test-taker for participating in this screening.',
-    thanksHeaderNamed: (name) => Thank You, ${name}!,
+    thanksHeaderNamed: (name) => `Thank You, ${name}!`,
     subtitle: 'Diaco is a diabetes testing and <strong>screening</strong> tool. <strong>Results are not complete</strong>; consult a doctor for full assurance.',
     footerThanks: 'Special thanks to Dr. Siamak Salimy',
     checkupReminder: 'Please do not neglect annual checkups and tests for complete assurance of your health status.',
@@ -112,9 +111,8 @@ bmiFormulaImg: 'per-bmi-calculate.jpg',
     aboutHeader: 'About the Project',
     aboutAuthor: 'About Me',
     aboutProject: 'This project is designed to assist in the early identification of diabetes. The tool operates based on a simple Machine Learning model and provides an approximate result.',
-    aboutMe: I am <strong>Mohammadreza Shahbazi</strong>, a Web Developer and enthusiast of AI and Data Science. The Diaco project is a personal endeavor to merge web development skills with simple Machine Learning models. My goal is to build practical and accurate tools for the community.<br><br> You can connect with me for more projects or career opportunities using the links below: <br> 🔗 LinkedIn: <a href="https://www.linkedin.com/in/mohammadreza-shahbazi-313sh" target="_blank">mohammadreza-shahbazi-313sh</a> <br> 💻 GitHub: <a href="https://github.com/Mohammadreza-Shahbazi313" target="_blank">Mohammadreza-Shahbazi313</a> <br> 📧 Email: <a href="mailto:eminemengland2000@gmail.com">eminemengland2000@gmail.com</a>,
-
-accuracyInfo: 'Model Accuracy:',
+    aboutMe: `I am <strong>Mohammadreza Shahbazi</strong>, a Web Developer and enthusiast of AI and Data Science. The Diaco project is a personal endeavor to merge web development skills with simple Machine Learning models. My goal is to build practical and accurate tools for the community.<br><br> You can connect with me for more projects or career opportunities using the links below: <br> 🔗 LinkedIn: <a href="https://www.linkedin.com/in/mohammadreza-shahbazi-313sh" target="_blank">mohammadreza-shahbazi-313sh</a> <br> 💻 GitHub: <a href="https://github.com/Mohammadreza-Shahbazi313" target="_blank">Mohammadreza-Shahbazi313</a> <br> 📧 Email: <a href="mailto:eminemengland2000@gmail.com">eminemengland2000@gmail.com</a>`,
+    accuracyInfo: 'Model Accuracy:',
     accuracyDesc: 'This model is a Proof-of-Concept developed based on weighting known diabetes risk factors. The model\'s accuracy is set to approximately 85% (referencing results from a reliable dataset like the Pima Indian Diabetes Dataset) to demonstrate the algorithm\'s potential capabilities.',
     footerText: 'Made by Mohammadreza Shahbazi',
     githubTag: 'I would be happy if you support me',
@@ -131,7 +129,7 @@ accuracyInfo: 'Model Accuracy:',
     inputDataHeader: 'Input Data',
     themeLabel_light: 'Light',
     themeLabel_dark: 'Dark',
-    thankMessageNamed: (name) => We sincerely thank <strong>${name}</strong> for participating in this screening.,
+    thankMessageNamed: (name) => `We sincerely thank <strong>${name}</strong> for participating in this screening.`,
 
   }
 };
@@ -195,7 +193,7 @@ function setLanguage(lang) {
       firstNode.nodeValue = plainLabelText + ' ';
     } else {
 
-      nameLabelEl.innerHTML = ${plainLabelText} <span id="name-tooltip" class="field-note inline" role="note" aria-live="polite" aria-atomic="true" style="display:none;"></span>;
+      nameLabelEl.innerHTML = `${plainLabelText} <span id="name-tooltip" class="field-note inline" role="note" aria-live="polite" aria-atomic="true" style="display:none;"></span>`;
       nameTooltipEl = document.getElementById('name-tooltip');
     }
 
@@ -226,7 +224,7 @@ function setLanguage(lang) {
     document.body.classList.add('lang-en');
   }
 
-const mainTitleElement = document.getElementById('main-title');
+  const mainTitleElement = document.getElementById('main-title');
   const resultPageTitleElement = document.getElementById('result-page-title');
 
   if (document.getElementById('diabetes-form')) {
@@ -320,9 +318,9 @@ const mainTitleElement = document.getElementById('main-title');
     document.getElementById('bmiResult').textContent = m.bmiLabel + ':';
     document.getElementById('pedigreeResult').textContent = m.pedigreeLabel + ':';
 
-const inputHeaderElement = document.getElementById('input-data-header');
+    const inputHeaderElement = document.getElementById('input-data-header');
     if (inputHeaderElement) {
-      inputHeaderElement.textContent = (m.inputDataHeader  messages['fa'].inputDataHeader  '');
+      inputHeaderElement.textContent = (m.inputDataHeader || messages['fa'].inputDataHeader || '');
     }
 
 
@@ -393,7 +391,7 @@ const inputHeaderElement = document.getElementById('input-data-header');
       const pct = parseInt(pctText.replace('%', ''), 10);
       if (!isNaN(pct)) {
         const key = pct >= 65 ? 'riskMessage_high' : (pct >= 35 ? 'riskMessage_mid' : 'riskMessage_low');
-        riskMsgEl.textContent = messages[currentLang][key]  messages['fa'][key]  '';
+        riskMsgEl.textContent = messages[currentLang][key] || messages['fa'][key] || '';
       }
     }
   } catch (e) { /* noop */ }
@@ -449,7 +447,7 @@ function validateForm(formId) {
       const min = parseFloat(input.min);
       const max = parseFloat(input.max);
 
-if (isNaN(numValue)) {
+      if (isNaN(numValue)) {
         errorElement.textContent = messages[lang].numberError;
         errorElement.style.display = 'block';
         isValid = false;
@@ -603,7 +601,8 @@ function loadInputData() {
       } catch (e) { console.warn('predictFromModelEmbedded error', e); prob = null; }
     }
 
-if (prob !== null && typeof prob !== 'undefined') {
+
+    if (prob !== null && typeof prob !== 'undefined') {
       // const percent = Math.max(0, Math.min(100, Math.round(prob * 100)));
       const percent = probToPercent(prob);
 
@@ -649,13 +648,15 @@ if (prob !== null && typeof prob !== 'undefined') {
 }
 
 
+// helper: امن‌سازی متن برای جلوگیری از XSS (اگر قبلاً قرار ندادی، این را بگذار)
 function escapeHtml(str) {
   if (typeof str !== 'string') return '';
-  return str.replace(/[&<>"'=\/]/g, function (s) {
-    return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;/", "/": "&#x2F;", "": "&#x60;", "=": "&#x3D;" })[s];
+  return str.replace(/[&<>"'`=\/]/g, function (s) {
+    return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;/", "/": "&#x2F;", "`": "&#x60;", "=": "&#x3D;" })[s];
   });
 }
 
+// helper: تشخیص نوشتار نام — برمی‌گرداند 'fa' یا 'en' یا null
 function detectNameScript(name) {
   if (!name || typeof name !== 'string') return null;
   const persianRegex = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/g;
@@ -665,7 +666,7 @@ function detectNameScript(name) {
   if (persianMatches.length === 0 && latinMatches.length === 0) return null;
   if (persianMatches.length > latinMatches.length) return 'fa';
   if (latinMatches.length > persianMatches.length) return 'en';
-  
+  // در حالت مساوی، از currentLang استفاده کن
   return (currentLang === 'fa') ? 'fa' : 'en';
 }
 
@@ -674,11 +675,11 @@ function loadThanksData() {
   const thanksHeaderEl = document.getElementById('thanks-header');
   if (!thanksMessageElement || !thanksHeaderEl) return;
 
-  
+  // 1) تلاش برای خواندن از sessionStorage (اولویت)
   let raw = null;
   try { raw = sessionStorage.getItem('diabetesResultData'); } catch (e) { raw = null; }
 
-  
+  // 2) اگر session خالی بود، از localStorage backup استفاده کن
   if (!raw) {
     try {
       const backup = localStorage.getItem('diaco_lastData');
@@ -689,20 +690,18 @@ function loadThanksData() {
     } catch (e) { raw = null; }
   }
 
-  
-  const pageLang = currentLang  (document.documentElement.lang  'fa');
+  // زبان صفحه (پیش‌فرض از currentLang)
+  const pageLang = currentLang || (document.documentElement.lang || 'fa');
   const mPageLang = messages[pageLang] || messages['fa'];
 
   let name = '';
   if (raw) {
     try {
       const parsed = JSON.parse(raw);
-      
-      sessionStorage قبلی یا backup)
-      
-      { data: {...}, ts:... }
+      // parsed ممکن است یک آبجکت سطح بالا (همان ساختار sessionStorage قبلی یا backup)
+      // بعضی جاها ما فرم را مستقیم ذخیره کردیم، گاهی شی { data: {...}, ts:... }
       if (parsed && typeof parsed === 'object') {
-        
+        // اگر backup ساختار متفاوت دارد، سعی کن نام را از چند مسیر برداری
         if (parsed.name) {
           name = String(parsed.name).trim();
         } else if (parsed.data && parsed.data.name) {
@@ -717,7 +716,7 @@ function loadThanksData() {
     }
   }
 
-  
+  // آماده‌سازی پیام‌ها
   let finalMessageHtml = mPageLang.thankMessageGeneric || '';
   let headerText = mPageLang.thanksHeaderTitle || '';
 
@@ -725,7 +724,7 @@ function loadThanksData() {
     const safeName = escapeHtml(name);
     const mUse = messages[pageLang] || messages['fa'];
 
-try {
+    try {
       if (typeof mUse.thankMessageNamed === 'function') {
         finalMessageHtml = mUse.thankMessageNamed(safeName);
       } else if (mUse.thankMessageNamed) {
@@ -750,18 +749,20 @@ try {
     headerText = mUse.thanksHeaderTitle || headerText;
   }
 } else {
- 
+  // نام وارد نشده — پیام عمومی بر اساس زبان صفحه
   finalMessageHtml = mPageLang.thankMessageGeneric || finalMessageHtml;
   headerText = mPageLang.thanksHeaderTitle || headerText;
 
-
+  // — اختیاری: یک خط کوچک دربارهٔ "تشکر از بازدید" اضافه کن (این خط را در صورت نیاز فعال کن)
   // if (pageLang === 'fa') finalMessageHtml += '<br><small>از اینکه به سایت ما سر زدید متشکریم.</small>';
   // else finalMessageHtml += '<br><small>Thank you for visiting our site.</small>';
 }
 
+// درج در DOM
 thanksMessageElement.innerHTML = finalMessageHtml;
 thanksHeaderEl.textContent = headerText;
 
+// پاک‌سازی ذخیره‌ها — فقط بعد از نمایش
 try { sessionStorage.removeItem('diabetesResultData'); } catch (e) { /* noop */ }
 try { localStorage.removeItem('diaco_lastData'); } catch (e) { /* noop */ }
 }
@@ -778,7 +779,7 @@ function initFancyThemeToggle() {
   const place = (oldBtn && oldBtn.parentNode) ? oldBtn.parentNode : (document.querySelector('.left-section') || document.body);
 
   const wrapper = document.createElement('div');
-  wrapper.innerHTML = 
+  wrapper.innerHTML = `
     <div id="theme-toggle-wrapper" class="theme-toggle-wrapper" aria-hidden="false">
       <label class="theme-toggle" for="theme-checkbox" aria-labelledby="theme-toggle-label">
         <input id="theme-checkbox" class="theme-checkbox" type="checkbox" role="switch" aria-checked="false" />
@@ -790,7 +791,7 @@ function initFancyThemeToggle() {
         <span id="theme-toggle-label" class="theme-toggle-label" aria-live="polite"></span>
       </label>
     </div>
-  ;
+  `;
 
   if (oldBtn && oldBtn.parentNode) {
     oldBtn.parentNode.replaceChild(wrapper.firstElementChild, oldBtn);
@@ -802,7 +803,7 @@ function initFancyThemeToggle() {
   const labelEl = document.getElementById('theme-toggle-label');
   const knobImg = document.getElementById('theme-knob-icon');
 
-  if (!checkbox  !labelEl  !knobImg) return;
+  if (!checkbox || !labelEl || !knobImg) return;
 
   const saved = localStorage.getItem('theme');
   const initialDark = (saved === 'dark') || document.body.classList.contains('dark-theme');
@@ -824,14 +825,14 @@ function initFancyThemeToggle() {
     knobImg.alt = isDark ? 'dark theme' : 'light theme';
 
     let m = (typeof messages !== 'undefined' && messages[currentLang]) ? messages[currentLang] : messages['fa'];
-    labelEl.textContent = isDark ? (m.themeLabel_dark  'تاریک') : (m.themeLabel_light  'روشن');
+    labelEl.textContent = isDark ? (m.themeLabel_dark || 'تاریک') : (m.themeLabel_light || 'روشن');
 
     try { if (typeof updateThemeButton === 'function') updateThemeButton(isDark); } catch (e) { }
   }
 
   updateToggleUI();
 
-checkbox.addEventListener('change', function () {
+  checkbox.addEventListener('change', function () {
     const isDark = this.checked;
     if (isDark) {
       document.body.classList.add('dark-theme');
@@ -854,6 +855,10 @@ if (document.readyState === 'loading') {
 } else {
   initFancyThemeToggle();
 }
+
+
+
+
 
 
 
@@ -983,7 +988,7 @@ function handlePredictionAndShow(e) {
   const age = Number(document.getElementById('age').value);
   const pedigree = Number(document.getElementById('pedigree').value);
 
-const prob = predictFromModel([glucose, bmi, age, pedigree]);
+  const prob = predictFromModel([glucose, bmi, age, pedigree]);
   if (prob === null) { alert('Model not loaded. Put model_from_excel.json next to script.js and refresh.'); return; }
   // const percent = Math.max(0, Math.min(100, Math.round(prob * 100)));
   const percent = probToPercent(prob);
@@ -993,7 +998,7 @@ const prob = predictFromModel([glucose, bmi, age, pedigree]);
   if (msgEl) {
     const m = messages[currentLang] || messages['fa'];
     const key = percent >= 65 ? 'riskMessage_high' : (percent >= 35 ? 'riskMessage_mid' : 'riskMessage_low');
-    msgEl.textContent = m[key]  messages['fa'][key]  '';
+    msgEl.textContent = m[key] || messages['fa'][key] || '';
   }
 }
 
@@ -1081,7 +1086,7 @@ function renderDonutEmbedded(percent, canvasId = 'riskDonut', labelId = 'riskPer
     animation: { animateRotate: true, duration: 800 }
   };
 
-  if (assistant_donut_chart) assistant_donut_chart.destroy();
+  if (__assistant_donut_chart) __assistant_donut_chart.destroy();
   __assistant_donut_chart = new Chart(ctx, { type: 'doughnut', data: data, options: options });
 
   const lbl = document.getElementById(labelId);
@@ -1116,12 +1121,11 @@ function attachEmbeddedPrediction() {
       riskArea.style.margin = '18px auto';
       riskArea.innerHTML = `
         <div style="position:relative; height:220px;">
-
-<canvas id="riskDonut" width="220" height="220"></canvas>
+          <canvas id="riskDonut" width="220" height="220"></canvas>
         </div>
         <div id="riskPercent" style="text-align:center; font-weight:700; margin-top:8px">%</div>
         <div id="riskMessage" style="text-align:center; color:#444; margin-top:6px"></div>
-      ;
+      `;
 
       const form = document.getElementById('diabetes-form');
       form.parentNode.insertBefore(riskArea, form.nextSibling);
@@ -1189,7 +1193,7 @@ window.renderDonutEmbedded = function (percent, canvasId = 'riskDonut', labelId 
     container.style.maxWidth = '420px';
     container.style.margin = '18px auto';
 
-    container.innerHTML = 
+    container.innerHTML = `
            <div style="position:relative;height:220px;">
               <canvas id="${canvasId}" width="220" height="220"></canvas>
            </div>
@@ -1239,7 +1243,8 @@ window.renderDonutEmbedded = function (percent, canvasId = 'riskDonut', labelId 
   if (msgEl) {
     const m = messages[currentLang] || messages['fa'];
     const key = percent >= 65 ? 'riskMessage_high' : (percent >= 35 ? 'riskMessage_mid' : 'riskMessage_low');
-    msgEl.textContent = m[k messages['fa'][key] ] || '';
+    msgEl.textContent = m[key] || messages['fa'][key] || '';
   }
 
 };
+
