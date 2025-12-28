@@ -102,6 +102,3 @@ open index.html   # (on macOS)
 
 ```
 ```
-
----
-V2 VERY SOON...
