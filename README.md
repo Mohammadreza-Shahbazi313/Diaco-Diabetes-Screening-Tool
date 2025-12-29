@@ -100,11 +100,13 @@ Options:
    python -m http.server 8000
    # then open http://localhost:8000/index.html
    Node (serve):
-
-3. npm i -g serve
+  
+3. Node (serve):
+  ```bash
+  npm i -g serve
   serve .
   # open the provided URL
-     
+  ```
 -----
 
 ## Release — v2 (summary)
