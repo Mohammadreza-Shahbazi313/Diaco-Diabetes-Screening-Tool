@@ -2,11 +2,9 @@
 
 # Diaco — Diabetes Screening Tool (v2)🩺
 
-Small, bilingual (FA/EN) web PoC. v2 replaces heuristic checks with a Logistic Regression model, shows percentage risk (donut chart), and adds full i18n, theme, UI improvements and security hardening.
+**v2 — Logistic Regression, percentage risk (donut), full FA/EN i18n, theme & security.**
 
-
-A **bilingual (English/Persian) diabetes screening tool** built with pure **HTML, CSS, and JavaScript**.
-This project is designed as a **foundational Proof-of-Concept (V1)** focusing on dynamic UI, form validation, and client-side logic based on known risk factors.
+Diaco is a small bilingual (Persian / English) client-side proof-of-concept that helps demonstrate an early diabetes screening flow. Version 2 upgrades the original V1 heuristic to a Logistic Regression model (probability output), visualizes risk as a donut chart, improves Persian UX (Vazir font, input-script detection), and adds security hardening and robust i18n.
 
 
 ---
@@ -27,15 +25,16 @@ The Diaco project is a multi-page static application:
 
 Diaco-Diabetes-Screening-Tool/
 ├── index.html       \# Main form (Data Entry)
-├── result.html      \# Result display page (Positive/Negative)
+├── result.html      \# Result display page (percentage + donut)
 ├── bmi.html         \# BMI calculator utility
 ├── about.html       \# About the project and author
 ├── thanks.html      \# Final thank you page
 ├── style.css        \# All styles (inc. Light/Dark modes & RTL/LTR)
-├── script.js        \# Core app logic, translation, validation & PoC model
+├── script.js        \# Core logic, i18n, validation, ML pipeline & donut rendering
 ├── model_from_excel.json       # optional external LR model (fallback to embedded model)
 ├── logo.png         \# Project logo
 ├── CHANGELOG.md               # v1 → v2 changes
+├── README.md
 ├── per-bmi-calculate.jpg \# Persian formula image
 └── en-bmi-calculate.png  \# English formula image
 
@@ -60,6 +59,10 @@ Diaco-Diabetes-Screening-Tool/
 
 ---
 
+## 🩺 Important — Medical disclaimer
+**This project is educational and experimental.** It is **not** a medical diagnostic tool and must **not** be used as a substitute for professional medical advice, diagnosis, or treatment. For any health concerns, consult a qualified physician.
+
+---
 
 ## 🧠 How It Works (v2)
 - `index.html` contains the data-entry form. Submitting saves a session object to `sessionStorage` and redirects to `result.html`.
@@ -82,20 +85,26 @@ Diaco-Diabetes-Screening-Tool/
 
 ---
 
-## 💻 Run Locally
-You can run the project on your computer easily:
+## 💻 Run locally (recommended)
+Because this is a multi-file static app that fetches optional JSON and uses module-like fetches, **serve it with a local static server** rather than opening files directly.
 
-```bash
-# 1. Clone the repo
-git clone [https://github.com/Mohammadreza-Shahbazi313/Diaco-Diabetes-Screening-Tool.git](https://github.com/Mohammadreza-Shahbazi313/Diaco-Diabetes-Screening-Tool.git)
+Options:
 
-# 2. Navigate into the project folder
-cd Diaco-Diabetes-Screening-Tool
+1. **VS Code — Live Server** (recommended)
+   - Install *Live Server* extension.
+   - Open folder and click *Go Live*.
 
-# 3. Open in your browser
-start index.html  # (on Windows)
-open index.html   # (on macOS)
-````
+2. **Python** (works on macOS / Linux / Windows with Python installed)
+   ```bash
+   # Python 3.x
+   python -m http.server 8000
+   # then open http://localhost:8000/index.html
+   Node (serve):
+
+3. npm i -g serve
+  serve .
+  # open the provided URL
+     
 -----
 
 ## Release — v2 (summary)
