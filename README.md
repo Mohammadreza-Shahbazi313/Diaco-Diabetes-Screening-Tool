@@ -1,6 +1,9 @@
 
 
-# 🩺 Diaco - Diabetes Screening Tool (V1)
+# Diaco — Diabetes Screening Tool (v2)🩺
+
+Small, bilingual (FA/EN) web PoC. v2 replaces heuristic checks with a Logistic Regression model, shows percentage risk (donut chart), and adds full i18n, theme, UI improvements and security hardening.
+
 
 A **bilingual (English/Persian) diabetes screening tool** built with pure **HTML, CSS, and JavaScript**.
 This project is designed as a **foundational Proof-of-Concept (V1)** focusing on dynamic UI, form validation, and client-side logic based on known risk factors.
@@ -8,9 +11,9 @@ This project is designed as a **foundational Proof-of-Concept (V1)** focusing on
 
 ---
 
-## 🚀 Live
+## 🚀 Live (v2)
+Try the latest v2 on GitHub Pages:  
 
-Experience it live on **GitHub Pages** 👇  
 👉 [**Open Diaco (Live)**](https://Mohammadreza-Shahbazi313.github.io/Diaco-Diabetes-Screening-Tool/)
 
 
@@ -30,7 +33,9 @@ Diaco-Diabetes-Screening-Tool/
 ├── thanks.html      \# Final thank you page
 ├── style.css        \# All styles (inc. Light/Dark modes & RTL/LTR)
 ├── script.js        \# Core app logic, translation, validation & PoC model
+├── model_from_excel.json       # optional external LR model (fallback to embedded model)
 ├── logo.png         \# Project logo
+├── CHANGELOG.md               # v1 → v2 changes
 ├── per-bmi-calculate.jpg \# Persian formula image
 └── en-bmi-calculate.png  \# English formula image
 
@@ -38,28 +43,42 @@ Diaco-Diabetes-Screening-Tool/
 
 ---
 
-## ⚙️ Features
-
-- ✅ **Fully Bilingual:** Seamless switching between English (LTR) and Persian (RTL).
-- ✅ **Risk Analysis:** A Proof-of-Concept (PoC) model that assesses risk based on key factors (Age, Glucose, BMI, Pedigree).
-- ✅ **Light/Dark Mode:** Dynamic theme switching for user comfort.
-- ✅ **BMI Calculator:** A built-in utility page to help users calculate their BMI.
-- ✅ **Client-Side Validation:** Robust form validation to ensure data integrity.
-- ✅ **Responsive Design:** Clean, centered layout that works well on mobile and desktop.
-- ✅ **Vanilla JS:** Built with zero dependencies for maximum performance and readability.
+## ⚙️ Features (v2)
+- ✅ Bilingual UI (Persian/English) with automatic RTL/LTR handling.
+- ✅ Logistic Regression model (probability output). Supports:
+  - ✅ External model JSON (model_from_excel.json)
+  - ✅ Embedded fallback model inside script.js
+- ✅ Risk visualization via a donut chart (Chart.js) with color-coded levels:
+  - ✅ Green: Low risk, Orange: Moderate risk, Red: High risk
+- ✅ Input script detection (Persian/Latin) — applies .input-fa / .input-en for proper font/direction.
+- ✅ Robust form validation with bilingual error messages.
+- ✅ Theme switch (Light/Dark) with an ARIA-friendly toggle and local storage persistence.
+- ✅ SessionFlow: sessionStorage for cross-page state, with localStorage fallback.
+- ✅ XSS protection (escapeHtml) for user-provided names and content inserted via innerHTML.
+- ✅ Responsive, mobile-friendly layout with Vazir font for Persian input.
+- ✅ Minimal external dependencies (Chart.js only) and graceful fallbacks.
 
 ---
 
-## 🧠 How It Works
-- **HTML** defines the structure for all 5 pages.
-- **CSS** handles the complete look and feel, including dynamic themes and RTL/LTR direction switching.
-- **JavaScript** (`script.js`) controls all application logic:
-  - A central `messages` object holds all translations.
-  - `setLanguage()` updates all text, CSS classes (`lang-fa`/`lang-en`), and page direction.
-  - `validateForm()` ensures all data is correct before submission.
-  - `submitForm()` saves data to **`sessionStorage`** and redirects to `result.html`.
-  - `displayResultText()` reads from `sessionStorage` and shows the translated result.
-  - `loadThanksData()` shows the personalized thank you message and clears the session.
+
+## 🧠 How It Works (v2)
+- `index.html` contains the data-entry form. Submitting saves a session object to `sessionStorage` and redirects to `result.html`.
+- `script.js` provides:
+  - `setLanguage(lang)` — updates UI text, d
+  - irection, and stores selection in localStorage.
+  - `validateForm(formId)` — required/range/regex checks with bilingual messages.
+  - `submitForm()` — writes `diabetesResultData` to sessionStorage.
+  - ML pipeline:
+    - `loadLRModel()` — tries to fetch `model_from_excel.json` (external).
+    - `predictFromModel(values)` — uses fetched model (if available).
+    - `predictFromModelEmbedded(values)` — deterministic embedded LR fallback.
+    - Inputs are standardized using `scaler_mean` and `scaler_scale` before computing `sigmoid(z)`.
+  - Visualization:
+    - `renderDonutEmbedded(percent, canvasId, labelId)` — builds and updates the Chart.js donut.
+  - Thanks page:
+    - `loadThanksData()` — reads session, detects script of `name` via `detectNameScript()`, escapes it via `escapeHtml()` and renders a localized thank-you message; then clears sessionStorage.
+- Storage: Language and theme persist in `localStorage`. Session data flows via `sessionStorage` with optional `diaco_lastData` fallback in `localStorage`.
+
 
 ---
 
@@ -79,11 +98,9 @@ open index.html   # (on macOS)
 ````
 -----
 
-## 📈 V2 Roadmap (Planned)
+## Release — v2 (summary)
+This release (v2) converts the internal logic to a Logistic Regression model (probability output), adds a donut visualization, implements full bilingual support (FA/EN) with automatic script detection, improves UI (Vazir font, theme toggle), and adds security hardening (XSS escape, validation). See `CHANGELOG.md` for detailed entries and commit history.
 
-  - [ ] **Feature:** Display diabetes probability as a **percentage** (e.g., "65% Risk").
-  - [ ] **Bugfix:** Finalize name personalization logic on the "Thank You" page.
-  - [ ] **Upgrade:** Replace the current PoC logic with a true Machine Learning model.
 
 -----
 
