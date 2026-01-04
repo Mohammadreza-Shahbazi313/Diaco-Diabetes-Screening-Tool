@@ -60,23 +60,42 @@
 
     </header>
 
-    <div class="about-content" id="about-content">
-      <h2 id="about-header">درباره پروژه</h2>
-      <p id="about-project">
-      </p>
+<div class="about-content" id="about-content">
+  <h2 id="about-header">درباره پروژه</h2>
 
-      <h2 id="about-author">درباره من</h2>
-      <p id="about-me">
-      </p>
+  <div class="about-section" id="about-project-block">
+    <div id="about-project"></div>
 
-      <h2 id="accuracy-info">دقت مدل</h2>
-      <p id="accuracy-desc">
+    <div class="notice" style="margin-top:12px;">
+      <strong>توجه مهم — Disclaimer / هشدار پزشکی:</strong>
+      <p style="margin:6px 0;">
+        این ابزار صرفاً یک نمونه‌کار آموزشی است و <strong>هرگز</strong> جایگزین تشخیص یا مشورت پزشکی نیست.
+        برای بررسی قطعی وضعیت سلامت حتماً به پزشک مراجعه کنید.
       </p>
+    </div>
 
-<div class="result-actions" style="margin-top: 24px;">
-  <a href="index.html" id="back-to-main" class="btn-bmi btn-secondary" role="button" aria-label="بازگشت به صفحهٔ اصلی">
-    بازگشت به فرم اصلی
-  </a>
+    <div class="meta" style="margin-top:14px; font-size:0.95rem; color:#444;">
+      <p><strong>Files of interest:</strong> <code>script.js</code>, <code>style.css</code>, <code>model_from_excel.json</code> (optional), <code>CHANGELOG.md</code>.</p>
+      <p><strong>Run locally:</strong> Use VSCode Live Server / <code>python -m http.server</code> / <code>serve .</code></p>
+      <p><strong>Model:</strong> If you provide <code>model_from_excel.json</code> in repository root, Diaco will load it automatically.</p>
+    </div>
+  </div>
+
+  <hr style="margin:18px 0; border:none; border-top:1px solid #eee;" />
+
+  <h2 id="about-author">درباره من</h2>
+  <div id="about-me"></div>
+
+  <h2 id="accuracy-info" style="margin-top:18px;">دقت مدل</h2>
+  <p id="accuracy-desc"></p>
+
+  <div class="result-actions" style="margin-top: 24px;">
+    <a href="index.html" id="back-to-main" class="btn-bmi btn-secondary" role="button" aria-label="بازگشت به صفحهٔ اصلی">
+      بازگشت به فرم اصلی
+    </a>
+
+    <a href="CHANGELOG.md" class="btn-bmi" style="margin-left:8px;" target="_blank" rel="noopener">مشاهده CHANGELOG</a>
+  </div>
 </div>
 
     </div>
