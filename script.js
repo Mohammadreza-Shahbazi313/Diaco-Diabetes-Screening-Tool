@@ -6,7 +6,7 @@ const messages = {
     titleBMI: 'دیاکو - محاسبه BMI',
     titleThanks: 'دیاکو - تشکر',
     titleAbout: 'دیاکو - درباره من و پروژه',
-    mainTitleAbout: 'دیاکو - درباره من و پروژه',
+    mainTitleAbout: 'دیاکو — درباره پروژه و تغییرات v2',
     langBtn: 'English',
     themeBtn: '☀️',
     nameLabel: 'نام و نام خانوادگی',
@@ -45,11 +45,26 @@ const messages = {
     bmiResultLabel: 'BMI شما:',
     backToMain: 'بازگشت به فرم اصلی',
     aboutHeader: 'درباره پروژه',
-    aboutAuthor: 'درباره من',
-    aboutProject: 'این پروژه با هدف کمک به شناسایی اولیه دیابت طراحی شده است. این ابزار بر اساس یک مدل یادگیری ماشین ساده عمل می‌کند و نتیجه‌ای تقریبی را ارائه می‌دهد.',
-    aboutMe: `من  <strong>محمدرضا شهبازی</strong> هستم، توسعه‌دهنده وب و علاقه‌مند به هوش مصنوعی و علم داده. پروژه دیاکو، تلاشی شخصی برای ترکیب مهارت‌های توسعه وب با مدل‌های ساده یادگیری ماشین است. هدف من، ساختن ابزارهای کاربردی و دقیق برای جامعه است.<br><br> برای دیدن پروژه‌های بیشتر یا ارتباط کاری با من، می‌توانید از طریق لینک‌های زیر در تماس باشید: <br> 🔗 لینکدین: <a href="https://www.linkedin.com/in/mohammadreza-shahbazi-313sh" target="_blank">mohammadreza-shahbazi-313sh</a> <br> 💻 گیت‌هاب: <a href="https://github.com/Mohammadreza-Shahbazi313" target="_blank">Mohammadreza-Shahbazi313</a> <br> 📧 ایمیل: <a href="mailto:eminemengland2000@gmail.com">eminemengland2000@gmail.com</a>`,
+    aboutAuthor: 'دربارهٔ توسعه‌دهنده',
+    aboutProject: `نسخهٔ دوم (v2) دیاکو، یک به‌روزرسانی فنی از نمونهٔ اولیهٔ قبلی است که منطق قاعده‌محور را با یک
+    مدل رگرسیون لجستیک جایگزین می‌کند و خروجی را به‌صورت احتمال نمایش می‌دهد. تغییرات کلیدی شامل: 
+    <ul>
+      <li>پشتیبانی از مدل خارجی JSON (model_from_excel.json) و fallback داخلی (embedded).</li>
+      <li>نمایش درصد ریسک با نمودار Donut و رنگ‌بندی سه‌گانه (سبز/نارنجی/قرمز).</li>
+      <li>سیستم کامل i18n (فارسی/انگلیسی) به همراه تشخیص اسکریپت نام کاربر (FA/EN).</li>
+      <li>تم روشن/تاریک با toggle و ذخیرهٔ تنظیم در localStorage.</li>
+      <li>بهبودهای UI برای ورودی‌های فارسی (فونت Vazir، هماهنگی جهت و placeholder).</li>
+      <li>ایمن‌سازی ورودی‌ها: نرمال‌سازی داده‌ها، اعتبارسنجی جامع و جلوگیری از XSS.</li>
+    </ul>
+    <p>این نسخه برای اهداف آموزشی و نمونه‌کار طراحی شده و <strong>هرگز</strong> جایگزین تشخیص پزشک نیست (لطفاً disclaimer را رعایت کنید).</p>`,
+    aboutMe: `من <strong>محمدرضا شهبازی</strong> هستم — توسعه‌دهندهٔ وب و علاقه‌مند به هوش مصنوعی و علم داده. این نسخهٔ دیاکو نشان‌دهندهٔ تلاش برای پیاده‌سازی یک گردش کار کاملِ کوچک ML در سمت کاربر (client-side): از نرمال‌سازی ورودی و مدل رگرسیون لجستیک تا نمایش بصری نتایج و نگهداری وضعیت بین صفحات. <br><br>
+    اگر مایل به مشاهدهٔ سورس، مدل تولیدشده یا همکاری هستید، لطفاً از لینک‌های زیر استفاده کنید: <br>
+    🔗 <a href="https://github.com/Mohammadreza-Shahbazi313" target="_blank" rel="noopener">GitHub</a> — سورس و CHANGELOG. <br>
+    📧 <a href="mailto:eminemengland2000@gmail.com">eminemengland2000@gmail.com</a> — تماس برای همکاری یا سوالات فنی.`,
     accuracyInfo: 'دقت مدل:',
-    accuracyDesc: 'این مدل یک نمونه اولیه (Proof-of-Concept) است که بر اساس وزن‌دهی به عوامل خطر شناخته‌شده دیابت توسعه یافته است. دقت مدل، با استناد به نتایج حاصل از یک دیتاست معتبر (مانند دیتاسِت Pima Indian Diabetes) و برای نمایش توانایی‌های الگوریتم، حدود ۸۵٪ در نظر گرفته شده است.',
+    accuracyDesc: `نسخهٔ v2 از یک مدل رگرسیون لجستیک بهره می‌برد که برای نمایش نمونهٔ Proof-of-Concept (PoC) طراحی شده است. 
+    دقت گزارش‌شده با استناد به ارزیابی روی دیتاست مرجع (مثل Pima Indian) حدود ۸۵٪ اعلام شده است؛ اما توجه داشته باشید که این مقدار صرفاً جهت نشان‌دادن عملکرد مدل در محیط آموزشی آورده شده و عملکرد واقعی روی جمعیت‌های متفاوت می‌تواند بسیار متفاوت باشد. برای تصمیم‌گیری پزشکی به‌هیچ‌وجه تنها به این ابزار اتکا نکنید.`,
+    
     footerText: 'ساخته شده توسط محمدرضا شهبازی',
     githubTag: 'اگر حمایت کنید خوشحال می‌شم',
     logoClickMessage: 'برای دیدن اطلاعات بیشتر، روی لوگو کلیک کنید',
@@ -70,7 +85,7 @@ const messages = {
     titleBMI: 'Diaco - BMI Calculation',
     titleThanks: 'Diaco - Thank You',
     titleAbout: 'Diaco - About Me & Project',
-    mainTitleAbout: 'Diaco - About Me & Project',
+    mainTitleAbout: 'Diaco — About the project & v2 changes',
     langBtn: 'فارسی',
     themeBtn: '🌙',
     nameLabel: 'Full Name',
@@ -108,12 +123,26 @@ const messages = {
     calculateBtn: 'Calculate BMI',
     bmiResultLabel: 'Your BMI:',
     backToMain: 'Back to Main Form',
+    
     aboutHeader: 'About the Project',
-    aboutAuthor: 'About Me',
-    aboutProject: 'This project is designed to assist in the early identification of diabetes. The tool operates based on a simple Machine Learning model and provides an approximate result.',
-    aboutMe: `I am <strong>Mohammadreza Shahbazi</strong>, a Web Developer and enthusiast of AI and Data Science. The Diaco project is a personal endeavor to merge web development skills with simple Machine Learning models. My goal is to build practical and accurate tools for the community.<br><br> You can connect with me for more projects or career opportunities using the links below: <br> 🔗 LinkedIn: <a href="https://www.linkedin.com/in/mohammadreza-shahbazi-313sh" target="_blank">mohammadreza-shahbazi-313sh</a> <br> 💻 GitHub: <a href="https://github.com/Mohammadreza-Shahbazi313" target="_blank">Mohammadreza-Shahbazi313</a> <br> 📧 Email: <a href="mailto:eminemengland2000@gmail.com">eminemengland2000@gmail.com</a>`,
-    accuracyInfo: 'Model Accuracy:',
-    accuracyDesc: 'This model is a Proof-of-Concept developed based on weighting known diabetes risk factors. The model\'s accuracy is set to approximately 85% (referencing results from a reliable dataset like the Pima Indian Diabetes Dataset) to demonstrate the algorithm\'s potential capabilities.',
+    aboutAuthor: 'About the Developer',
+    aboutProject: `Version 2 (v2) of Diaco upgrades the original heuristic checks to a Logistic Regression model that outputs probability scores. Key improvements:
+    <ul>
+      <li>Support for external JSON LR model (model_from_excel.json) with embedded fallback.</li>
+      <li>Risk shown as a percentage via a donut chart (color-coded: green/orange/red).</li>
+      <li>Full bilingual i18n (FA/EN) with input-script detection for names.</li>
+      <li>Light/Dark theme toggle persisted in localStorage.</li>
+      <li>UX improvements for Persian inputs (Vazir font, direction & placeholder sync).</li>
+      <li>Security hardening: input normalization, comprehensive validation and XSS mitigation.</li>
+    </ul>
+    <p>This release is intended for demonstration and educational purposes and is <strong>not</strong> a medical diagnostic tool.</p>`,
+    aboutMe: `I am <strong>Mohammadreza Shahbazi</strong>, a Web Developer with an interest in AI and Data Science. Diaco v2 demonstrates a compact client-side ML workflow: feature standardization, logistic regression inference, and client-side visualization with persistence across pages.<br><br>
+    For source code, model files, or collaboration inquiries, please use the links below: <br>
+    🔗 <a href="https://github.com/Mohammadreza-Shahbazi313" target="_blank" rel="noopener">GitHub</a> — source & CHANGELOG. <br>
+    📧 <a href="mailto:eminemengland2000@gmail.com">eminemengland2000@gmail.com</a>`,
+    accuracyInfo: 'Model accuracy:',
+    accuracyDesc: `Diaco v2 uses a logistic regression model provided as a PoC. The reported accuracy (~85%) is based on evaluation on a reference dataset (e.g., Pima Indian dataset) to demonstrate model behavior. Real-world performance varies; this tool must not be used as a substitute for medical testing or professional advice.`,
+
     footerText: 'Made by Mohammadreza Shahbazi',
     githubTag: 'I would be happy if you support me',
     logoClickMessage: 'Click on the logo for more information',
