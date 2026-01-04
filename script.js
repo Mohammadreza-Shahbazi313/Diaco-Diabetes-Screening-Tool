@@ -164,7 +164,11 @@ const messages = {
     themeLabel_light: 'Light',
     themeLabel_dark: 'Dark',
     thankMessageNamed: (name) => `We sincerely thank <strong>${name}</strong> for participating in this screening.`,
-
+    medicalDisclaimer: `<strong>Important — Medical disclaimer:</strong>
+    <p style="margin:6px 0;">
+    This tool is provided for educational and demonstration purposes only and is <strong>not</strong> a medical diagnostic tool.
+    For any medical concerns or a definitive diagnosis, please consult a qualified healthcare professional.
+    </p>`,
   }
 };
 
@@ -391,6 +395,9 @@ if (document.getElementById('about-content')) {
   // about me (contains links) -> innerHTML
   const aboutMeEl = document.getElementById('about-me');
   if (aboutMeEl) aboutMeEl.innerHTML = m.aboutMe || '';
+
+  const accuracyInfoEl = document.getElementById('accuracy-info');
+  if (accuracyInfoEl) accuracyInfoEl.textContent = m.accuracyInfo;
 
   // accuracy description (may contain paragraph HTML) -> innerHTML
   const accuracyDescEl = document.getElementById('accuracy-desc');
