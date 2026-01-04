@@ -77,6 +77,11 @@ const messages = {
     riskMessage_high: 'در معرض خطر — مراجعه به پزشک',
     themeLabel_light: 'روشن',
     themeLabel_dark: 'تاریک',
+    medicalDisclaimer: `<strong>توجه مهم — Disclaimer / هشدار پزشکی:</strong>
+    <p style="margin:6px 0;">
+    این ابزار صرفاً یک نمونه‌کار آموزشی است و <strong>هرگز</strong> جایگزین تشخیص یا مشورت پزشکی نیست.
+    برای بررسی قطعی وضعیت سلامت حتماً به پزشک مراجعه کنید.
+    </p>`,
 
   },
   en: {
@@ -366,39 +371,32 @@ function setLanguage(lang) {
     displayResultText(lang);
 
   }
-
 if (document.getElementById('about-content')) {
-
-  // عنوان صفحه (متن ساده → textContent درست است)
+  // header (pure text)
   const aboutHeaderEl = document.getElementById('about-header');
-  if (aboutHeaderEl) {
-    aboutHeaderEl.textContent = m.aboutHeader;
-  }
+  if (aboutHeaderEl) aboutHeaderEl.textContent = m.aboutHeader;
 
-  // درباره پروژه (دارای HTML → باید innerHTML باشد)
+  // about project (contains HTML lists) -> innerHTML
   const aboutProjectEl = document.getElementById('about-project');
-  if (aboutProjectEl) {
-    aboutProjectEl.innerHTML = m.aboutProject;
-  }
+  if (aboutProjectEl) aboutProjectEl.innerHTML = m.aboutProject || '';
 
-  // نویسنده (متن ساده)
+  // medical disclaimer -> innerHTML (new: fills the placeholder div)
+  const disclaimerEl = document.getElementById('medical-disclaimer');
+  if (disclaimerEl) disclaimerEl.innerHTML = m.medicalDisclaimer || '';
+
+  // about author title (text)
   const aboutAuthorEl = document.getElementById('about-author');
-  if (aboutAuthorEl) {
-    aboutAuthorEl.textContent = m.aboutAuthor;
-  }
+  if (aboutAuthorEl) aboutAuthorEl.textContent = m.aboutAuthor;
 
-  // درباره من (لینک دارد → innerHTML)
+  // about me (contains links) -> innerHTML
   const aboutMeEl = document.getElementById('about-me');
-  if (aboutMeEl) {
-    aboutMeEl.innerHTML = m.aboutMe;
-  }
+  if (aboutMeEl) aboutMeEl.innerHTML = m.aboutMe || '';
 
-  // توضیح دقت / مدل (پاراگراف HTML → innerHTML)
+  // accuracy description (may contain paragraph HTML) -> innerHTML
   const accuracyDescEl = document.getElementById('accuracy-desc');
-  if (accuracyDescEl) {
-    accuracyDescEl.innerHTML = m.accuracyDesc;
-  }
+  if (accuracyDescEl) accuracyDescEl.innerHTML = m.accuracyDesc || '';
 }
+
 
 
 
@@ -701,10 +699,20 @@ function loadInputData() {
 
 function escapeHtml(str) {
   if (typeof str !== 'string') return '';
-  return str.replace(/[&<>"'`=\/]/g, function (s) {
-    return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;/", "/": "&#x2F;", "`": "&#x60;", "=": "&#x3D;" })[s];
+  return str.replace(/[&<>"'`=\/]/g, function(s) {
+    return ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;',
+      '/': '&#x2F;',
+      '`': '&#x60;',
+      '=': '&#x3D;'
+    })[s];
   });
 }
+
 
 
 function detectNameScript(name) {
