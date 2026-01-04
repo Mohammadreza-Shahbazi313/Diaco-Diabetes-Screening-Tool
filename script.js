@@ -367,18 +367,39 @@ function setLanguage(lang) {
 
   }
 
-  if (document.getElementById('about-content')) {
-    document.getElementById('about-header').textContent = m.aboutHeader;
-    document.getElementById('about-project').textContent = m.aboutProject;
-    document.getElementById('about-author').textContent = m.aboutAuthor;
+if (document.getElementById('about-content')) {
 
-    const aboutMeElement = document.getElementById('about-me');
-    if (aboutMeElement) {
-      aboutMeElement.innerHTML = m.aboutMe;
-    }
-    document.getElementById('accuracy-info').textContent = m.accuracyInfo;
-    document.getElementById('accuracy-desc').textContent = m.accuracyDesc;
+  // عنوان صفحه (متن ساده → textContent درست است)
+  const aboutHeaderEl = document.getElementById('about-header');
+  if (aboutHeaderEl) {
+    aboutHeaderEl.textContent = m.aboutHeader;
   }
+
+  // درباره پروژه (دارای HTML → باید innerHTML باشد)
+  const aboutProjectEl = document.getElementById('about-project');
+  if (aboutProjectEl) {
+    aboutProjectEl.innerHTML = m.aboutProject;
+  }
+
+  // نویسنده (متن ساده)
+  const aboutAuthorEl = document.getElementById('about-author');
+  if (aboutAuthorEl) {
+    aboutAuthorEl.textContent = m.aboutAuthor;
+  }
+
+  // درباره من (لینک دارد → innerHTML)
+  const aboutMeEl = document.getElementById('about-me');
+  if (aboutMeEl) {
+    aboutMeEl.innerHTML = m.aboutMe;
+  }
+
+  // توضیح دقت / مدل (پاراگراف HTML → innerHTML)
+  const accuracyDescEl = document.getElementById('accuracy-desc');
+  if (accuracyDescEl) {
+    accuracyDescEl.innerHTML = m.accuracyDesc;
+  }
+}
+
 
 
   const backToMainEl = document.getElementById('back-to-main');
@@ -677,7 +698,7 @@ function loadInputData() {
 }
 
 
-// helper: امن‌سازی متن برای جلوگیری از XSS (اگر قبلاً قرار ندادی، این را بگذار)
+
 function escapeHtml(str) {
   if (typeof str !== 'string') return '';
   return str.replace(/[&<>"'`=\/]/g, function (s) {
@@ -685,7 +706,7 @@ function escapeHtml(str) {
   });
 }
 
-// helper: تشخیص نوشتار نام — برمی‌گرداند 'fa' یا 'en' یا null
+
 function detectNameScript(name) {
   if (!name || typeof name !== 'string') return null;
   const persianRegex = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/g;
@@ -695,7 +716,6 @@ function detectNameScript(name) {
   if (persianMatches.length === 0 && latinMatches.length === 0) return null;
   if (persianMatches.length > latinMatches.length) return 'fa';
   if (latinMatches.length > persianMatches.length) return 'en';
-  // در حالت مساوی، از currentLang استفاده کن
   return (currentLang === 'fa') ? 'fa' : 'en';
 }
 
@@ -704,11 +724,10 @@ function loadThanksData() {
   const thanksHeaderEl = document.getElementById('thanks-header');
   if (!thanksMessageElement || !thanksHeaderEl) return;
 
-  // 1) تلاش برای خواندن از sessionStorage (اولویت)
+  
   let raw = null;
   try { raw = sessionStorage.getItem('diabetesResultData'); } catch (e) { raw = null; }
 
-  // 2) اگر session خالی بود، از localStorage backup استفاده کن
   if (!raw) {
     try {
       const backup = localStorage.getItem('diaco_lastData');
@@ -719,7 +738,7 @@ function loadThanksData() {
     } catch (e) { raw = null; }
   }
 
-  // زبان صفحه (پیش‌فرض از currentLang)
+ 
   const pageLang = currentLang || (document.documentElement.lang || 'fa');
   const mPageLang = messages[pageLang] || messages['fa'];
 
@@ -730,13 +749,13 @@ function loadThanksData() {
       // parsed ممکن است یک آبجکت سطح بالا (همان ساختار sessionStorage قبلی یا backup)
       // بعضی جاها ما فرم را مستقیم ذخیره کردیم، گاهی شی { data: {...}, ts:... }
       if (parsed && typeof parsed === 'object') {
-        // اگر backup ساختار متفاوت دارد، سعی کن نام را از چند مسیر برداری
+
         if (parsed.name) {
           name = String(parsed.name).trim();
         } else if (parsed.data && parsed.data.name) {
           name = String(parsed.data.name).trim();
         } else if (parsed.data && parsed.data.name === undefined) {
-          // پوششی: اگر parsed خودِ formData بود (بدون data wrapper)
+          
           name = String(parsed.name || '').trim();
         }
       }
@@ -745,7 +764,6 @@ function loadThanksData() {
     }
   }
 
-  // آماده‌سازی پیام‌ها
   let finalMessageHtml = mPageLang.thankMessageGeneric || '';
   let headerText = mPageLang.thanksHeaderTitle || '';
 
