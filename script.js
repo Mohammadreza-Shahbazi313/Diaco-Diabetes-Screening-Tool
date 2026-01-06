@@ -376,30 +376,25 @@ function setLanguage(lang) {
 
   }
 if (document.getElementById('about-content')) {
-  // header (pure text)
+  
   const aboutHeaderEl = document.getElementById('about-header');
   if (aboutHeaderEl) aboutHeaderEl.textContent = m.aboutHeader;
 
-  // about project (contains HTML lists) -> innerHTML
   const aboutProjectEl = document.getElementById('about-project');
   if (aboutProjectEl) aboutProjectEl.innerHTML = m.aboutProject || '';
 
-  // medical disclaimer -> innerHTML (new: fills the placeholder div)
   const disclaimerEl = document.getElementById('medical-disclaimer');
   if (disclaimerEl) disclaimerEl.innerHTML = m.medicalDisclaimer || '';
 
-  // about author title (text)
   const aboutAuthorEl = document.getElementById('about-author');
   if (aboutAuthorEl) aboutAuthorEl.textContent = m.aboutAuthor;
 
-  // about me (contains links) -> innerHTML
   const aboutMeEl = document.getElementById('about-me');
   if (aboutMeEl) aboutMeEl.innerHTML = m.aboutMe || '';
 
   const accuracyInfoEl = document.getElementById('accuracy-info');
   if (accuracyInfoEl) accuracyInfoEl.textContent = m.accuracyInfo;
 
-  // accuracy description (may contain paragraph HTML) -> innerHTML
   const accuracyDescEl = document.getElementById('accuracy-desc');
   if (accuracyDescEl) accuracyDescEl.innerHTML = m.accuracyDesc || '';
 }
@@ -437,7 +432,6 @@ if (document.getElementById('about-content')) {
   });
 
 
-  // --- refresh risk message if percent already shown ---
   try {
     const riskPercentEl = document.getElementById('riskPercent');
     const riskMsgEl = document.getElementById('riskMessage');
@@ -465,7 +459,7 @@ function toggleTheme() {
 function updateThemeButton(isDark = document.body.classList.contains('dark-theme')) {
   const themeBtn = document.getElementById('theme-btn');
 
-  if (typeof window.refreshThemeToggleLabel === 'function') window.refreshThemeToggleLabel(); //  here!!!!!
+  if (typeof window.refreshThemeToggleLabel === 'function') window.refreshThemeToggleLabel(); 
 
   if (themeBtn) {
     if (isDark) {
@@ -761,8 +755,6 @@ function loadThanksData() {
   if (raw) {
     try {
       const parsed = JSON.parse(raw);
-      // parsed ممکن است یک آبجکت سطح بالا (همان ساختار sessionStorage قبلی یا backup)
-      // بعضی جاها ما فرم را مستقیم ذخیره کردیم، گاهی شی { data: {...}, ts:... }
       if (parsed && typeof parsed === 'object') {
 
         if (parsed.name) {
@@ -811,20 +803,14 @@ function loadThanksData() {
     headerText = mUse.thanksHeaderTitle || headerText;
   }
 } else {
-  // نام وارد نشده — پیام عمومی بر اساس زبان صفحه
   finalMessageHtml = mPageLang.thankMessageGeneric || finalMessageHtml;
   headerText = mPageLang.thanksHeaderTitle || headerText;
-
-  // — اختیاری: یک خط کوچک دربارهٔ "تشکر از بازدید" اضافه کن (این خط را در صورت نیاز فعال کن)
-  // if (pageLang === 'fa') finalMessageHtml += '<br><small>از اینکه به سایت ما سر زدید متشکریم.</small>';
-  // else finalMessageHtml += '<br><small>Thank you for visiting our site.</small>';
 }
 
-// درج در DOM
+
 thanksMessageElement.innerHTML = finalMessageHtml;
 thanksHeaderEl.textContent = headerText;
 
-// پاک‌سازی ذخیره‌ها — فقط بعد از نمایش
 try { sessionStorage.removeItem('diabetesResultData'); } catch (e) { /* noop */ }
 try { localStorage.removeItem('diaco_lastData'); } catch (e) { /* noop */ }
 }
@@ -918,12 +904,6 @@ if (document.readyState === 'loading') {
   initFancyThemeToggle();
 }
 
-
-
-
-
-
-
 document.addEventListener('DOMContentLoaded', () => {
 
   const savedTheme = localStorage.getItem('theme') || 'light';
@@ -932,13 +912,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   setLanguage(currentLang);
-
-
-  // const themeBtn = document.getElementById('theme-btn');
-  // if (themeBtn) {
-  //     themeBtn.addEventListener('click', toggleTheme);
-  // }
-
 
   document.querySelectorAll('.flag').forEach(flag => {
     flag.addEventListener('click', () => {
@@ -967,12 +940,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (document.getElementById('result-container')) {
     loadInputData();
   }
-
-
-  // if (window.location.pathname.endsWith('thanks.html')) {
-
-  //     loadThanksData();
-  // }
 
 });
 
@@ -1042,7 +1009,6 @@ function renderDonut(percent, canvasId = 'riskDonut', labelId = 'riskPercent') {
   if (lbl) lbl.textContent = percent.toFixed(0) + '%';
 }
 
-
 function handlePredictionAndShow(e) {
   if (e && e.preventDefault) e.preventDefault();
   const glucose = Number(document.getElementById('glucose').value);
@@ -1063,8 +1029,6 @@ function handlePredictionAndShow(e) {
     msgEl.textContent = m[key] || messages['fa'][key] || '';
   }
 }
-
-
 
 const LR_MODEL = {
   "features": [
