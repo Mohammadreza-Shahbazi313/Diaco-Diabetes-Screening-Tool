@@ -128,7 +128,6 @@ const messages = {
     calculateBtn: 'Calculate BMI',
     bmiResultLabel: 'Your BMI:',
     backToMain: 'Back to Main Form',
-    
     aboutHeader: 'About the Project',
     aboutAuthor: 'About the Developer',
     aboutProject: `Version 2 (v2) of Diaco upgrades the original heuristic checks to a Logistic Regression model that outputs probability scores. Key improvements:
@@ -169,6 +168,7 @@ const messages = {
     This tool is provided for educational and demonstration purposes only and is <strong>not</strong> a medical diagnostic tool.
     For any medical concerns or a definitive diagnosis, please consult a qualified healthcare professional.
     </p>`,
+    
   }
 };
 
