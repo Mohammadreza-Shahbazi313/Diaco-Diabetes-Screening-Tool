@@ -114,7 +114,6 @@ Options:
 ## Release — v2 (summary)
 This release (v2) converts the internal logic to a Logistic Regression model (probability output), adds a donut visualization, implements full bilingual support (FA/EN) with automatic script detection, improves UI (Vazir font, theme toggle), and adds security hardening (XSS escape, validation). See `CHANGELOG.md` for detailed entries and commit history.
 
-
 -----
 
 ## 👨‍💻 Author
