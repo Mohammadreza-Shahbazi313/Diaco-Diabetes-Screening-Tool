@@ -108,6 +108,7 @@ Options:
   serve .
   # open the provided URL
   ```
+
 -----
 
 ## Release — v2 (summary)
